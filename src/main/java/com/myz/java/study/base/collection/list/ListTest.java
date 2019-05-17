@@ -152,4 +152,22 @@ public class ListTest {
     public static void main(String[] args) {
         test1();
     }
+
+    /**
+     * add()和addAll()的区别
+     */
+    @Test
+    public void testAddAnAddAll() {
+        List list1 = new ArrayList<>(Arrays.asList("0","1","2"));
+        List list2 = new ArrayList<>(Arrays.asList("00","11","22"));
+        List list3 = new ArrayList<>(Arrays.asList("00","11","22"));
+
+        list3.add(list1);
+        // [00, 11, 22, [0, 1, 2]]
+        System.out.println(list3);
+
+        list2.addAll(list1);
+        // [00, 11, 22, 0, 1, 2]
+        System.out.println(list2);
+    }
 }
