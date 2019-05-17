@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.design.strategy.paystrategy</OriginalElement>
+  <nodes>
+    <node x="631.0" y="0.0">com.design.strategy.paystrategy.PayStrategy</node>
+    <node x="395.0" y="145.0">com.design.strategy.paystrategy.CardPay1</node>
+    <node x="851.0" y="171.0">com.design.strategy.paystrategy.CashPay</node>
+    <node x="0.0" y="342.0">com.design.strategy.paystrategy.PayContextExtend</node>
+    <node x="55.0" y="107.0">com.design.strategy.paystrategy.PayContext</node>
+    <node x="1071.0" y="171.0">com.design.strategy.paystrategy.DollarPay</node>
+    <node x="631.0" y="171.0">com.design.strategy.paystrategy.CardPay</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.design.strategy.paystrategy.DollarPay" target="com.design.strategy.paystrategy.PayStrategy">
+      <point x="0.0" y="-28.5" />
+      <point x="1171.0" y="77.0" />
+      <point x="811.0" y="77.0" />
+      <point x="80.0" y="28.5" />
+    </edge>
+    <edge source="com.design.strategy.paystrategy.CardPay" target="com.design.strategy.paystrategy.PayStrategy">
+      <point x="0.0" y="-28.5" />
+      <point x="0.0" y="28.5" />
+    </edge>
+    <edge source="com.design.strategy.paystrategy.CashPay" target="com.design.strategy.paystrategy.PayStrategy">
+      <point x="0.0" y="-28.5" />
+      <point x="951.0" y="87.0" />
+      <point x="771.0" y="87.0" />
+      <point x="40.0" y="28.5" />
+    </edge>
+    <edge source="com.design.strategy.paystrategy.PayContextExtend" target="com.design.strategy.paystrategy.PayContext">
+      <point x="0.0" y="-41.5" />
+      <point x="0.0" y="92.5" />
+    </edge>
+    <edge source="com.design.strategy.paystrategy.PayContext" target="com.design.strategy.paystrategy.PayStrategy">
+      <point x="0.0" y="-92.5" />
+      <point x="215.0" y="77.0" />
+      <point x="651.0" y="77.0" />
+      <point x="-80.0" y="28.5" />
+    </edge>
+    <edge source="com.design.strategy.paystrategy.CardPay1" target="com.design.strategy.paystrategy.PayStrategy">
+      <point x="0.0" y="-54.5" />
+      <point x="503.0" y="87.0" />
+      <point x="691.0" y="87.0" />
+      <point x="-40.0" y="28.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9" x="674.1111111111111" y="259.4920634920635" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

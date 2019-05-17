@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.design.strategy.logstrategyextend</OriginalElement>
+  <nodes>
+    <node x="113.0625" y="107.0">com.design.strategy.logstrategyextend.AbstractLogStrategy</node>
+    <node x="0.0" y="239.0">com.design.strategy.logstrategyextend.SqlLog</node>
+    <node x="191.515625" y="479.0">com.design.strategy.logstrategyextend.Main</node>
+    <node x="196.6875" y="0.0">com.design.strategy.logstrategyextend.LogStrategy</node>
+    <node x="165.015625" y="346.0">com.design.strategy.logstrategyextend.LogContext</node>
+    <node x="202.0" y="239.0">com.design.strategy.logstrategyextend.FileLog</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.design.strategy.logstrategyextend.Main" target="com.design.strategy.logstrategyextend.LogContext">
+      <point x="0.0" y="-28.5" />
+      <point x="0.0" y="41.5" />
+    </edge>
+    <edge source="com.design.strategy.logstrategyextend.LogContext" target="com.design.strategy.logstrategyextend.FileLog">
+      <point x="0.0" y="-41.5" />
+      <point x="283.515625" y="321.0" />
+      <point x="293.0" y="321.0" />
+      <point x="0.0" y="28.5" />
+    </edge>
+    <edge source="com.design.strategy.logstrategyextend.FileLog" target="com.design.strategy.logstrategyextend.AbstractLogStrategy">
+      <point x="0.0" y="-28.5" />
+      <point x="293.0" y="214.0" />
+      <point x="250.3125" y="214.0" />
+      <point x="45.75" y="41.0" />
+    </edge>
+    <edge source="com.design.strategy.logstrategyextend.SqlLog" target="com.design.strategy.logstrategyextend.AbstractLogStrategy">
+      <point x="0.0" y="-28.5" />
+      <point x="91.0" y="214.0" />
+      <point x="158.8125" y="214.0" />
+      <point x="-45.75" y="41.0" />
+    </edge>
+    <edge source="com.design.strategy.logstrategyextend.LogContext" target="com.design.strategy.logstrategyextend.SqlLog">
+      <point x="-79.0" y="-41.5" />
+      <point x="204.515625" y="321.0" />
+      <point x="91.0" y="321.0" />
+      <point x="0.0" y="28.5" />
+    </edge>
+    <edge source="com.design.strategy.logstrategyextend.LogContext" target="com.design.strategy.logstrategyextend.LogStrategy">
+      <point x="79.0" y="-41.5" />
+      <point x="362.515625" y="321.0" />
+      <point x="394.5" y="321.0" />
+      <point x="394.5" y="82.0" />
+      <point x="318.9375" y="82.0" />
+      <point x="40.75" y="28.5" />
+    </edge>
+    <edge source="com.design.strategy.logstrategyextend.AbstractLogStrategy" target="com.design.strategy.logstrategyextend.LogStrategy">
+      <point x="0.0" y="-41.0" />
+      <point x="204.5625" y="82.0" />
+      <point x="237.4375" y="82.0" />
+      <point x="-40.75" y="28.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="285.5" y="276.5" />
+  <SelectedNodes>
+    <node>com.design.strategy.logstrategyextend.FileLog</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

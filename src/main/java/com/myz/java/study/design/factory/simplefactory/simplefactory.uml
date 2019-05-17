@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.design.factory.simplefactory.BeanFactory</OriginalElement>
+  <nodes>
+    <node x="-182.0" y="-8.0">com.design.factory.simplefactory.BeanFactory</node>
+    <node x="127.0" y="82.0">com.design.factory.simplefactory.ProductB</node>
+    <node x="68.0" y="0.0">com.design.factory.simplefactory.Product</node>
+    <node x="0.0" y="82.0">com.design.factory.simplefactory.ProductA</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.design.factory.simplefactory.ProductA" target="com.design.factory.simplefactory.Product">
+      <point x="0.0" y="-16.0" />
+      <point x="53.5" y="57.0" />
+      <point x="92.5" y="57.0" />
+      <point x="-24.5" y="16.0" />
+    </edge>
+    <edge source="com.design.factory.simplefactory.ProductB" target="com.design.factory.simplefactory.Product">
+      <point x="0.0" y="-16.0" />
+      <point x="180.5" y="57.0" />
+      <point x="141.5" y="57.0" />
+      <point x="24.5" y="16.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="117.0" y="95.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
