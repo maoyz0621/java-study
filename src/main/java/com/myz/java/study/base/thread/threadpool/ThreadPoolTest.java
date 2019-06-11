@@ -30,7 +30,8 @@ public class ThreadPoolTest {
 
     /**
      * newCachedThreadPool()，可缓存线程池
-     * 创建可一段时间内重复利用的线程池，常用于不知道具体的任务数量，但是还需要进行并行处理的情况，
+     * 创建可一段时间内重复利用的线程池，
+     * todo 常用于不知道具体的任务数量，但是还需要进行并行处理的情况，
      * 如springboot @Aysnc就可以指定使用这个线程池，来进行一些埋点等的各种业务的异步处理
      * 创建一个可缓存的线程池，如果当前线程池的规模超出了处理需求，将回收空的线程；当需求增加时，会增加线程数量；线程池规模无限制。
      */
@@ -51,7 +52,8 @@ public class ThreadPoolTest {
 
     /**
      * newFixedThreadPool 可重用固定线程数的线程池
-     * 创建固定数量的线程的线程池，可以控制最大并发数，常用于知道具体任务的数量，需要进行多线程的操作，
+     * 创建固定数量的线程的线程池，可以控制最大并发数，
+     * todo 常用于知道具体任务的数量，需要进行多线程的操作，
      * 如批量插入数据库任务，需要进行10万条数据分页，每1万条数据一页，配置一个线程处理，一共配置10个线程，进行并行批量插入，就可以使用这个线程池来进行，大大减少响应时间
      */
     public void testFixedThreadPool() {
@@ -122,7 +124,8 @@ public class ThreadPoolTest {
 
 
     /**
-     * newScheduledThreadPool 定时线程池，可执行定时任务
+     * newScheduledThreadPool 定时线程池，
+     * todo 可执行定时任务
      */
     public void testScheduledThreadPool() {
         // newScheduledThreadPool 定长线程池，可执行定时任务，最大线程池数为Integer.MAX_VALUE

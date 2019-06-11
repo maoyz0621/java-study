@@ -171,12 +171,17 @@
             <artifactId>vjkit</artifactId>
             <version>${vjkit_version}</version>
         </dependency>
-        <!-- optional for BeanMapper -->
+        <!-- optional for BaseBeanMapper -->
         <dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
             <version>${dozer.version}</version>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
+            <version>6.4.1</version>
         </dependency>
         <!-- 唯品会提供的工具类 end-->
 
