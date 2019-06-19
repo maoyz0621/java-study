@@ -147,3 +147,4 @@ fabric.properties
 /.project
 /.idea/
 /decorator.uml
+/ajax/target/

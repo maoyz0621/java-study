@@ -25,6 +25,42 @@ $(document).ready(function () {
         });
     });
 
+    /* get请求 */
+    $("#button11").off("click").on("click", function () {
+        $.ajax({
+            type: "GET",
+            url: "/ajax/getMap",
+            data: param,   // 发送到服务器的数据
+            dataType: "json", // 返回JSON数据，xml、html、script、json、jsonp、text
+            success: function (result, textStatus) {
+                console.log(result);
+                console.log(textStatus);  //success
+                ajaxHtml.html(result.data.username + ":" + result.data.age);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    /* get请求 */
+    $("#button12").off("click").on("click", function () {
+        $.ajax({
+            type: "GET",
+            url: "/ajax/getModel",
+            data: param,   // 发送到服务器的数据
+            dataType: "json", // 返回JSON数据，xml、html、script、json、jsonp、text
+            success: function (result, textStatus) {
+                console.log(result);
+                console.log(textStatus);  //success
+                ajaxHtml.html(result.data.username + ":" + result.data.age);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
     /* get请求使用JSON.stringify() ，结果400错误*/
     $("#button2").off("click").on("click", function () {
         $.ajax({

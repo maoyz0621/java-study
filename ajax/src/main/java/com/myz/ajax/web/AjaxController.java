@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
+ * 使用@RequestBody.当请求content_type为：application/json类型的请求，数据类型为json时， json格式如下：{"aaa":"111","bbb":"222"},请求参数放在body中
+ * 不使用@RequestBody.当请求content_type为：application/x-www-form-urlencoded类型的或multipart/form-data时，数据格式为aaa=111&bbb=222。
+ *
  * @author maoyz on 2018/11/14
  * @version: v1.0
  */
@@ -34,13 +37,14 @@ public class AjaxController {
 
     /**
      * get请求，以HttpServletRequest接收
+     * request接收的参数都是String
      */
     @GetMapping("/get")
     @ResponseBody
     public Result<User> ajaxGet(HttpServletRequest request) {
         String username = request.getParameter("username");
         String age = request.getParameter("age");
-        System.out.println(username + ": " + age);
+        logger.info("************* {} : {} ***************", username, age);
         return ResultGenerator.genSuccessResult().setData(new User(username, Integer.valueOf(age)));
     }
 
@@ -50,11 +54,10 @@ public class AjaxController {
     @GetMapping("/getMap")
     @ResponseBody
     public Result<User> ajaxGet(@RequestParam Map param) {
-        System.out.println(param.get("username"));
-        System.out.println(param.get("age"));
+        logger.info("************* {} : {}***************", param.get("username"), param.get("age"));
         return ResultGenerator.genSuccessResult().setData(
-                new User(String.valueOf(param.get("username")),
-                        (Integer) (param.get("age")))
+                new User((String) (param.get("username")),
+                        Integer.valueOf((String) param.get("age")))
         );
     }
 
@@ -64,10 +67,11 @@ public class AjaxController {
     @GetMapping("/getModel")
     @ResponseBody
     public Result<User> ajaxGet(User user) {
-        System.out.println(user);
+        logger.info("************* {} ***************", user);
         return ResultGenerator.genSuccessResult().setData(user);
     }
 
+    //////////////////////////////// GET JSON///////////////////////////////////
 
     /**
      * Get请求 ,发送数据类型JSON.stringify()

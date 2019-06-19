@@ -15,6 +15,10 @@
 
 <button type="button" id="button1">ajaxGet</button>
 <br>
+<button type="button" id="button11">ajaxGetMap</button>
+<br>
+<button type="button" id="button12">ajaxGetModel</button>
+<br>
 <button type="button" id="button2">ajaxGetJson</button>
 <br>
 <button type="button" id="button3">postRequest</button>
