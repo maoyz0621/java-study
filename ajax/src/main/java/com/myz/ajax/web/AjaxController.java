@@ -9,7 +9,9 @@ import com.myz.ajax.common.ResultGenerator;
 import com.myz.ajax.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +47,25 @@ public class AjaxController {
         String username = request.getParameter("username");
         String age = request.getParameter("age");
         logger.info("************* {} : {} ***************", username, age);
+
+        StringBuilder sb = new StringBuilder();
+        // request.getParameterMap() 获取所有请求参数
+        request.getParameterMap().forEach((key, val) -> {
+            sb.append(key).append(" : ").append(val[0]).append(" ;");
+        });
+
+        logger.info("************** {} ******************", sb);
+        return ResultGenerator.genSuccessResult().setData(new User(username, Integer.valueOf(age)));
+    }
+
+    /**
+     * get请求，以HttpServletRequest接收
+     * request接收的参数都是String
+     */
+    @GetMapping("/getParam")
+    @ResponseBody
+    public Result<User> ajaxGet(@RequestParam(defaultValue = "maoyz") String username, @RequestParam(defaultValue = "10") Integer age) {
+        logger.info("************* {} : {} ***************", username, age);
         return ResultGenerator.genSuccessResult().setData(new User(username, Integer.valueOf(age)));
     }
 
@@ -54,6 +75,19 @@ public class AjaxController {
     @GetMapping("/getMap")
     @ResponseBody
     public Result<User> ajaxGet(@RequestParam Map param) {
+        logger.info("************* {} : {}***************", param.get("username"), param.get("age"));
+        return ResultGenerator.genSuccessResult().setData(
+                new User((String) (param.get("username")),
+                        Integer.valueOf((String) param.get("age")))
+        );
+    }
+
+    /**
+     * get请求,封装map, 不加@RequestParam, 则Map无法获取请求参数值
+     */
+    @GetMapping("/getMapNo")
+    @ResponseBody
+    public Result<User> ajaxGetMap(Map param) {
         logger.info("************* {} : {}***************", param.get("username"), param.get("age"));
         return ResultGenerator.genSuccessResult().setData(
                 new User((String) (param.get("username")),
@@ -74,7 +108,18 @@ public class AjaxController {
     //////////////////////////////// GET JSON///////////////////////////////////
 
     /**
-     * Get请求 ,发送数据类型JSON.stringify()
+     * Get请求 ,发送数据类型JSON.stringify(), 此时400错误
+     */
+    @GetMapping("/getJson")
+    @ResponseBody
+    public Result ajaxGetJson(HttpServletRequest request) {
+        String username = request.getParameter("username");
+        String age = request.getParameter("age");
+        return ResultGenerator.genSuccessResult().setData(new User(username, Integer.valueOf(age)));
+    }
+
+    /**
+     * Get请求 ,发送数据类型JSON.stringify(), 此时400错误
      */
     @GetMapping("/getJsonParam")
     @ResponseBody
@@ -102,8 +147,7 @@ public class AjaxController {
 
     /**
      * 请求形式：
-     * username: maoyz
-     * age: 12
+     * username=maoyz&age=12
      */
     @PostMapping("/postRequest")
     @ResponseBody
@@ -111,12 +155,31 @@ public class AjaxController {
         String username = request.getParameter("username");
         String age = request.getParameter("age");
         logger.info("************* {}; {} ***************", username, age);
+
+        StringBuilder sb = new StringBuilder();
+        request.getParameterMap().forEach((key, val) -> {
+            sb.append(key).append(" : ").append(val[0]).append(" ;");
+        });
+
+        logger.info("************** {} ******************", sb);
+
         return ResultGenerator.genSuccessResult().setData(new User(username, Integer.valueOf(age)));
     }
 
-    @PostMapping("/postModel")
+    @PostMapping(value = "/postModel", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Result ajaxPost(User user) {
+        logger.info("************* {} ***************", user);
+        System.out.println(user);
+        return ResultGenerator.genSuccessResult().setData(user);
+    }
+
+    /**
+     * consumes = MediaType.APPLICATION_JSON_VALUE , 415 错误 Unsupported Media Type
+     */
+    @PostMapping(value = "/postModelConsumes", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Result ajaxPost1(User user) {
         logger.info("************* {} ***************", user);
         System.out.println(user);
         return ResultGenerator.genSuccessResult().setData(user);
@@ -139,7 +202,7 @@ public class AjaxController {
      * {"username":"maoyz","age":12}
      * 以String接收
      */
-    @PostMapping("/postJsonString")
+    @PostMapping(value = "/postJsonString", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Result ajaxPostJson(@RequestBody String param, HttpServletRequest request) {
         logger.info("************* {} ***************", param);
@@ -155,7 +218,7 @@ public class AjaxController {
      * {"username":"maoyz","age":12}
      * 以实体类接收
      */
-    @PostMapping("/postJsonModel")
+    @PostMapping(value = "/postJsonModel", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public Result ajaxPostJson(@RequestBody User user, HttpServletRequest request) {
         logger.info("************* {} ***************", user);
@@ -165,9 +228,21 @@ public class AjaxController {
     /**
      * 请求形式：
      * {"username":"maoyz","age":12}
+     * 以实体类接收, 没有@RequestBody, 此时接收的值是 null
+     */
+    @PostMapping(value = "/postJsonModelNoRequestBody", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public Result ajaxPostJsonNo(User user, HttpServletRequest request) {
+        logger.info("************* {} ***************", user);
+        return ResultGenerator.genSuccessResult().setData(user);
+    }
+
+    /**
+     * 请求形式：
+     * {"username":"maoyz","age":12}
      * 以Map类接收
      */
-    @PostMapping("/postJsonMap")
+    @PostMapping(value = "/postJsonMap", consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public Result ajaxPostJson(@RequestBody Map map) {
         logger.info("************* {} ***************", map);

@@ -15,15 +15,23 @@
 
 <button type="button" id="button1">ajaxGet</button>
 <br>
+<button type="button" id="button10">ajaxGetParam</button>
+<br>
 <button type="button" id="button11">ajaxGetMap</button>
+<br>
+<button type="button" id="button111">ajaxGetMapNoRequestParam</button>
 <br>
 <button type="button" id="button12">ajaxGetModel</button>
 <br>
 <button type="button" id="button2">ajaxGetJson</button>
 <br>
+<button type="button" id="button21">ajaxGetJsonParam</button>
+<br>
 <button type="button" id="button3">postRequest</button>
 <br>
 <button type="button" id="button31">postModel</button>
+<br>
+<button type="button" id="button310">postModelConsumes</button>
 <br>
 <button type="button" id="button32">postMap</button>
 <br>
@@ -31,7 +39,11 @@
 <br>
 <button type="button" id="button41">postJsonModel</button>
 <br>
+<button type="button" id="button410">postJsonModelNoRequestBody</button>
+<br>
 <button type="button" id="button42">postJsonMap</button>
+<br>
+<button type="button" id="button5">postJackson</button>
 <br>
 <hr>
 <div id="ajaxHtml"></div>

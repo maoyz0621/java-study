@@ -26,10 +26,47 @@ $(document).ready(function () {
     });
 
     /* get请求 */
+    $("#button10").off("click").on("click", function () {
+        $.ajax({
+            type: "GET",
+            url: "/ajax/getParam",
+            contentType: "application/json", // 发送数据到服务器时所使用的内容类型,默认是："application/x-www-form-urlencoded"
+            data: param,   // 发送到服务器的数据
+            dataType: "json", // 返回JSON数据，xml、html、script、json、jsonp、text
+            success: function (result, textStatus) {
+                console.log(result);
+                console.log(textStatus);  //success
+                ajaxHtml.html(result.data.username + ":" + result.data.age);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    /* get请求 */
     $("#button11").off("click").on("click", function () {
         $.ajax({
             type: "GET",
             url: "/ajax/getMap",
+            data: param,   // 发送到服务器的数据
+            dataType: "json", // 返回JSON数据，xml、html、script、json、jsonp、text
+            success: function (result, textStatus) {
+                console.log(result);
+                console.log(textStatus);  //success
+                ajaxHtml.html(result.data.username + ":" + result.data.age);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    /* get请求 */
+    $("#button111").off("click").on("click", function () {
+        $.ajax({
+            type: "GET",
+            url: "/ajax/getMapNo",
             data: param,   // 发送到服务器的数据
             dataType: "json", // 返回JSON数据，xml、html、script、json、jsonp、text
             success: function (result, textStatus) {
@@ -79,6 +116,24 @@ $(document).ready(function () {
         });
     });
 
+    /* get请求使用JSON.stringify() ，结果400错误*/
+    $("#button21").off("click").on("click", function () {
+        $.ajax({
+            type: "GET",
+            url: "/ajax/getJsonParam",
+            contentType: "application/json", // 发送数据到服务器时所使用的内容类型,默认是："application/x-www-form-urlencoded"
+            data: JSON.stringify(param),   // 发送到服务器的数据
+            dataType: "json", // 返回JSON数据
+            success: function (result) {
+                console.log(result);
+                ajaxHtml.html(result.data.username + ":" + result.data.age);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
     /* POST 默认表单请求, contentTyp一定要使用默认 */
     $("#button3").off("click").on("click", function () {
         $.ajax({
@@ -102,6 +157,23 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "/ajax/postModel",
+            data: param,   // 发送到服务器的数据
+            dataType: "json", // 返回JSON数据
+            success: function (result) {
+                console.log(result);
+                ajaxHtml.html(result.data.username + ":" + result.data.age);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    /* POST 默认表单请求, contentTyp一定要使用默认; 415 错误 Unsupported Media Type */
+    $("#button310").off("click").on("click", function () {
+        $.ajax({
+            type: "POST",
+            url: "/ajax/postModelConsumes",
             data: param,   // 发送到服务器的数据
             dataType: "json", // 返回JSON数据
             success: function (result) {
@@ -168,10 +240,46 @@ $(document).ready(function () {
     });
 
     /*POST 请求JSON,使用JSON.stringify() */
+    $("#button410").off("click").on("click", function () {
+        $.ajax({
+            type: "POST",
+            url: "/ajax/postJsonModelNoRequestBody",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify(param),   // 发送到服务器的数据
+            dataType: "json", // 返回JSON数据
+            success: function (result) {
+                console.log(result);
+                ajaxHtml.html(result.data.username + ":" + result.data.age);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    /*POST 请求JSON,使用JSON.stringify() */
     $("#button42").off("click").on("click", function () {
         $.ajax({
             type: "POST",
             url: "/ajax/postJsonMap",
+            contentType: "application/json;charset=UTF-8", // 发送数据到服务器时所使用的内容类型,JSON.stringify()必须使用"application/json"
+            data: JSON.stringify(param),   // 发送到服务器的数据
+            dataType: "json", // 返回JSON数据
+            success: function (result) {
+                console.log(result);
+                ajaxHtml.html(result.data.username + ":" + result.data.age);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    /*POST 请求JSON,使用JSON.stringify() */
+    $("#button5").off("click").on("click", function () {
+        $.ajax({
+            type: "POST",
+            url: "/json/b",
             contentType: "application/json;charset=UTF-8", // 发送数据到服务器时所使用的内容类型,JSON.stringify()必须使用"application/json"
             data: JSON.stringify(param),   // 发送到服务器的数据
             dataType: "json", // 返回JSON数据
