@@ -10,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * @author maoyz0621 on 19-6-22
  * @version: v1.0
@@ -25,5 +27,7 @@ public class Address {
     private String province;
 
     private String city;
+
+    private List<String> towns;
 
 }

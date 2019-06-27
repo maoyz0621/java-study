@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -41,10 +42,26 @@ public class JsonController {
     }
 
     /**
-     * "data":{"age":1,"birthday":"2019-06-23 14:48:05","address":{"province":"jiangShu","city":"nanjing"},"user_name":"aaaaa"}}
      * 其中 "phone"属性忽略, username -> "user_name"
      *
-     * @return
+     * {
+     *     "code": "SUCCESS",
+     *     "message": "success",
+     *     "data": {
+     *         "age": 1,
+     *         "price": 0,
+     *         "birthday": "2019-06-27 23:35:28",
+     *         "postCode": "",
+     *         "address": {
+     *             "province": "jiangShu",
+     *             "city": "nanjing",
+     *             "towns": []
+     *         },
+     *         "user_name": "aaaaa",
+     *         "mounts": [],
+     *         "amount": []
+     *     }
+     * }
      */
     @GetMapping(value = "/c")
     public Result get() {
@@ -54,7 +71,37 @@ public class JsonController {
         userJson.setPhone("23243243243");
         userJson.setBirthday(new Date());
         userJson.setPassword("@@@@@@@@@@@@@@@");
-        userJson.setAddress(new Address("jiangShu", "nanjing"));
+        userJson.setAddress(new Address("jiangShu", "nanjing", new ArrayList<>()));
+        logger.info("**************** {} ******************", userJson);
+        return ResultGenerator.genSuccessResult(userJson);
+    }
+
+    /**
+     * {
+     *     "code": "SUCCESS",
+     *     "message": "success",
+     *     "data": {
+     *         "age": 0,
+     *         "price": 0,
+     *         "birthday": "2019-06-27 23:34:59",
+     *         "postCode": "",
+     *         "address": {
+     *             "province": "",
+     *             "city": "",
+     *             "towns": []
+     *         },
+     *         "user_name": "",
+     *         "mounts": [],
+     *         "amount": []
+     *     }
+     * }
+     */
+    @GetMapping(value = "/d")
+    public Result getNull() {
+        UserJson userJson = new UserJson();
+        userJson.setPhone("23243243243");
+        userJson.setBirthday(new Date());
+        userJson.setPassword("@@@@@@@@@@@@@@@");
         logger.info("**************** {} ******************", userJson);
         return ResultGenerator.genSuccessResult(userJson);
     }

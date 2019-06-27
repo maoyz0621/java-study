@@ -4,6 +4,8 @@
 package com.myz.ajax.model;
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -12,6 +14,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 忽略类中不存在的字段  @JsonIgnoreProperties(ignoreUnknown = true, value = {"phone"}), value指定忽略序列化的属性名
@@ -36,6 +41,8 @@ public class UserJson implements Serializable {
     @NotNull
     private Integer age;
 
+    private Double price;
+
     @NotEmpty
     private String phone;
 
@@ -53,6 +60,15 @@ public class UserJson implements Serializable {
 
     @NotEmpty
     private String postCode;
+
+    @JsonProperty("mounts")
+    private List<Integer> mounts;
+
+    @JsonProperty("amount")
+    private Set<Integer> amount;
+
+    @JsonProperty("goods")
+    private Map<String, Object> goods;
 
     private Address address = new Address();
 

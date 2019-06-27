@@ -10,6 +10,7 @@
     <modules>
         <module>java-base-study</module>
         <module>ajax</module>
+        <module>transaction-cache</module>
     </modules>
 
     <name>java-study</name>

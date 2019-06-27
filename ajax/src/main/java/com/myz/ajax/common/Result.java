@@ -6,7 +6,7 @@ package com.myz.ajax.common;
 import java.io.Serializable;
 
 /**
- * 返回结果集
+ * 返回操作结果集
  *
  * @author maoyz on 18-11-13
  * @version: v1.0
