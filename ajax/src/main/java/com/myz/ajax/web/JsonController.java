@@ -29,12 +29,47 @@ public class JsonController {
 
     private static final Logger logger = LoggerFactory.getLogger(JsonController.class);
 
+    /**
+     *
+     * @param userJson
+     * @return
+     */
     @PostMapping(value = "/a")
     public Result param(@Valid UserJson userJson) {
         logger.info("**************** {} ******************", userJson);
         return ResultGenerator.genSuccessResult(userJson);
     }
 
+    /**
+     * 入参:
+     * {
+     *     "birthday": "2019-06-28 21:40:43",
+     *     "postCode": "12323213",
+     *     "phone": "1233333333",
+     *     "age": 12,
+     *     "address": {
+     *         "province": "aaa",
+     *         "city": "aaaa"
+     *     },
+     *     "user_name": "aaa",
+     *     "password": "111111"
+     * }
+     * 出参:
+     * {
+     *     "age": 12,
+     *     "phone": "1233333333",
+     *     "birthday": "2019-06-28 21:40:43",
+     *     "postCode": "12323213",
+     *     "address": {
+     *         "province": "aaa",
+     *         "city": "aaaa",
+     *         "towns": []
+     *     },
+     *     "user_name": "aaa",
+     *     "mounts": [],
+     *     "amount": []
+     * }
+     */
     @PostMapping(value = "/b", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public Result json(@RequestBody @Validated UserJson userJson) {
         logger.info("**************** {} ******************", userJson);

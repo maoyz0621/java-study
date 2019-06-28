@@ -26,7 +26,7 @@ import java.util.Set;
  */
 @Data
 @ToString
-@JsonIgnoreProperties(ignoreUnknown = true, value = {"phone"})
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"price"})
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserJson implements Serializable {
 
