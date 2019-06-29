@@ -11,6 +11,7 @@
         <module>java-base-study</module>
         <module>ajax</module>
         <module>transaction-cache</module>
+        <module>transaction-propotation</module>
     </modules>
 
     <name>java-study</name>
