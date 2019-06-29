@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	default-init-method="init" 
+	default-destroy-method="destory"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	<!-- 配置单独的集合 -->
+	<util:list id="schools">
+		<bean class="com.myz.spring.autowired.School">
+			<property name="name" value="dddd"></property>
+		</bean>
+		<bean class="com.myz.spring.autowired.School">
+			<property name="name" value="eeee"></property>
+		</bean>
+	</util:list>
+	
+	<util:set id="teachers">
+		<bean class="com.myz.spring.autowired.Teacher" p:name="hahaha"></bean>
+		<bean class="com.myz.spring.autowired.Teacher" p:name="hohoho"></bean>
+	</util:set>
+	
+	
+	<!-- 
+		1 使用p
+		2 自动装配
+	 -->
+	<!-- 手动装配 -->
+	<!-- <bean id="person" clacom.spring.autowiredrite.Person" p:age="23" p:name="hyr"
+	p:schools-ref="schools" p:teachers-ref="teachers"/> -->
+	
+	<!-- byName装配,符合setter风格 -->
+	<bean id="person" class="com.myz.spring.autowired.Person" p:age="23" p:name="hyr"
+          autowire="byName"/>
+	
+	<!-- byType装配，单个 -->
+	<!-- <bean id="person" class="com.myz.spring.autowiredrite.Person" p:age="23" p:name="hyr"
+	autowire="byType"/>  -->
+
+</beans>
