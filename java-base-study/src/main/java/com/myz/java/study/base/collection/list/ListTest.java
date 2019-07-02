@@ -129,16 +129,17 @@ public class ListTest {
         for (int i = 0; i < 10; i++) {
             list.add(r.nextInt(100));
         }
-        System.out.println(list);
-        Collections.sort(list);        //排序
-        System.out.println(list);
+        System.out.println("原位置: " + list);
+        // 执行排序
+        Collections.sort(list);
+        System.out.println("执行排序之后位置发生改变: " + list);
     }
 
 
     private static void test1() {
         Collection<String> c1 = new ArrayList<>();
         c1.add("terry");
-        c1.add("Jva");
+        c1.add("Java");
         System.out.println(c1);
         Collection<String> c2 = new HashSet<>();
         c2.addAll(c1);
@@ -155,19 +156,64 @@ public class ListTest {
 
     /**
      * add()和addAll()的区别
+     * add()将元素作为一个整体; addAll()将元素中遍历出来之后在添加
      */
     @Test
     public void testAddAnAddAll() {
-        List list1 = new ArrayList<>(Arrays.asList("0","1","2"));
-        List list2 = new ArrayList<>(Arrays.asList("00","11","22"));
-        List list3 = new ArrayList<>(Arrays.asList("00","11","22"));
+        List list1 = new ArrayList<>(Arrays.asList("0", "1", "2"));
+        List list2 = new ArrayList<>(Arrays.asList("00", "11", "22"));
+        List list3 = new ArrayList<>(Arrays.asList("00", "11", "22"));
 
         list3.add(list1);
         // [00, 11, 22, [0, 1, 2]]
         System.out.println(list3);
+        // 4
+        System.out.println(list3.size());
 
         list2.addAll(list1);
         // [00, 11, 22, 0, 1, 2]
         System.out.println(list2);
+        // 6
+        System.out.println(list2.size());
     }
+
+    /**
+     * add() 实则数组扩容
+     * addAll() 实则数组拷贝
+     */
+    @Test
+    public void testListChange() {
+        List list1 = new ArrayList<>(Arrays.asList("0", "1", "2"));
+        List list2 = new ArrayList<>(Arrays.asList("00", "11", "22"));
+        List list3 = new ArrayList<>(Arrays.asList("00", "11", "22"));
+
+        list3.add(list1);
+        // [00, 11, 22, [0, 1, 2]]
+        System.out.println(list3);
+        list2.addAll(list1);
+        // [00, 11, 22, 0, 1, 2]
+        System.out.println(list2);
+
+        list1.set(0, "aaaaa");
+        System.out.println("******************* list1发生变化 *********************");
+
+        // [00, 11, 22, [aaaaa, 1, 2]]
+        System.out.println(list3);
+        // [00, 11, 22, 0, 1, 2]
+        System.out.println(list2);
+
+    }
+
+    @Test
+    public void testIterator() {
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            Object next = iterator.next();
+            System.out.println(next);
+            iterator.remove();
+        }
+        System.out.println("****************************");
+        System.out.println(list);
+    }
+
 }

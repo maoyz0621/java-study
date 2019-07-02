@@ -3,8 +3,9 @@ package com.myz.java.study.base.thread.concurrent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * CountDownLatch(门栓)
@@ -17,7 +18,12 @@ public class CountDownLatchDemo {
 
     private static final Logger logger = LoggerFactory.getLogger(CountDownLatchDemo.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        // main1();
+        main0();
+    }
+
+    private static void main1() {
         // final int count = 5;
         final int count = 10;
         // 定义一个计数器
@@ -52,5 +58,46 @@ public class CountDownLatchDemo {
         }
 
         logger.info("finish ...");
+    }
+
+    private static void main0() throws Exception {
+        final int count = 50;
+        List<Integer> list = new CopyOnWriteArrayList<>();
+        List<Integer> list1 = new CopyOnWriteArrayList<>();
+        // 20线程
+        ExecutorService executorService = Executors.newFixedThreadPool(20);
+        for (int i = 0; i < count; i++) {
+            int j = i;
+            list.add(j);
+        }
+        // 定义计数器
+        final CountDownLatch cyclicBarrier = new CountDownLatch(list.size());
+
+        try {
+            for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+                Integer next = (Integer) iterator.next();
+                executorService.execute(() -> {
+                    try {
+                        Thread.sleep(3000);
+                        if (next.equals(20)) {
+                            int j = 1 / 0;
+                        }
+                        list1.add(next);
+                    } catch (Exception e) {
+                        cyclicBarrier.countDown();
+                    }
+                    System.out.println(cyclicBarrier.getCount());
+                    cyclicBarrier.countDown();
+                });
+            }
+        } catch (Exception e) {
+            cyclicBarrier.countDown();
+        } finally {
+            // 等待, 阻断
+            cyclicBarrier.await();
+            System.out.println("++++++++++++++++++++++++++++++++++" + list1);
+            System.out.println("++++++++++++++++++++++++++++++++++" + list1.size());
+            executorService.shutdown();
+        }
     }
 }
