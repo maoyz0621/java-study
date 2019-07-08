@@ -1,5 +1,6 @@
 package com.myz.spring.test;
 
+import com.myz.spring.lifecycle.BeanLifeWithPostProcessor;
 import com.myz.spring.lifecycle.HelloWorld;
 import com.myz.spring.lifecycle.HelloWorldLifeCycle;
 import com.myz.spring.lifecycle.LifeCycleHelloWorld;
@@ -99,6 +100,29 @@ public class TestLifeCycleSpring {
          执行destory()
          */
         helloWorld.say();
+        context.close();
+        context.registerShutdownHook();
+    }
+
+    /**
+     * BeanFactoryPostProcessor postProcessBeanFactory()
+     执行实例化...
+     BeanPostProcessor postProcessBeforeInitialization() ...
+     执行InitializingBean afterPropertiesSet() ...
+     执行init()
+     BeanPostProcessor postProcessAfterInitialization() ...
+     执行say()
+     执行DisposableBean destroy() ...
+     执行destory()
+     */
+    @Test
+    public void test3() {
+        AbstractApplicationContext context = new ClassPathXmlApplicationContext("beans-lifecycle.xml");
+        context.start();
+        LifeCycleHelloWorld helloWorld = (LifeCycleHelloWorld) context.getBean("helloworld4");
+        helloWorld.say();
+        // old value (hello), new Value (被我修改了, 哈哈哈)
+        System.out.println(helloWorld.getDesc());
         context.close();
         context.registerShutdownHook();
     }

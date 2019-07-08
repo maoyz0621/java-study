@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * CountDownLatch(门栓)
@@ -60,7 +61,10 @@ public class CountDownLatchDemo {
         logger.info("finish ...");
     }
 
-    private static void main0() throws Exception {
+    /**
+     * @throws Exception
+     */
+    private static void main0() {
         final int count = 50;
         List<Integer> list = new CopyOnWriteArrayList<>();
         List<Integer> list1 = new CopyOnWriteArrayList<>();
@@ -71,7 +75,7 @@ public class CountDownLatchDemo {
             list.add(j);
         }
         // 定义计数器
-        final CountDownLatch cyclicBarrier = new CountDownLatch(list.size());
+        final CountDownLatch countDownLatch = new CountDownLatch(list.size());
 
         try {
             for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
@@ -84,20 +88,62 @@ public class CountDownLatchDemo {
                         }
                         list1.add(next);
                     } catch (Exception e) {
-                        cyclicBarrier.countDown();
+                        logger.error("{}", e);
+                        throw new RuntimeException(e);
+                        // countDownLatch.countDown();
                     }
-                    System.out.println(cyclicBarrier.getCount());
-                    cyclicBarrier.countDown();
+                    logger.info("{}", countDownLatch.getCount());
+                    countDownLatch.countDown();
                 });
             }
         } catch (Exception e) {
-            cyclicBarrier.countDown();
+            countDownLatch.countDown();
         } finally {
             // 等待, 阻断
-            cyclicBarrier.await();
-            System.out.println("++++++++++++++++++++++++++++++++++" + list1);
-            System.out.println("++++++++++++++++++++++++++++++++++" + list1.size());
+            try {
+                countDownLatch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            logger.info("{}", list1);
+            logger.info("{}", list1.size());
             executorService.shutdown();
         }
     }
+
+    public static void main6() throws InterruptedException {
+        final int count = 30;
+        final Semaphore semaphore = new Semaphore(10, false);
+        final CountDownLatch countDownLatch = new CountDownLatch(count);
+        ExecutorService executorService = Executors.newFixedThreadPool(count);
+
+        AtomicInteger atomicInteger = new AtomicInteger(0);
+        for (int i = 0; i < count; i++) {
+            executorService.execute(() -> {
+                atomicInteger.addAndGet(1);
+                countDownLatch.countDown();
+                try {
+                    /* 从信号量尝试获取一个许可，如果无可用许可，直接返回false，不会阻塞 */
+                    // semaphore.tryAcquire();
+
+                    /* 从信号量获取一个许可，如果无可用许可前 将一直阻塞等待 */
+                    semaphore.acquire();
+                    System.out.println("------------" + Thread.currentThread().getName() + " : " + semaphore.availablePermits());
+                    TimeUnit.MILLISECONDS.sleep(ThreadLocalRandom.current().nextInt(2000));
+
+                    int j = 1 / 0;
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    semaphore.release();
+                }
+            });
+        }
+
+        countDownLatch.await();
+        System.out.println(atomicInteger.get());
+        executorService.shutdown();
+    }
+
+
 }
