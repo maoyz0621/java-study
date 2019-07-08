@@ -2,7 +2,7 @@ package com.myz.java.study.optional;
 
 import java.util.UUID;
 
-public class Demo2 {
+public class UUIDDemo {
 
 	public static void main(String[] args) {
 		//生成机器随机码

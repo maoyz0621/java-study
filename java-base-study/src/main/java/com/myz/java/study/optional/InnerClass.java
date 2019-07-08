@@ -7,13 +7,13 @@ public class InnerClass {
 
     public static void main(String[] args) {
 
-		Outter.InnerA inA = new Outter().new InnerA();
-		inA.fun("inA");
+        Outter.InnerA inA = new Outter().new InnerA();
+        inA.fun("inA");
 
-		Outter.InnerC inC = new Outter.InnerC();
-		inC.fun("inC");
+        Outter.InnerC inC = new Outter.InnerC();
+        inC.fun("inC");
 
-		new Outter().getD("z");
+        new Outter().getD("z");
 
         String name = "myz";
         System.out.println(name);
@@ -23,7 +23,7 @@ public class InnerClass {
 /**
  * 内部类
  */
-class Outter{
+class Outter {
 
     private String name = "myz";
     private int a = 175;
@@ -32,9 +32,9 @@ class Outter{
      * 非静态内部类
      * 1 不能有静态属性，除非声明为final
      */
-    class InnerA{
+    class InnerA {
 
-        private String name ="hyr";
+        private String name = "hyr";
         /**
          * 非静态内部类不能有静态属性，除非声明为final
          */
@@ -58,9 +58,9 @@ class Outter{
      * 私有静态类
      * 外部无法访问，提供方法接口getB()调用
      */
-    private class InnerB{
+    private class InnerB {
 
-        private String name ="hyr";
+        private String name = "hyr";
 
         public void fun(String name) {
 
@@ -76,9 +76,9 @@ class Outter{
      * 1 可以包含静态成员和非静态成员;
      * 2 可以调用外部类的静态属性和方法，但不能调用普通属性和方法
      */
-    static class InnerC{
+    static class InnerC {
 
-        private String name ="hyr";
+        private String name = "hyr";
         private static int age = 30;
 
         public void fun(String name) {
@@ -101,9 +101,9 @@ class Outter{
         String aa = "demo";
         // static int c = 12;
 
-        class Inner{
+        class Inner {
 
-            void fun(){
+            void fun() {
                 System.out.println(this);
                 System.out.println(name);
                 System.out.println(age);
