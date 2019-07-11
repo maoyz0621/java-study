@@ -3,6 +3,8 @@
  **/
 package com.myz.java.study.base.thread;
 
+import java.util.concurrent.ThreadPoolExecutor;
+
 /**
  * 线程工具类
  *
@@ -11,6 +13,18 @@ package com.myz.java.study.base.thread;
  */
 public class ThreadUtils extends org.apache.commons.lang3.ThreadUtils {
 
+    protected static ThreadPoolExecutor globalThreadPoolExecutor;
+
+    // 用于判断是否关闭线程池
+    public static volatile boolean isClose = false;
+
+
+    public static void shutDown() {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            isClose = true;
+            globalThreadPoolExecutor.shutdown();
+        }));
+    }
     /**
      * 可用处理器数
      */
