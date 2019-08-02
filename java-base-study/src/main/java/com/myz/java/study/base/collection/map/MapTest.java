@@ -2,11 +2,8 @@ package com.myz.java.study.base.collection.map;
 
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * Map<>  put()  get()
@@ -120,6 +117,36 @@ public class MapTest {
             Entry<String, Integer> next = iterator.next();
             System.out.println(next.getKey() + "-->" + next.getValue());
         }
+    }
+
+    /**
+     * 1 Map<String, String> map1 = null; 此时出现NullPointerException
+     * 2 Map<String, String> map1 = new HashMap<>(); 跳过迭代循环
+     */
+    @Test
+    public void testMapNull() {
+        Map<String, String> map1 = null;
+        // Map<String, String> map1 = new HashMap<>();
+        for (Entry<String, String> entry : map1.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println("key = " + key + ", value = " + value);
+        }
+
+        map1.forEach((key, value) -> System.out.println("key = " + key + ", value = " + value));
+
+    }
+
+    /**
+     * Collections.EMPTY_MAP, 此时的Map只做展示, 不能操作
+     */
+    @Test
+    public void testEmptyMap() {
+        Map<String, String> map = Collections.EMPTY_MAP;
+        System.out.println(map);
+        // UnsupportedOperationException
+        map.putIfAbsent("key1","value1");
+        map.forEach((key, value) -> System.out.println("key = " + key + ", value = " + value));
     }
 
 
