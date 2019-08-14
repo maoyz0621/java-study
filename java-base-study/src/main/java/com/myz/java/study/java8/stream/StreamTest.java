@@ -42,6 +42,11 @@ public class StreamTest {
     @Test
     public void test() {
         List<String> list = Arrays.asList("a1", "a2", "c1", "d1");
+
+        System.out.println("======== limit() ==========");
+        list.stream().limit(2).forEach(System.out::println);
+
+        System.out.println("======== filter() ==========");
         list.stream()
                 .filter((s) -> s.startsWith("a"))
                 .map(String::toUpperCase)
