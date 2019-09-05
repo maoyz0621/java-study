@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 使用java1.5并发包中原子类atomic
+ * 使用java1.5并发包中原子类atomic,保证最终一致性
  *
  * @author maoyz on 18-1-7.
  */
@@ -31,7 +31,7 @@ public class AtomicThread implements Runnable {
         }
 
         logger.debug(Thread.currentThread().getName() + " AtomicInteger : " + count.intValue());
-        logger.debug(Thread.currentThread().getName() + " int : " + count1);
+        logger.debug(Thread.currentThread().getName() + " int :           " + count1);
     }
 }
 
@@ -41,6 +41,7 @@ class AtomicTest {
     public static void main(String[] args) {
 
         AtomicThread atomicThread = new AtomicThread();
+        // 最终 原子类count = 100000
         for (int i = 0; i < 10; i++) {
             new Thread(atomicThread).start();
         }

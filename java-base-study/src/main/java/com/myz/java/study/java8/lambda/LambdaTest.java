@@ -47,8 +47,17 @@ public class LambdaTest {
      */
     @Test
     public void testRunnable() {
+        System.out.println(this);
         new Thread(() -> {
             System.out.println("Lambda实现Runnable");
+            System.out.println(this);
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(" 匿名类： " + this);
+            }
         }).start();
     }
 }

@@ -1,6 +1,6 @@
 package com.myz.java.study.base.collection.equals;
 
-import com.myz.java.study.base.collection.Emp;
+import com.myz.java.study.base.collection.domain.Emp;
 import org.junit.Test;
 
 import java.util.*;

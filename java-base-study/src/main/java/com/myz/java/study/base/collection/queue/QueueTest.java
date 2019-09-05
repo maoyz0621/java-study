@@ -1,6 +1,6 @@
 package com.myz.java.study.base.collection.queue;
 
-import com.myz.java.study.base.collection.Book;
+import com.myz.java.study.base.collection.domain.Book;
 import org.junit.Test;
 
 import java.util.LinkedList;

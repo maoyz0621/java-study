@@ -1,7 +1,7 @@
 package com.myz.java.study.base.collection.map;
 
-import com.myz.java.study.base.collection.Person;
-import com.myz.java.study.base.collection.User;
+import com.myz.java.study.base.collection.domain.Person;
+import com.myz.java.study.base.collection.domain.User;
 import org.junit.Test;
 
 import java.util.*;

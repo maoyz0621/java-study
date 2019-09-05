@@ -2,6 +2,8 @@ package com.myz.java.study.base.string;
 
 import org.junit.Test;
 
+import java.util.Date;
+
 /**
  * String字符串
  * 字符串常量池里的数据都是相等的
@@ -12,13 +14,6 @@ import org.junit.Test;
  * 2017年6月8日 下午9:07:08
  */
 public class StringDemo {
-
-    public static void main(String[] args) {
-//		testConstantPool();
-//		testLength();
-// 		testValueOf();
-//		testStringBuilder();
-    }
 
     /**
      * 测试常量池intern()
@@ -49,7 +44,8 @@ public class StringDemo {
     /**
      * valueof
      */
-    public static void testValueOf() {
+    @Test
+    public void testValueOf() {
         int num = 12;
         boolean flag = true;
         char[] chars = {'a', 'b', 'c'};
@@ -85,4 +81,39 @@ public class StringDemo {
         System.out.println(str.replaceAll("8", "z"));
         System.out.println(str.replaceFirst("8", "z"));
     }
+
+    /**
+     * format() 格式化
+     */
+    @Test
+    public void testFormat() {
+        // %s string
+        System.out.println(String.format("aaaaaa%s", 11111));
+        // %c char
+        System.out.println(String.format("aaaaaa%c", 1111));
+        // %b boolean
+        System.out.println(String.format("abc=%b", 1 > 2));
+        // %d 整数
+        System.out.println(String.format("a=%d", 12 / 5));
+        // %f float
+        System.out.println(String.format("a=%f", 12f / 5));
+        // %n 换行符
+        System.out.println(String.format("a=%n"));
+        System.out.println("=======================");
+
+        // +为正数或者负数添加符号
+        System.out.println(String.format("a=%+d", 12 / 5));
+
+        // 05 5位数，不够前面补0
+        System.out.println(String.format("a=%05d", 12 / 5));
+
+        //////////////////////////////// 时间 //////////////////////////////////
+        // %tc 包括全部日期和时间信息    星期四 九月 05 19:42:48 CST 2019
+        System.out.println(String.format("%tc", new Date()));
+        // %tf  日期  年-月-日   2019-09-05
+        System.out.println(String.format("%tF", new Date()));
+        // %tf  日期  月/日/年   09/05/19
+        System.out.println(String.format("%tD", new Date()));
+    }
+
 }

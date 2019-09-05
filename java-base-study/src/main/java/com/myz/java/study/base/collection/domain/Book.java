@@ -1,4 +1,4 @@
-package com.myz.java.study.base.collection;
+package com.myz.java.study.base.collection.domain;
 
 /**
  * @author maoyz on 18-2-19.

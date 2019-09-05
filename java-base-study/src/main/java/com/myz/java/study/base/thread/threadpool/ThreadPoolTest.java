@@ -36,7 +36,7 @@ public class ThreadPoolTest {
      * 创建一个可缓存的线程池，如果当前线程池的规模超出了处理需求，将回收空的线程；当需求增加时，会增加线程数量；线程池规模无限制。
      */
     public void testCachedThreadPool() {
-        // newCachedThreadPool()，可缓存线程池,核心线程池数为0，最大线程池数为Integer.MAX_VALUE,
+        // newCachedThreadPool()，可缓存线程池,核心线程池数为0，最大线程池数为Integer.MAX_VALUE,keep-alive = 60s
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
         final int size = 45;
@@ -143,6 +143,7 @@ public class ThreadPoolTest {
 
     /**
      * newSingleThreadExecutor 单线程池
+     * 最大线程1; 核心线程1; keep-alive = 0
      * 这个线程池可以在线程死后（或发生异常时）重新启动一个线程来替代原来的线程继续执行下去！
      * 确保任务对了，串行执行
      */

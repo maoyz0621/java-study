@@ -1,4 +1,4 @@
-package com.myz.java.study.base.collection;
+package com.myz.java.study.base.collection.domain;
 
 /**
  * 　要求数据不能修改

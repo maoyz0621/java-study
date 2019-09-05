@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
+ * BigDecimal的使用
  * @author maoyz0621 on 19-6-9
  * @version: v1.0
  */
