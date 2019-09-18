@@ -10,7 +10,7 @@ import java.util.Date;
  * String采用Unicode编码,无论中文还是英文,都算一个字符
  * String.valueOf(obj)
  *
- * @author xuwt
+ * @author maoyz
  * 2017年6月8日 下午9:07:08
  */
 public class StringDemo {
@@ -42,23 +42,29 @@ public class StringDemo {
     }
 
     /**
-     * valueof
+     * valueOf()
+     * 入参类型：Object 、char[] 、基本数据类型(char boolean int long float double)
      */
     @Test
     public void testValueOf() {
         int num = 12;
-        boolean flag = true;
+        boolean flag = 1 > 2;
         char[] chars = {'a', 'b', 'c'};
         System.out.println(String.valueOf(num));
         System.out.println(String.valueOf(flag));
         System.out.println(String.valueOf(chars));
     }
 
+    /**
+     * 去除两端空格 trim()
+     */
     @Test
     public void testTrim() {
         String str1 = " ab c ";
-        System.out.println(str1.length());        //6
-        System.out.println(str1.trim().length());    //4
+        // 6
+        System.out.println(str1.length());
+        // 4
+        System.out.println(str1.trim().length());
         System.out.println(str1);
     }
 
@@ -71,8 +77,8 @@ public class StringDemo {
     }
 
     /**
-     * replace()     支持字符和字符串
-     * replaceAll()  支持字符串和正则表达式
+     * replace(CharSequence)     支持字符和字符串
+     * replaceAll(String)  支持字符串和正则表达式
      */
     @Test
     public void testReplace() {

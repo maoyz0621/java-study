@@ -10,6 +10,7 @@ import java.math.RoundingMode;
 
 /**
  * BigDecimal的使用
+ *
  * @author maoyz0621 on 19-6-9
  * @version: v1.0
  */
@@ -51,6 +52,7 @@ public class MathTest {
     /**
      * 浮点类型,为了确保精确度,使用BigDecimal(),并且传入字符串类型
      * 其中运算不能使用运算符号 + - * /
+     * RoundingMode.HALF_UP   四舍五入
      */
     @Test
     public void testBigDecimal1() {
@@ -64,6 +66,38 @@ public class MathTest {
         // 0.0006
         System.out.println(a1.multiply(b1));
         System.out.println(a1.divide(b1, RoundingMode.HALF_UP));
+    }
+
+    /**
+     * 使用BigDecimal.valueOf()
+     */
+    @Test
+    public void testBigDecimal11() {
+        double a = 0.05D;
+        double b = 0.03D;
+        // 0.08
+        System.out.println(BigDecimal.valueOf(a).add(BigDecimal.valueOf(b)));
+        // 0.02
+        System.out.println(BigDecimal.valueOf(a).subtract(BigDecimal.valueOf(b)));
+        // 0.0015
+        System.out.println(BigDecimal.valueOf(a).multiply(BigDecimal.valueOf(b)));
+        // java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result.
+        // System.out.println(BigDecimal.valueOf(a).divide(BigDecimal.valueOf(b)));
+
+        // 设置roundingMode
+        System.out.println(BigDecimal.valueOf(a).divide(BigDecimal.valueOf(b), 4));
+        // 1.6667
+        System.out.println(BigDecimal.valueOf(a).divide(BigDecimal.valueOf(b), 4, RoundingMode.HALF_UP));
+        // 1.6667
+        System.out.println(BigDecimal.valueOf(a).divide(BigDecimal.valueOf(b), 4, RoundingMode.UP));
+        // 1.6666
+        System.out.println(BigDecimal.valueOf(a).divide(BigDecimal.valueOf(b), 4, RoundingMode.DOWN));
+        // HALF_UP 四舍五入 2.3333
+        System.out.println(BigDecimal.valueOf(0.07D).divide(BigDecimal.valueOf(0.03D), 4, RoundingMode.HALF_UP));
+        // UP 2.3334
+        System.out.println(BigDecimal.valueOf(0.07D).divide(BigDecimal.valueOf(0.03D), 4, RoundingMode.UP));
+        // DOWN 2.3333
+        System.out.println(BigDecimal.valueOf(0.07D).divide(BigDecimal.valueOf(0.03D), 4, RoundingMode.DOWN));
     }
 
     /**

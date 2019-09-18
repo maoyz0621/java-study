@@ -19,7 +19,7 @@ public class StringBuilderDemo {
 
         System.out.println(sb1.length()); // 0
         System.out.println(sb1.capacity());  // 16
-        // 定义字符数组初始30
+        // 定义字符数组初始容量30
         StringBuilder sb2 = new StringBuilder(30);
         System.out.println(sb2.length()); // 0
         System.out.println(sb2.capacity()); // 30
@@ -30,7 +30,7 @@ public class StringBuilderDemo {
     }
 
     /**
-     * testStringBuilder
+     * StringBuilder
      * 使用new创建,返回StringBuilder类
      * append(obj),可以连缀
      * insert(start, obj)插入
@@ -58,15 +58,10 @@ public class StringBuilderDemo {
         System.out.println(sb1.toString().toUpperCase());
     }
 
-    /**
-     * @param
-     * @return void
-     * @throws
-     * @Title: testReverse
-     * @Description: 将给定字符串倒转
+    /**将给定字符串倒转
      * 1 String-->StringBuilder
      * 2 调用StringBuilder中reverse()
-     * 3 将SttringBuilder-->String
+     * 3 将StringBuilder-->String
      */
     @Test
     public void testReverse() {
