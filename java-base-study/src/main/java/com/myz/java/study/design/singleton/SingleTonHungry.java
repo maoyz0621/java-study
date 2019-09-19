@@ -9,21 +9,21 @@ package com.myz.java.study.design.singleton;
  *
  * @author maoyz
  */
-class SingleTon1 {
+class SingleTonHungry {
 
     /**
      * 因为这个变量要在静态方法中使用，所以需要加上static修饰
      * 类初始化时，立即加载类,天然的线程安全
      */
-    private static SingleTon1 instance = new SingleTon1();
+    private static SingleTonHungry instance = new SingleTonHungry();
 
     /**
      * 构造方法私有化
      */
-    private SingleTon1() {
+    private SingleTonHungry() {
     }
 
-    public static SingleTon1 getInstance() {
+    public static SingleTonHungry getInstance() {
         // 直接使用已经创建好的实例
         return instance;
     }
