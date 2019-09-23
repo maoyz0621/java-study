@@ -15,15 +15,17 @@ public class ConcurrentHashMapTest {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ConcurrentMap concurrentMap = new ConcurrentHashMap<String, Object>();
+        ConcurrentHashMap concurrentMap = new ConcurrentHashMap<String, Object>();
         // Map<String ,Object> concurrentMap = new HashMap<>();
         for (int i = 0; i < 10; i++) {
             new Thread(() -> {
                 for (int i1 = 0; i1 < 1000; i1++) {
+                    concurrentMap.putIfAbsent("" + i1, i1);
                     concurrentMap.put("" + i1, i1);
                 }
             }).start();
         }
+
         TimeUnit.SECONDS.sleep(10);
 
         System.out.println(concurrentMap.size());

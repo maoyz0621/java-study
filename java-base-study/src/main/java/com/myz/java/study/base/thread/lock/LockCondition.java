@@ -16,11 +16,12 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 使用Condition实现线程等待和唤醒
+ * 参考 ArrayBlockingQueue 实现原理
  *
  * @author maoyz0621 on 19-3-25
  * @version: v1.0
  */
-public class LockCondition {
+public class LockCondition<E> {
 
     private static final Logger logger = LoggerFactory.getLogger(LockCondition.class);
 
@@ -28,6 +29,9 @@ public class LockCondition {
 
     public static final int DEFAULT_EMPTY_LIST = 0;
 
+    /**
+     * 默认非公平锁
+     */
     private final Lock lock = new ReentrantLock();
 
     private final Condition notFull = lock.newCondition();
@@ -36,14 +40,14 @@ public class LockCondition {
 
     private static int num = 0;
 
-    private List<String> lists = new LinkedList<>();
+    private List<E> lists = new LinkedList<>();
 
     int putptr/* 写索引 */, takeptr/* 读索引 */, count/* 队列中存在的数据个数 */;
 
     /**
      * 放置
      */
-    public void put(Object obj) throws InterruptedException {
+    public void put(E obj) throws InterruptedException {
         try {
             lock.lock();
             // 当集合已满,则"添加"线程等待
@@ -52,7 +56,7 @@ public class LockCondition {
                 notFull.await();
             }
 
-            lists.add(putptr, (String) obj);
+            lists.add(putptr, obj);
             logger.debug("put param = {}", obj);
 
             if (++putptr == DEFAULT_LIST_SIZE) {
@@ -71,7 +75,7 @@ public class LockCondition {
     /**
      * 拿取
      */
-    public Object take() throws InterruptedException {
+    public E take() throws InterruptedException {
         try {
             lock.lock();
             // 当集合为空时,"减少"线程等待
@@ -79,7 +83,7 @@ public class LockCondition {
                 notEmpty.await();
             }
 
-            String str = lists.get(takeptr);
+            E str = lists.get(takeptr);
             logger.debug("=========== {}", str);
 
             if (++takeptr == DEFAULT_LIST_SIZE) {
@@ -107,13 +111,14 @@ public class LockCondition {
                 threadFactory,
                 new ThreadPoolExecutor.AbortPolicy());
 
-        LockCondition lockCondition = new LockCondition();
+        LockCondition<String> lockCondition = new LockCondition<>();
 
         try {
             for (int i = 0; i < 10; i++) {
+                int j = i;
                 fixedThreadPool.execute(() -> {
                     try {
-                        lockCondition.put("aaa ");
+                        lockCondition.put("aaa:" + j);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -132,8 +137,5 @@ public class LockCondition {
         } finally {
             fixedThreadPool.shutdown();
         }
-
-
     }
-
 }
