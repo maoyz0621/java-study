@@ -27,7 +27,7 @@
       <point x="0.0" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.1" x="106.99999999999994" y="93.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="109.0" y="92.5" />
   <SelectedNodes>
     <node>java.util.concurrent.RunnableFuture</node>
     <node>java.util.concurrent.Future</node>

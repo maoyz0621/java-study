@@ -74,9 +74,12 @@ public class MyAbstractQueuedSynchronizer implements Lock, Serializable {
             return true;
         }
 
+        /**
+         * if synchronization is held exclusively with respect to the current (calling) thread
+         */
         @Override
         protected boolean isHeldExclusively() {
-            // 获取当前的排它锁 是否本身
+            // 获取当前的排它锁 是否本身  Returns the thread last set by setExclusiveOwnerThread(), or null if never set.
             return getExclusiveOwnerThread() == Thread.currentThread();
         }
     }
