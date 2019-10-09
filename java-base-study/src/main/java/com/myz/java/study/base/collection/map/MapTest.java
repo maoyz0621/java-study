@@ -125,15 +125,26 @@ public class MapTest {
      */
     @Test
     public void testMapNull() {
-        Map<String, String> map1 = null;
-        // Map<String, String> map1 = new HashMap<>();
-        for (Entry<String, String> entry : map1.entrySet()) {
+        Map<String, String> map = null;
+        map = Optional.ofNullable(map).orElse(new HashMap<>());
+        Objects.requireNonNull(map);
+        forMap(map);
+    }
+
+    private void forMap(Map<String, String> map) {
+        for (Entry<String, String> entry : map.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
             System.out.println("key = " + key + ", value = " + value);
         }
 
-        map1.forEach((key, value) -> System.out.println("key = " + key + ", value = " + value));
+        map.forEach((key, value) -> System.out.println("key = " + key + ", value = " + value));
+    }
+
+    @Test
+    public void testMapNew() {
+        Map<String, String> map = new HashMap<>();
+        forMap(map);
 
     }
 
