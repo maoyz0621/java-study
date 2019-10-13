@@ -1,10 +1,7 @@
 package com.myz.spring.scope;
+
 /**
-* @ClassName: Hello
-* @Description: TODO
-* @author xuwt
-* @date 2017年7月18日 下午9:35:45
-*
+ * @author maoyz0621
  */
 public class Hello {
 	private Integer id;

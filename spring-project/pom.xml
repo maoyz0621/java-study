@@ -35,10 +35,12 @@
 
     <dependencies>
         <!--common start -->
+        <!-- logback日志 -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -123,7 +125,6 @@
             <artifactId>xbean-spring</artifactId>
             <version>4.2</version>
         </dependency>
-        <!--spring end -->
     </dependencies>
 
 </project>

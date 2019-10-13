@@ -4,6 +4,7 @@
 package com.myz.spring.service.impl;
 
 import com.myz.spring.service.BaseService;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
  * @version: v1.0
  */
 @Service("secondService")
+@Primary
 public class SecondServiceImpl implements BaseService {
 
     @Override

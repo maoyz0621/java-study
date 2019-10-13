@@ -5,6 +5,7 @@ public class Dog {
 	private double price;
 
 	public Dog() {
+		System.out.println("Dog ...");
 	}
 
 	public Dog(String name, double price) {
