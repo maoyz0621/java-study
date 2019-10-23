@@ -18,12 +18,7 @@ import java.util.stream.Stream;
  * 对JAVA集合（Collection）对象功能的增强，方便对集合进行各类操作（过滤、求最大值、最小值、统计等）；
  * 更加高效，提供串行和并行两种模式，并行模式利用了Java中的fork/join框架技术，能充分利用多核处理器，提高程序并发性；
  * <p>
- * 不是一个数据结构
- * 为lambda表达式设计
- * 不支持索引访问
- * 很方便的作为数组或集合输出
- * 支持惰性访问
- * 并行计算
+ * 不是一个数据结构, 为lambda表达式设计, 不支持索引访问, 很方便的作为数组或集合输出, 支持惰性访问, 并行计算
  *
  * @author maoyz0621 on 2019/3/18
  * @version: v1.0
@@ -46,14 +41,14 @@ public class StreamTest {
         System.out.println("======== limit() ==========");
         list.stream().limit(2).forEach(System.out::println);
 
-        System.out.println("======== filter() ==========");
+        System.out.println("======== filter() 筛选复合条件的 ==========");
         list.stream()
                 .filter((s) -> s.startsWith("a"))
                 .map(String::toUpperCase)
                 .sorted()
                 .forEach(System.out::println);
 
-        System.out.println("======== count() ==========");
+        System.out.println("======== count() , 计算数量 ==========");
 
         long a = list.stream()
                 .filter((s) -> s.startsWith("a"))
@@ -61,23 +56,26 @@ public class StreamTest {
                 .count();
         System.out.println(a);
 
-        System.out.println("======== anyMatch() ==========");
+        System.out.println("======== anyMatch() 满足其中一个即可 ==========");
 
         boolean anyMatch = list.stream()
                 .anyMatch((s) -> s.startsWith("a"));
         System.out.println(anyMatch);
 
-        System.out.println("======== allMatch() ==========");
+        System.out.println("======== allMatch() 全部满足 ==========");
 
         boolean allMatch = list.stream()
                 .allMatch((s) -> s.startsWith("a"));
         System.out.println(allMatch);
 
-        System.out.println("======== noneMatch() ==========");
+        System.out.println("======== noneMatch() 都不满足 ==========");
 
         boolean noneMatch = list.stream()
                 .noneMatch((s) -> s.startsWith("a"));
         System.out.println(noneMatch);
+        boolean noneMatchb = list.stream()
+                .noneMatch((s) -> s.startsWith("b"));
+        System.out.println(noneMatchb);
 
         System.out.println("======== reduce() ==========");
 
@@ -105,7 +103,7 @@ public class StreamTest {
     public void test2() {
         // 不能使用包装类,int
         Stream<Integer> stream = Arrays.stream(new Integer[]{1, 2, 3, 4, 5, 6, 7});
-        stream.forEach(s -> System.out.println(s));
+        stream.forEach(System.out::println);
     }
 
     /**
