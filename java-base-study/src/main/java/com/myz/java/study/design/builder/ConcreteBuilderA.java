@@ -24,8 +24,4 @@ public class ConcreteBuilderA extends Builder {
         computer.add("ConcreteBuilderA hd");
     }
 
-    @Override
-    public Computer getComputer() {
-        return computer;
-    }
 }

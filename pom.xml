@@ -13,6 +13,7 @@
         <module>transaction-cache</module>
         <module>transaction-propotation</module>
         <module>spring-project</module>
+        <module>reactor-java</module>
     </modules>
 
     <name>java-study</name>

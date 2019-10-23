@@ -6,8 +6,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 /**
- * WeakHashMap
- * 键为弱引用，立即被回收
+ * WeakHashMap 键为弱引用，立即被回收
  *
  * @author maoyz on 18-3-1.
  */

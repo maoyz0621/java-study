@@ -16,8 +16,12 @@ public class Director {
         this.builder = builder;
     }
 
+    public void setBuilder(Builder builder) {
+        this.builder = builder;
+    }
+
     /**
-     * 指挥装机人员组装电脑
+     * 指挥者负责build过程
      */
     public void construct() {
         this.builder.buildCpu();

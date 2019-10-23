@@ -4,12 +4,11 @@
 package com.myz.java.study.java8.stream;
 
 
+import com.google.common.collect.Lists;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -130,5 +129,39 @@ public class StreamTest {
         Stream<Integer> stream = list.parallelStream();
         Integer[] integers = stream.filter((s) -> s % 2 == 0).toArray(Integer[]::new);
         System.out.println(Arrays.asList(integers));
+    }
+
+    /**
+     * filter() 按照一个元素顺序执行判断, 结束之后, 下一个元素执行
+     */
+    @Test
+    public void testFilter() {
+        ArrayList<String> list = Lists.newArrayList("a1", "a2", "b1", "b2", "ab1");
+        List<String> collect = list.stream()
+                .filter((l) -> {
+                    System.out.println("筛选1: " + l);
+                    return l.contains("1");
+                }).filter((l) -> {
+                    System.out.println("筛选a: " + l);
+                    return l.contains("a");
+                }).map((l) -> {
+                    System.out.println("map: " + l);
+                    return l.toUpperCase();
+                })
+                .sorted().collect(Collectors.toList());
+        System.out.println(collect);
+
+        /*
+        筛选1: a1
+        筛选a: a1
+        map: a1
+        筛选1: a2
+        筛选1: b1
+        筛选a: b1
+        筛选1: b2
+        筛选1: ab1
+        筛选a: ab1
+        map: ab1
+        [A1, AB1]*/
     }
 }

@@ -41,7 +41,7 @@ public class MyAbstractQueuedSynchronizer implements Lock, Serializable {
         abstract void lock();
 
         /**
-         * private volatile int state;
+         * private volatile int state;  资源的可用状态,有3种访问方法
          * <p>
          * protected final int getState()  获取synchronization state的值
          * <p>

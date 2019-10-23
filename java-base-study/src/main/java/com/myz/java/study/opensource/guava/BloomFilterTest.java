@@ -23,7 +23,8 @@ public class BloomFilterTest {
 
     private static int size = 1000000;
 
-    private static BloomFilter<Integer> bloomFilter = BloomFilter.create(Funnels.integerFunnel(), size);
+    // 0.001 误判率
+    private static BloomFilter<Integer> bloomFilter = BloomFilter.create(Funnels.integerFunnel(), size, 0.001);
 
     @Test
     public void test() {
@@ -31,7 +32,7 @@ public class BloomFilterTest {
             bloomFilter.put(i);
         }
         long startTime = System.nanoTime();
-        if (bloomFilter.mightContain(299999)) {
+        if (bloomFilter.mightContain(2999999)) {
             System.out.println("命中");
         }
         long endTime = System.nanoTime();
@@ -54,6 +55,7 @@ public class BloomFilterTest {
                 list.add(i);
             }
         }
+        System.out.println(list);
         System.out.println("误判的数量：" + list.size());
     }
 

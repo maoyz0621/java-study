@@ -6,16 +6,16 @@ package com.myz.java.study.design.strategy.paystrategy;
 public class Main {
 
     public static void main(String[] args) {
-        new PayContext("zhangsan",5000,new CashPay()).dePay();
+        new PayContext("zhangSan", 5000, new CashPay()).dePay();
         System.out.println("-----------");
 
-        new PayContext("Tom" , 3000 , new DollarPay()).dePay();
+        new PayContext("Tom", 3000, new DollarPay()).dePay();
         System.out.println("------------");
 
-        new PayContextExtend("lishi",6500,new CardPay(),"121212").dePay();
+        new PayContextExtend("liShi", 6500, new CardPay(), "121212").dePay();
         System.out.println("-----------");
 
-        new PayContext("王五" , 7000 , new CardPay1("1000000")).dePay();
+        new PayContext("王五", 7000, new CardPay1("1000000")).dePay();
 
     }
 }

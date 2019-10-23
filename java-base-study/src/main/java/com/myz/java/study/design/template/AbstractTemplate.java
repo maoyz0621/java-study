@@ -5,13 +5,14 @@ package com.myz.java.study.design.template;
 
 /**
  * 模板
+ *
  * @author maoyz on 18-10-19
  * @version: v1.0
  */
 public abstract class AbstractTemplate {
 
     /**
-     * 模板方法,不可更改
+     * 模板方法,定义成final,不可更改
      */
     public final void templateMethod() {
         //调用基本方法
