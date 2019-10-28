@@ -7,5 +7,5 @@ package com.myz.java.study.design.adapter;
  * @author maoyz0621 on 19-10-24
  * @version: v1.0
  */
-public class AnnotationHandlerAdapter {
+public class AnnotationHandlerAdapter implements HandlerAdapter {
 }

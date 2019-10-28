@@ -12,17 +12,37 @@ import java.util.Iterator;
  */
 public class MyDeepArrayList<E> implements Iterable<E> {
 
-    private Object[] elementData = {};
+    /**
+     * transient 修饰, 表示不能被序列化
+     */
+    transient Object[] elementData = {};
 
     private int size;
 
+    /**
+     * 默认初始化长度 10
+     */
     private static final int DEFAULT_CAPACITY = 10;
 
     /**
-     * 初始值定义10
+     * 共享的空的数组实例
+     * 当使用 ArrayList() 或者 ArrayList(Collection<? extends E> c)
+     * * 并且 c.size() = 0 的时候讲 elementData 数组讲指向这个实例对象。
+     */
+    private static final Object[] DEFAULT_EMPTY_ELEMENTDATE = {};
+
+    /**
+     * 1. 当使用 ArrayList(0)的时候使用
+     * <p>
+     * 再第一次 add 元素的时候将使用它来判断数组大小是否设置为 DEFAULT_CAPACITY
+     */
+    private static final Object[] EMPTY_ELEMENTDATE = {};
+
+    /**
+     * 空构造函数
      */
     public MyDeepArrayList() {
-        this(DEFAULT_CAPACITY);
+        this.elementData = DEFAULT_EMPTY_ELEMENTDATE;
     }
 
     /**
@@ -34,15 +54,37 @@ public class MyDeepArrayList<E> implements Iterable<E> {
         if (initialCapacity > 0) {
             elementData = new Object[initialCapacity];
         } else if (initialCapacity == 0) {
-            elementData = new Object[]{};
+            elementData = EMPTY_ELEMENTDATE;
         } else {
             try {
-                throw new Exception("initialCapacity必须为非负数");
+                throw new IllegalArgumentException("initialCapacity必须为非负数");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
+
+    /**
+     * 插入值
+     *
+     * @param o 　插入对象
+     */
+    public void add(E o) {
+        if (elementData == DEFAULT_EMPTY_ELEMENTDATE) {
+
+        }
+
+        if (size >= elementData.length) {
+            extendCapacity(size);
+        }
+        /**
+         *  elementData[size++] = o;
+         */
+        elementData[size] = o;
+        // 数组大小+1
+        size++;
+    }
+
 
     /**
      * 扩容
@@ -54,19 +96,6 @@ public class MyDeepArrayList<E> implements Iterable<E> {
         elementData = newValue;
     }
 
-    /**
-     * 插入值
-     *
-     * @param o 　插入对象
-     */
-    public void add(E o) {
-        if (size >= elementData.length) {
-            extendCapacity(size);
-        }
-        elementData[size] = o;
-        // 数组大小+1
-        size++;
-    }
 
     public void add(int index, E e) {
         indexCheck(index);

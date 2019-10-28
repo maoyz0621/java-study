@@ -43,7 +43,9 @@ public class ListCopyTest {
     public void copy2() {
         List<Integer> lists = Lists.newArrayList(1, 2, 3, 4);
         System.out.println("源数据 = " + lists);
-        // 错误做法
+        // 错误做法, 此时只是定义初始空间
+        // if (srcSize > dest.size())
+        //             throw new IndexOutOfBoundsException("Source does not fit in dest");
         // List<Integer> dtsList = new ArrayList<>(lists.size());
         List<Integer> dtsList = new ArrayList<>(Arrays.asList(new Integer[lists.size()]));
         Collections.copy(dtsList, lists);

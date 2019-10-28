@@ -53,6 +53,7 @@ public class OptionalTest {
     public void testIsPresent() {
         Optional<String> empty = Optional.ofNullable(null);
         boolean present = empty.isPresent();
+        // false
         System.out.println(present);
     }
 
@@ -79,7 +80,7 @@ public class OptionalTest {
     }
 
     /**
-     * isPresent()如果Optional实例有值则为其调用consumer，否则不做处理
+     * ifPresent()如果Optional实例有值则为其调用consumer，否则不做处理
      */
     @Test
     public void testIfPresent() {
@@ -89,7 +90,7 @@ public class OptionalTest {
         optional.ifPresent((value) -> System.out.println("a的值 = " + value.getOrDefault("a", 11)));
         optional.ifPresent((value) -> System.out.println("b的值 = " + value.getOrDefault("b", 11)));
 
-        System.out.println("-----------------------------------");
+        System.out.println("\r\n-----------------------------------\r\n");
 
         Map<String, Object> emptyMap = null;
         Optional<Map<String, Object>> empty = Optional.ofNullable(emptyMap);
@@ -138,7 +139,7 @@ public class OptionalTest {
     }
 
     /**
-     * map()如果有值，则对其执行调用mapping函数得到返回值
+     * map()如果有值，则对其执行调用mapping函数得到返回值,  return Optional.ofNullable(mapper.apply(value));
      * 如果返回值不为null，则创建包含mapping返回值的Optional作为map方法返回值，否则返回空Optional
      */
     @Test
@@ -146,6 +147,7 @@ public class OptionalTest {
         Optional<String> optional = Optional.ofNullable("abc");
         Optional<String> empty = Optional.ofNullable(null);
 
+        // 直接return結果, map()对其进行Optional处理
         Optional<String> optionalMap = optional.map((value) -> value.toUpperCase());
         Optional<String> emptyMap = empty.map((value) -> value.toUpperCase());
 
@@ -153,6 +155,25 @@ public class OptionalTest {
         System.out.println(optionalMap.orElseGet(() -> "ccc"));
         // ccc
         System.out.println(emptyMap.orElseGet(() -> "ccc"));
+    }
+
+    /**
+     * flatMap()
+     */
+    @Test
+    public void testFlatMap() {
+        Optional<String> optional = Optional.ofNullable("abc");
+        Optional<String> empty = Optional.ofNullable(null);
+
+        // 需要对结果进行Optional.ofNullable()包装
+        Optional<String> optional1 = optional.flatMap((value) -> Optional.ofNullable(value.toUpperCase()));
+        Optional<String> empty1 = empty.flatMap((value) -> Optional.ofNullable(value.toUpperCase()));
+
+        System.out.println(optional1.orElseGet(() -> "ccc"));
+        // ccc
+        System.out.println(empty1.orElseGet(() -> "ccc"));
+
+
     }
 
     /**
