@@ -8,4 +8,9 @@ package com.myz.java.study.design.adapter;
  * @version: v1.0
  */
 public interface HandlerAdapter {
+
+    boolean supports(Object handler);
+
+    void handle(Object handler);
+
 }

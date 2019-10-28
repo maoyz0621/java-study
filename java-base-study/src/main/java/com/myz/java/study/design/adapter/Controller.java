@@ -8,4 +8,7 @@ package com.myz.java.study.design.adapter;
  * @version: v1.0
  */
 public interface Controller {
+
+    public void doRequest();
+
 }
