@@ -4,8 +4,8 @@
   <OriginalElement>org.springframework.beans.factory.BeanFactory</OriginalElement>
   <nodes>
     <node x="396.7291666666667" y="79.0">org.springframework.beans.factory.HierarchicalBeanFactory</node>
-    <node x="408.25" y="237.0">org.apache.xbean.spring.context.XmlWebApplicationContext</node>
     <node x="0.0" y="553.0">org.springframework.context.support.FileSystemXmlApplicationContext</node>
+    <node x="408.25" y="237.0">org.apache.xbean.spring.context.XmlWebApplicationContext</node>
     <node x="158.25" y="237.0">org.springframework.context.support.AbstractApplicationContext</node>
     <node x="147.75" y="474.0">org.springframework.context.support.AbstractXmlApplicationContext</node>
     <node x="439.75" y="0.0">org.springframework.beans.factory.BeanFactory</node>
@@ -72,20 +72,20 @@
       <point x="286.2291666666667" y="133.0" />
       <point x="0.0" y="14.5" />
     </edge>
-    <edge source="org.springframework.context.support.ClassPathXmlApplicationContext" target="org.springframework.context.support.AbstractXmlApplicationContext">
-      <point x="0.0" y="-14.5" />
-      <point x="414.0" y="528.0" />
-      <point x="336.0" y="528.0" />
-      <point x="62.75" y="14.5" />
-    </edge>
     <edge source="org.springframework.context.support.FileSystemXmlApplicationContext" target="org.springframework.context.support.AbstractXmlApplicationContext">
       <point x="0.0" y="-14.5" />
       <point x="132.5" y="528.0" />
       <point x="210.5" y="528.0" />
       <point x="-62.75" y="14.5" />
     </edge>
+    <edge source="org.springframework.context.support.ClassPathXmlApplicationContext" target="org.springframework.context.support.AbstractXmlApplicationContext">
+      <point x="0.0" y="-14.5" />
+      <point x="414.0" y="528.0" />
+      <point x="336.0" y="528.0" />
+      <point x="62.75" y="14.5" />
+    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.1" x="633.375" y="253.125" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="440.0" y="290.0" />
   <SelectedNodes>
     <node>org.springframework.beans.factory.BeanFactory</node>
   </SelectedNodes>
