@@ -7,7 +7,7 @@ package com.myz.java.study.design.template;
  * @author maoyz on 18-10-20
  * @version: v1.0
  */
-public class Client {
+public class TemplateClient {
 
     public static void main(String[] args) {
         AbstractTemplate templateA = new ConcreteTemplateA();

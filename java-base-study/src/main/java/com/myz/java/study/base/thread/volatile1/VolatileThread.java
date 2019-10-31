@@ -46,7 +46,11 @@ class Demo {
         Thread thread = new Thread(volatileThread, "线程1-->");
         thread.start();
 
-        TimeUnit.SECONDS.sleep(5);
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         // 主线程修改共享数据为false
         volatileThread.setFlag(false);
 

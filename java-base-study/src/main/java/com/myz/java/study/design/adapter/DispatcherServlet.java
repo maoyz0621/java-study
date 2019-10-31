@@ -34,6 +34,9 @@ public class DispatcherServlet {
         handler.handle(this.controller);
     }
 
+    /**
+     * 适配合适的Adapter
+     */
     public HandlerAdapter getHandler(Controller controller) {
         if (handlerAdapters != null) {
             for (HandlerAdapter handler : handlerAdapters) {

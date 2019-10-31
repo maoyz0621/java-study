@@ -27,6 +27,10 @@ public class Chain {
      */
     private int size = 0;
 
+    /**
+     * 处理者需要形成环状
+     * @param chainHandlers
+     */
     public void setChainHandlers(List<AbstractChainHandler> chainHandlers) {
         this.chainHandlers = chainHandlers;
         for (int i = 0; i < chainHandlers.size() - 1; i++) {

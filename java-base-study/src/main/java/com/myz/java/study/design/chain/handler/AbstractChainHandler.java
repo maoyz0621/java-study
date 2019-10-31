@@ -5,11 +5,12 @@ import com.myz.java.study.design.chain.request.AbstractRequestInfo;
 import java.util.Objects;
 
 /**
+ * 定义抽象类
  * @author maoyz on 18-3-9.
  */
 public abstract class AbstractChainHandler implements Handler {
     /**
-     * 传递请求
+     * 传递请求, 自己拥有自己,表示下一个handler
      */
     private AbstractChainHandler nextChainhandler;
 
@@ -23,7 +24,7 @@ public abstract class AbstractChainHandler implements Handler {
         }
     }
 
-    public abstract int getHandlerCode();
+    protected abstract int getHandlerCode();
 
     public void setNextChainhandler(AbstractChainHandler nextChainhandler) {
         this.nextChainhandler = nextChainhandler;

@@ -1,5 +1,6 @@
 package com.myz.java.study.base.thread.volatile1;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,9 +11,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author maoyz on 18-1-7.
  */
+@Slf4j
 public class VolatileAndAtomic implements Runnable {
-
-    private static final Logger logger = LoggerFactory.getLogger(VolatileAndAtomic.class);
 
     /**
      * 使用volatile修饰原子类
@@ -22,18 +22,23 @@ public class VolatileAndAtomic implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < 100; i++) {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             count.getAndIncrement();
         }
-        logger.debug(Thread.currentThread().getName() + " : " + count.intValue());
+        log.debug(Thread.currentThread().getName() + " : " + count.intValue());
     }
 }
 
 class Demo2 {
 
     public static void main(String[] args) {
-        VolatileNotAtomic volatileNotAtomic = new VolatileNotAtomic();
+        VolatileAndAtomic volatileAndAtomic = new VolatileAndAtomic();
         for (int i = 0; i < 10; i++) {
-            new Thread(volatileNotAtomic).start();
+            new Thread(volatileAndAtomic).start();
         }
     }
 }
