@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 Inc.
  **/
-package com.myz.java.study.base.thread.volatile1;
+package com.myz.java.study.juc.volatile1;
 
 import java.util.HashMap;
 import java.util.HashSet;

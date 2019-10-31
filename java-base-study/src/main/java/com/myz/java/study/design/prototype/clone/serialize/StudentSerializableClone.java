@@ -3,6 +3,7 @@ package com.myz.java.study.design.prototype.clone.serialize;
 import com.alibaba.fastjson.JSON;
 import com.myz.java.study.design.prototype.clone.City;
 import com.myz.java.study.design.prototype.clone.Province;
+import org.apache.commons.compress.utils.IOUtils;
 
 import java.io.*;
 
@@ -81,10 +82,13 @@ public class StudentSerializableClone implements Cloneable, Serializable {
             bis = new ByteArrayInputStream(baos.toByteArray());
             ois = new ObjectInputStream(bis);
             clone = (StudentSerializableClone) ois.readObject();
-        } catch (IOException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } finally {
+            IOUtils.closeQuietly(baos);
+            IOUtils.closeQuietly(oos);
+            IOUtils.closeQuietly(bis);
+            IOUtils.closeQuietly(ois);
         }
         return clone;
     }

@@ -1,4 +1,4 @@
-package com.myz.java.study.base.thread.concurrent;
+package com.myz.java.study.juc.collections.queue;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -8,13 +8,15 @@ import java.util.concurrent.TimeUnit;
  * BlockingQueue
  * 　　阻塞队列，有界
  *
+ * https://segmentfault.com/a/1190000016311925  #ArrayBlockingQueue
+ *
  * @author maoyz on 18-1-11.
  */
-class BlockingQueueDemo {
+class ArrayBlockingQueueTest {
 
     public static void main(String[] args) throws InterruptedException {
         // 定义n个阻塞队列
-        BlockingQueue<String> queue = new ArrayBlockingQueue<String>(2);
+        BlockingQueue<String> queue = new ArrayBlockingQueue<>(2);
 
         queue.add("1");
         // 添加一个元素并返回true,如果队列已满，则返回false,设置超时时间,尝试在timeout时间内向队列尾部插入一个元素。

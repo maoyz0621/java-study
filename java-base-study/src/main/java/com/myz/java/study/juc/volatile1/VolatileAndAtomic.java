@@ -1,4 +1,4 @@
-package com.myz.java.study.base.thread.volatile1;
+package com.myz.java.study.juc.volatile1;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

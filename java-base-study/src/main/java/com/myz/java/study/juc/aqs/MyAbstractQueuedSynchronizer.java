@@ -1,4 +1,4 @@
-package com.myz.java.study.base.thread.aqs;
+package com.myz.java.study.juc.aqs;
 
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
