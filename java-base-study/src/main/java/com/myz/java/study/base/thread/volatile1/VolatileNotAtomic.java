@@ -31,9 +31,6 @@ public class VolatileNotAtomic implements Runnable {
         log.debug(Thread.currentThread().getName() + "-count =  " + count);
         log.debug(Thread.currentThread().getName() + "-size =  " + size);
     }
-}
-
-class Demo1 {
 
     public static void main(String[] args) {
         VolatileNotAtomic volatileNotAtomic = new VolatileNotAtomic();
@@ -41,4 +38,5 @@ class Demo1 {
             new Thread(volatileNotAtomic).start();
         }
     }
+
 }

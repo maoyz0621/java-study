@@ -15,9 +15,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class VolatileAndAtomic implements Runnable {
 
     /**
-     * 使用volatile修饰原子类
+     * 使用atomic原子类
      */
-    private volatile AtomicInteger count = new AtomicInteger(0);
+    private AtomicInteger count = new AtomicInteger(0);
 
     @Override
     public void run() {
@@ -31,9 +31,6 @@ public class VolatileAndAtomic implements Runnable {
         }
         log.debug(Thread.currentThread().getName() + " : " + count.intValue());
     }
-}
-
-class Demo2 {
 
     public static void main(String[] args) {
         VolatileAndAtomic volatileAndAtomic = new VolatileAndAtomic();
@@ -41,4 +38,5 @@ class Demo2 {
             new Thread(volatileAndAtomic).start();
         }
     }
+
 }

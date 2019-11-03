@@ -1,5 +1,6 @@
 package com.myz.java.study.base.thread.atomic;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,9 +11,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author maoyz on 18-1-7.
  */
+@Slf4j
 public class AtomicThread implements Runnable {
-
-    private static final Logger logger = LoggerFactory.getLogger(AtomicThread.class);
 
     /**
      * 原子类:AtomicInteger,保证了数据的原子性
@@ -26,17 +26,12 @@ public class AtomicThread implements Runnable {
         for (int i = 0; i < 10000; i++) {
             // 数据自增,  getAndIncrement(),替代count++
             count.incrementAndGet();
-
             count1++;
         }
 
-        logger.debug(Thread.currentThread().getName() + " AtomicInteger : " + count.intValue());
-        logger.debug(Thread.currentThread().getName() + " int :           " + count1);
+        log.debug(Thread.currentThread().getName() + " AtomicInteger : " + count.intValue());
+        log.debug(Thread.currentThread().getName() + " int :           " + count1);
     }
-}
-
-
-class AtomicTest {
 
     public static void main(String[] args) {
 
