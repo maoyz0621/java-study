@@ -1,4 +1,4 @@
-package com.myz.java.study.base.thread.concurrent;
+package com.myz.java.study.juc.concurrent;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;

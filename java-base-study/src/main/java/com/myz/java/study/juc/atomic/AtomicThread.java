@@ -1,4 +1,4 @@
-package com.myz.java.study.base.thread.atomic;
+package com.myz.java.study.juc.atomic;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;

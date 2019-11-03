@@ -4,7 +4,7 @@
  * @Copyright: 2019-09-27 14:10 www.xiniaoyun.com Inc. All rights reserved.
  * 注意：本内容仅限于南京微欧科技有限公司内部传阅，禁止外泄以及用于其他的商业目的
  */
-package com.myz.java.study.base.thread.lock;
+package com.myz.java.study.juc.lock;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -8,8 +8,8 @@
     <node x="169.0" y="0.0">org.springframework.core.io.InputStreamSource</node>
     <node x="403.0" y="246.0">org.springframework.core.io.ClassPathResource</node>
     <node x="0.0" y="246.0">org.springframework.core.io.FileSystemResource</node>
-    <node x="307.75" y="164.0">org.springframework.core.io.AbstractResource</node>
     <node x="201.5" y="82.0">org.springframework.core.io.Resource</node>
+    <node x="307.75" y="164.0">org.springframework.core.io.AbstractResource</node>
   </nodes>
   <notes />
   <edges>
@@ -54,7 +54,7 @@
       <point x="-20.0" y="16.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="313.5" y="97.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="405.5" y="136.5" />
   <SelectedNodes />
   <Categories />
   <SCOPE>All</SCOPE>

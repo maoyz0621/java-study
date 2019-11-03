@@ -15,7 +15,7 @@ public class DogInstanceFactory {
 	private static Map<String, Dog> dogs = null;
 	
 	public DogInstanceFactory() {
-		dogs = new HashMap<>();
+		dogs = new HashMap();
 		dogs.put("xiaohei", new Dog("xiaohei", 200d));
 		dogs.put("xiaohua", new Dog("xiaohua", 300d));		
 	}

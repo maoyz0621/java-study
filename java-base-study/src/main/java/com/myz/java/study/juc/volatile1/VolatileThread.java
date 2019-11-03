@@ -1,4 +1,4 @@
-package com.myz.java.study.base.thread.volatile1;
+package com.myz.java.study.juc.volatile1;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;

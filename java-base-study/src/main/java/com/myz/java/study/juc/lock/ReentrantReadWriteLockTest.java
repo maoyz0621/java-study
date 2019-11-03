@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 Inc.
  **/
-package com.myz.java.study.base.thread.lock;
+package com.myz.java.study.juc.lock;
 
 import lombok.extern.slf4j.Slf4j;
 

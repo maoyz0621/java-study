@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 Inc.
  **/
-package com.myz.java.study.base.thread.lock;
+package com.myz.java.study.juc.lock;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;
