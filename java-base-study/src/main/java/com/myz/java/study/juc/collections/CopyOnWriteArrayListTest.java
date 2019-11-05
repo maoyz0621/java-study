@@ -11,7 +11,7 @@ import java.util.concurrent.*;
 
 /**
  * CopyOnWriteArrayList: 线程安全的ArrayList
- * 数据修改都需要lock
+ * 数据修改都需要final transient ReentrantLock lock = new ReentrantLock();
  *
  * @author maoyz
  */

@@ -1,13 +1,11 @@
 package com.myz.java.study.juc.atomic;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 使用java1.5并发包中原子类atomic,保证最终一致性
+ * 使用java1.5并发包中原子类atomic, 保证最终一致性
  *
  * @author maoyz on 18-1-7.
  */
@@ -18,6 +16,7 @@ public class AtomicThread implements Runnable {
      * 原子类:AtomicInteger,保证了数据的原子性
      */
     private AtomicInteger count = new AtomicInteger(0);
+
     private int count1;
 
     @Override
