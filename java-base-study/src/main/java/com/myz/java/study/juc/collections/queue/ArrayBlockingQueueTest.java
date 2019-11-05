@@ -28,6 +28,7 @@ class ArrayBlockingQueueTest {
 
         // 阻塞,5秒之内不能添加到队列中，返回false
         queue.offer("3", 5, TimeUnit.SECONDS);
+        System.out.println(queue);
 
         // 数量只能为2
         System.out.println("队列数：" + queue.size());

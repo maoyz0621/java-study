@@ -216,4 +216,69 @@ public class ListTest {
         System.out.println(list);
     }
 
+    @Test
+    public void testRemove0() {
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("sh" + i);
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            // 每次remove()时，list发生变化
+            list.remove(i);
+            // 秘密 => sh1
+            // 秘密 => sh3
+            // 秘密 => sh5
+            // 秘密 => sh7
+            // 秘密 => sh9
+            System.out.println("秘密 => " + list.get(i));
+        }
+    }
+
+    @Test
+    public void testRemove1() {
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("sh" + i);
+        }
+
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            list.remove(i);
+            // java.lang.IndexOutOfBoundsException
+            System.out.println("秘密 => " + list.get(i));
+        }
+    }
+
+    @Test
+    public void testRemove2() {
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("sh" + i);
+        }
+
+        for (Iterator<String> iterator = list.iterator(); iterator.hasNext(); ) {
+            String next = iterator.next();
+            // java.util.ConcurrentModificationException
+            list.remove(next);
+        }
+    }
+
+    @Test
+    public void test() {
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("sh" + i);
+        }
+
+        // 这里会抛出角标越界异常java.lang.IndexOutOfBoundsException，为什么呢，因为 for 循环的条件 list.iterator().hasNext()，
+        // 我们知道 list.iterator() 将会new 一个新的  iterator 对象，而在 new 的过程中我们将 每次 list.remove 后的 modCount 赋值给了新的 iterator 的 expectedModCount，所以不会抛出 ConcurrentModificationException 异常，
+        // 而 hasNext 内部只判断了 size 是否等于 cursor != size 当我们删除了一半元素以后，size 变成了 5 而新的  list.iterator() 的 cursor 等于 0 ，0!=5 for 循环继续，那么当执行到 list.remove(5)的时候就会抛出角标越界了。
+        for (int i = 0; list.iterator().hasNext(); i++) {
+            list.remove(i);
+            // java.lang.IndexOutOfBoundsException
+            System.out.println("秘密 => " + list.get(i));
+        }
+    }
+
 }
