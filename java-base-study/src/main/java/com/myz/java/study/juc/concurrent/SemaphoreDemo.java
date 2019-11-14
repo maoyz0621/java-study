@@ -8,10 +8,11 @@ import java.util.concurrent.*;
 
 /**
  * Semaphore　信号量 ,用来控制同时访问特定资源的线程数量，通过协调各个线程以保证合理地使用公共资源
- *
+ * <p>
  * 每次acquire信号成功后，Semaphore可用的信号量就会减一，同样release成功之后，Semaphore可用信号量的数目会加一，
- * 如果信号量的数量减为0，acquire调用就会阻塞，直到release调用释放信号后，aquire才会获得信号返回。
- *
+ * 如果信号量的数量减为0，acquire调用就会阻塞，直到release调用释放信号后，acquire才会获得信号返回。
+ * <p>
+ * 主要用于多个共享资源的互斥使用; 并发线程数的控制
  *
  * @author maoyz on 18-1-10.
  */
@@ -19,11 +20,7 @@ public class SemaphoreDemo {
     private static final Logger logger = LoggerFactory.getLogger(SemaphoreDemo.class);
 
     public static void main(String[] args) {
-        ExecutorService threadPool = new ThreadPoolExecutor(
-                100,
-                150,
-                10,
-                TimeUnit.SECONDS,
+        ExecutorService threadPool = new ThreadPoolExecutor(100, 150, 10, TimeUnit.SECONDS,
                 new LinkedBlockingDeque<Runnable>(1024),
                 new ThreadFactoryBuilder().setNameFormat("semaphore_thread_pool_%d").build(),
                 new ThreadPoolExecutor.AbortPolicy());
@@ -60,13 +57,14 @@ public class SemaphoreDemo {
         public void run() {
             // 当前可用的许可数 Semaphore设置的阈值 count
             int mount = semaphore.availablePermits();
-            // logger.debug("当前可用的许可数 = {}", mount);
+            logger.debug("当前可用的许可数 = {}", mount);
 
             try {
                 // semaphore.tryAcquire(){}
                 //　获得许可
-                semaphore.acquire(2);
-                semaphore.availablePermits();
+                semaphore.acquire();
+                int permits = semaphore.availablePermits();
+                logger.debug("***************** 当前可用的许可数 = {}", permits);
 
                 logger.debug(Thread.currentThread().getName() + " 运行：" + num);
                 Thread.sleep(2000);
@@ -75,7 +73,7 @@ public class SemaphoreDemo {
                 e.printStackTrace();
             } finally {
                 //　释放资源
-                semaphore.release(2);
+                semaphore.release();
             }
         }
     }

@@ -19,15 +19,22 @@ public class ReentrantLockTest {
 
     private Lock lock = new ReentrantLock(true);
 
+    /**
+     * lock.lock() 和 lock.unlock()配对即可
+     */
     public void reentrant() {
         lock.lock();
         try {
             log.debug("Lock1 = {}", Thread.currentThread().getName());
+
             lock.lock();
             log.debug("Lock2 = {}", Thread.currentThread().getName());
+
             lock.lock();
             log.debug("Lock3 = {}", Thread.currentThread().getName());
         } finally {
+            lock.unlock();
+            lock.unlock();
             lock.unlock();
         }
     }

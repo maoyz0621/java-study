@@ -28,9 +28,9 @@ public class LockTest {
             new ThreadPoolExecutor.AbortPolicy());
 
     public static void main(String[] args) {
-        main0();
+        // main0();
         // main1();
-        // main2();
+        main2();
 
     }
 
@@ -40,7 +40,7 @@ public class LockTest {
     private static void main0() {
         ReentrantLockTest reentrantLockTest = new ReentrantLockTest();
         for (int i = 0; i < 10; i++) {
-            fixedThreadPool.execute(() -> reentrantLockTest.reentrant());
+            fixedThreadPool.execute(reentrantLockTest::reentrant);
         }
         fixedThreadPool.shutdown();
     }

@@ -12,6 +12,7 @@ package com.myz.java.study.base.enum1;
  * @author maoyz
  */
 public enum EnumAbstract {
+
     PLUS {
         @Override
         public int calculate(int x, int y) {
@@ -27,8 +28,14 @@ public enum EnumAbstract {
         }
     };
 
-    // 枚举类定义一个抽象方法，枚举类中所有的枚举值都必须实现这个方法
-    abstract int calculate(int x, int y);
+    /**
+     * 枚举类定义一个抽象方法，枚举类中所有的枚举值都必须实现这个方法
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+    protected abstract int calculate(int x, int y);
 
     public static void main(String[] args) {
         int calculate0 = EnumAbstract.PLUS.calculate(1, 2);

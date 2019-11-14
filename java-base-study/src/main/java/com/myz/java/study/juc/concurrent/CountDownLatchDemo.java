@@ -9,8 +9,7 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * CountDownLatch(门栓)
- * 　　计数器
+ * CountDownLatch(门栓) 计数器
  * 使一个线程等待其他线程完成各自的工作后再执行
  *
  * @author maoyz on 18-1-9.
@@ -66,19 +65,19 @@ public class CountDownLatchDemo {
      */
     private static void main0() {
         final int count = 50;
-        List<Integer> list = new CopyOnWriteArrayList<>();
+        List<Integer> list0 = new CopyOnWriteArrayList<>();
         List<Integer> list1 = new CopyOnWriteArrayList<>();
         // 20线程
         ExecutorService executorService = Executors.newFixedThreadPool(20);
         for (int i = 0; i < count; i++) {
             int j = i;
-            list.add(j);
+            list0.add(j);
         }
         // 定义计数器
-        final CountDownLatch countDownLatch = new CountDownLatch(list.size());
+        final CountDownLatch countDownLatch = new CountDownLatch(list0.size());
 
         try {
-            for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+            for (Iterator iterator = list0.iterator(); iterator.hasNext(); ) {
                 Integer next = (Integer) iterator.next();
                 executorService.execute(() -> {
                     try {
@@ -91,19 +90,24 @@ public class CountDownLatchDemo {
                         logger.error("{}", e);
                         throw new RuntimeException(e);
                         // countDownLatch.countDown();
+                    } finally {
+                        System.out.println("*****************************");
+                        countDownLatch.countDown();
                     }
                     logger.info("{}", countDownLatch.getCount());
-                    countDownLatch.countDown();
+
                 });
             }
         } catch (Exception e) {
+            System.out.println("===============================");
             countDownLatch.countDown();
         } finally {
+            System.out.println("++++++++++++++++++++++++++++++");
             // 等待, 阻断
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+
             }
             logger.info("{}", list1);
             logger.info("{}", list1.size());
@@ -111,7 +115,7 @@ public class CountDownLatchDemo {
         }
     }
 
-    public static void main6() throws InterruptedException {
+    public static void main2() throws InterruptedException {
         final int count = 30;
         final Semaphore semaphore = new Semaphore(10, false);
         final CountDownLatch countDownLatch = new CountDownLatch(count);

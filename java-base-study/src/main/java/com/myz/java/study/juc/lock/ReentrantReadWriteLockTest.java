@@ -37,8 +37,11 @@ public class ReentrantReadWriteLockTest {
     private final TreeMap<String, String> treeMap = new TreeMap<>();
 
     Integer index;
+
     AtomicInteger atomicSize;
+
     private volatile boolean useCache;
+
     /**
      * 读写锁
      */
