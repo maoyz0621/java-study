@@ -26,6 +26,8 @@ public class BlockingQueueTest {
     public void arrayBlockingQueueTest() throws InterruptedException {
         BlockingQueue<String> queue = new ArrayBlockingQueue<>(10);
         boolean offer = queue.offer("1");
+
+        System.out.println(offer);
         queue.put("2");
         System.out.println(queue);
         queue.take();
@@ -57,6 +59,14 @@ public class BlockingQueueTest {
             queue.put("a" + i);
         }
         System.out.println(queue);
+    }
+
+    /**
+     * 同步队列
+     */
+    @Test
+    public void SynchronousQueueTest() {
+        BlockingQueue blockingQueue = new SynchronousQueue();
     }
 
     /**

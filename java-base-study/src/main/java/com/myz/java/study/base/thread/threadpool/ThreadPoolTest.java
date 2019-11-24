@@ -85,23 +85,26 @@ public class ThreadPoolTest {
     }
 
     private void testPool(ExecutorService fixedThreadPool) {
-        for (int i = 0; i < 30; i++) {
+        try {
+            for (int i = 0; i < 30; i++) {
 
-            final int temp = i;
-            fixedThreadPool.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                final int temp = i;
+                fixedThreadPool.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("可重用固定线程数的线程: " + Thread.currentThread().getName() + ":" + temp);
                     }
-                    System.out.println("可重用固定线程数的线程: " + Thread.currentThread().getName() + ":" + temp);
-                }
-            });
+                });
+            }
+        } finally {
+            // 不会立即终止线程池，而是要等所有任务缓存队列中的任务都执行完后才终止，但再也不会接受新的任务
+            fixedThreadPool.shutdown();
         }
-        // 不会立即终止线程池，而是要等所有任务缓存队列中的任务都执行完后才终止，但再也不会接受新的任务
-        fixedThreadPool.shutdown();
     }
 
     private void test2() {

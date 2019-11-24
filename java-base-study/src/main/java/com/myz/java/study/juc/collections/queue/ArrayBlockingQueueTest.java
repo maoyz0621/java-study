@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * BlockingQueue
  * 　　阻塞队列，有界
- *
+ * <p>
  * https://segmentfault.com/a/1190000016311925  #ArrayBlockingQueue
  *
  * @author maoyz on 18-1-11.
@@ -15,6 +15,15 @@ import java.util.concurrent.TimeUnit;
 class ArrayBlockingQueueTest {
 
     public static void main(String[] args) throws InterruptedException {
+        main0();
+    }
+
+    /**
+     * add() remove() element()
+     *
+     * @throws InterruptedException
+     */
+    private static void main0() throws InterruptedException {
         // 定义n个阻塞队列
         BlockingQueue<String> queue = new ArrayBlockingQueue<>(2);
 
@@ -36,5 +45,29 @@ class ArrayBlockingQueueTest {
         System.out.println(queue.poll(3, TimeUnit.SECONDS));
         System.out.println(queue.poll(3, TimeUnit.SECONDS));
         System.out.println(queue.poll(3, TimeUnit.SECONDS));   //null
+    }
+
+    /**
+     * offer() poll() peek()
+     *
+     * @throws InterruptedException
+     */
+    private static void main1() throws InterruptedException {
+    }
+
+    /**
+     * put()  take()
+     *
+     * @throws InterruptedException
+     */
+    private static void main2() throws InterruptedException {
+    }
+
+    /**
+     * offer() poll()
+     *
+     * @throws InterruptedException
+     */
+    private static void main3() throws InterruptedException {
     }
 }

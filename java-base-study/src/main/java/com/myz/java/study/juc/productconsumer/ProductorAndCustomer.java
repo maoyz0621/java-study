@@ -1,4 +1,4 @@
-package com.myz.java.study.base.thread;
+package com.myz.java.study.juc.productconsumer;
 /**
  * @ClassName: ProductorAndCustomer
  * @Description: 生产者与消费者

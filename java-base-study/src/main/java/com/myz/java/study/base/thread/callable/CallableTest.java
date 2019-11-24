@@ -24,6 +24,12 @@ public class CallableTest implements Callable<String> {
 
     @Override
     public String call() throws Exception {
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return "你好";
     }
 
@@ -33,12 +39,15 @@ public class CallableTest implements Callable<String> {
         new Thread(task).start();
         try {
             log.debug("cancel start = {}", task.isCancelled());
-            if (task.isDone()) {
-                String val = task.get(60, TimeUnit.SECONDS);
-                log.debug(val);
-                log.debug("{}", task.isCancelled());
-                task.cancel(true);
+
+            // 雷士自旋锁
+            while (!task.isDone()) {
+                System.out.println("等待好无聊........................");
             }
+
+            log.debug(task.get(60, TimeUnit.SECONDS));
+            log.debug("{}", task.isCancelled());
+            task.cancel(true);
 
             log.debug("cancel end = {}", task.isCancelled());
         } catch (InterruptedException | ExecutionException | TimeoutException e) {

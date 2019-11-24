@@ -1,4 +1,4 @@
-package com.myz.java.study.base.collection.map;
+package com.myz.java.study.base.reference;
 
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class WeakHashMapTest {
 
     @Test
     public void test() {
-        Map<String, String> map = new WeakHashMap<String, String>();
+        Map<String, String> map = new WeakHashMap<>();
         map.put("1", "demo");
         map.put("2", "b");
         // 立即被回收
