@@ -41,7 +41,7 @@ public class CallableTest implements Callable<String> {
             log.debug("cancel start = {}", task.isCancelled());
 
             // 雷士自旋锁
-            while (!task.isDone()) {
+            while (task.isDone()) {
                 System.out.println("等待好无聊........................");
             }
 

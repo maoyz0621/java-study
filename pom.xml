@@ -11,7 +11,7 @@
         <module>java-base-study</module>
         <module>ajax</module>
         <module>transaction-cache</module>
-        <module>transaction-propotation</module>
+        <module>transaction-propagation</module>
         <module>spring-project</module>
         <module>reactor-java</module>
     </modules>

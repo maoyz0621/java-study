@@ -82,7 +82,7 @@ public class StringDemo {
      */
     @Test
     public void testReplace() {
-        String str = "sdfsd876876";
+        final String str = "sdfsd876876";
         System.out.println(str.replace("8", "z"));
         System.out.println(str.replaceAll("8", "z"));
         System.out.println(str.replaceFirst("8", "z"));
@@ -93,6 +93,8 @@ public class StringDemo {
      */
     @Test
     public void testFormat() {
+        final String s = "aaaa%s";
+        System.out.println(String.format(s,"bbbbbbbb"));
         // %s string
         System.out.println(String.format("aaaaaa%s", 11111));
         // %c char
