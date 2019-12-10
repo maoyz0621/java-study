@@ -14,6 +14,7 @@
         <module>transaction-propagation</module>
         <module>spring-project</module>
         <module>reactor-java</module>
+        <module>cookie-session</module>
     </modules>
 
     <name>java-study</name>

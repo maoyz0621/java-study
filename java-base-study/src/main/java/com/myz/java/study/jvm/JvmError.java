@@ -15,6 +15,7 @@ public class JvmError {
 
     /**
      * java.lang.StackOverflowError
+     * 运行参数
      * -Xms5m
      * -Xmx5m
      */
@@ -30,7 +31,7 @@ public class JvmError {
     /**
      * OutOfMemoryError
      * 1. Java heap space
-     * <p>
+     * 运行参数
      * -Xms5m
      * -Xmx5m
      */
@@ -42,7 +43,7 @@ public class JvmError {
     /**
      * OutOfMemoryError
      * 2. GC overhead limit exceeded
-     * <p>
+     * 运行参数
      * -Xms5m
      * -Xmx5m
      */
