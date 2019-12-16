@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -107,6 +108,10 @@ public class DateTimeFormatterTest {
         Instant instant = Instant.now();
         // 2019-03-24T15:04:00.311Z
         System.out.println("当前时间戳 :" + instant);
+        // 1576476786
+        System.out.println("当前时间获取秒数: " + instant.getEpochSecond());
+        // 1576476786499
+        System.out.println("当前时间获取毫秒数:" + instant.toEpochMilli());
         Instant plus = instant.plus(Duration.ofSeconds(10));
         // 2019-03-24T15:04:10.311Z
         System.out.println("增加之后的时间 : " + plus);
@@ -139,5 +144,27 @@ public class DateTimeFormatterTest {
         long end1 = System.nanoTime();
         System.out.println("currentTimeMillis = " + (end0 - start0) / 1000);
         System.out.println("nanoTime = " + (end1 - start1) / 1000 / 1000);
+    }
+
+    /**
+     * LocalDateTime转Date
+     */
+    @Test
+    public void testLocalDateTme2Date() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        ZoneId zoneId = ZoneId.systemDefault();
+        Date date = Date.from(localDateTime.atZone(zoneId).toInstant());
+        System.out.println(date);
+    }
+
+    /**
+     * Date转LocalDateTime
+     */
+    @Test
+    public void testDate2LocalDateTime() {
+        Date date = new Date();
+        ZoneId zoneId = ZoneId.systemDefault();
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), zoneId);
+        System.out.println(localDateTime);
     }
 }
