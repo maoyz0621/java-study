@@ -6,15 +6,12 @@ package com.myz.cookie;
 import com.myz.utils.IpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Optional;
 
 /**
  * @author maoyz0621 on 19-4-21
@@ -84,5 +81,26 @@ public class CookieController {
             session.setAttribute("SESSIONID", "aaaaaaaaaaa");
         }
         return "Ok";
+    }
+
+    /**
+     * 使用@RequestHeader获取header信息
+     *
+     * @param token
+     * @param username
+     * @return
+     */
+    @RequestMapping(value = "/getHeader", method = RequestMethod.GET)
+    public String getHeader(@RequestHeader("token") String token, @RequestParam(value = "username", required = false) String username, HttpServletRequest request) {
+        logger.info("********** token = {} **********", token);
+        logger.info("********** request.getHeader = {} **********", request.getHeader("token"));
+        return token + " : " + username;
+    }
+
+    @RequestMapping(value = "/postHeader", method = RequestMethod.POST)
+    public String postHeader(@RequestHeader("token") String token, @RequestParam(value = "username", required = false) String username, HttpServletRequest request) {
+        logger.info("********** token = {} **********", token);
+        logger.info("********** request.getHeader = {} **********", request.getHeader("token"));
+        return token + " : " + username;
     }
 }
