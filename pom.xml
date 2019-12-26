@@ -16,6 +16,9 @@
         <module>reactor-java</module>
         <module>cookie-session</module>
         <module>jwt</module>
+        <module>netty-study</module>
+        <module>java-design</module>
+        <module>java-open-source</module>
     </modules>
 
     <name>java-study</name>

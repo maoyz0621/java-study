@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<user>
+    <person id="person1" class="person1">
+        <name>mao</name>
+        <age>12</age>
+    </person>
+    <person id="person2">
+        <name>mmm</name>
+        <gender>male</gender>
+    </person>
+    <person id="person3">
+        <name>yyy</name>
+        <gender>male</gender>
+    </person>
+</user>
