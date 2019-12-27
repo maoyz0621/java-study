@@ -9,8 +9,6 @@ import java.sql.*;
 import java.util.Properties;
 
 public class JdbcDemo {
-
-
     protected static String sql;
     protected Connection conn = null;
     protected PreparedStatement ps = null;
