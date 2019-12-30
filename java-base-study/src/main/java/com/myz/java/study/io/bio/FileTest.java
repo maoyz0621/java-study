@@ -3,7 +3,9 @@ package com.myz.java.study.io.bio;
 
 import org.junit.Test;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 
 /**
@@ -15,7 +17,7 @@ public class FileTest {
     /**
      * 文件路径表示方法
      */
-	String pathname = "myz" + File.separator + "files/demo/1.txt";
+	// String pathname = "myz" + File.separator + "files/demo/1.txt";
 
 
     /**
@@ -28,15 +30,21 @@ public class FileTest {
      * 获取绝对路径名称：file.getAbsolutePath()
      * 获取父目录：getParent()，若是相对路径，返回null
      */
-	@Test
-	public void testPath() {
+    @Test
+    public void testPath() {
         String parentPath = "files" + File.separator + "demo";
         String path = "1.txt";
-        File file = new File(parentPath,path);
+        URL resource = this.getClass().getClassLoader().getResource(parentPath + File.separator + path);
+        String path0 = null;
+        if (resource != null){
+            path0 = resource.getPath();
+        }
+        System.out.println(path0);
+        File file = new File(parentPath, path);
         // 路径名称
         System.out.println(file.getPath());
         // 文件名称
-        System.out.println(file.getName());
+        System.out.println("文件名称: " + file.getName());
         System.out.println("绝对路径：" + file.getAbsolutePath());
         System.out.println(file.getAbsoluteFile());
         System.out.println("父目录：" + file.getParent());
@@ -50,9 +58,16 @@ public class FileTest {
      * 是否是文件夹　isDirectory()
      */
     @Test
-    public void test(){
-        String path = "files"+File.separator + "demo" + File.separator + "1.txt";
-        File file = new File("/home/maoyz/文档/JAVAWeb/first/resources/files/demo/1.png");
+    public void test() {
+        String path = "files" + File.separator + "demo" + File.separator + "1.txt";
+        URL resource = Thread.currentThread().getContextClassLoader().getResource(path);
+        String path0 = null;
+        if (resource != null) {
+            path0 = resource.getPath();
+        }
+
+        System.out.println(path0);
+        File file = new File(path0);
         // 判断文件是否存在
         System.out.println(file.exists());
         // 判断文件的可读性
@@ -70,9 +85,16 @@ public class FileTest {
      */
     @Test
     public void testCreateAndDel() throws IOException {
-        String path = "/home/maoyz/文档/JAVAWeb/first/resources/files/demo/2.txt";
+        String path = "files" + File.separator + "demo" + File.separator + "2.txt";
+        URL resource = Thread.currentThread().getContextClassLoader().getResource(path);
+        String path0 = null;
+        if (resource != null) {
+            path0 = resource.getPath();
+        }
+
+
         File file = new File(path);
-        if (!file.exists()){
+        if (!file.exists()) {
             file.createNewFile();
             System.out.println("文件不存在，创建");
         } else {
@@ -98,22 +120,16 @@ public class FileTest {
     * FileFilter
 	* listFiles()
 	 */
-	@Test
-	public void testFile(){
-		File f = new File("..");
-		System.out.println(f.getPath());
+    @Test
+    public void testFile() {
+        File f = new File("..");
+        System.out.println(f.getPath());
 
-		// listFiles()
-		File[] fs = f.listFiles(new FileFilter() {
-
-				@Override
-				public boolean accept(File pathname) {
-					return pathname.getName().startsWith(".");
-				}
-			}
-		);
-		for (File file : fs) {
-			System.out.println(file);		
-		}
-	}
+        // listFiles()
+        File[] fs = f.listFiles(pathname -> pathname.getName().startsWith(".")
+        );
+        for (File file : fs) {
+            System.out.println(file);
+        }
+    }
 }

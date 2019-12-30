@@ -1,6 +1,8 @@
 package com.myz.java.study.io.bio;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 /**

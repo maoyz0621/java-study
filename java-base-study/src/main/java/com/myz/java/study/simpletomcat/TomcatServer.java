@@ -1,3 +1,6 @@
+/**
+ * Copyright 2019 Inc.
+ **/
 package com.myz.java.study.simpletomcat;
 
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -7,16 +10,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * 模拟tomcat服务端，浏览器相当于客户端，默认端口号80
- *
- * @author maoyz on 18-1-31.
+ * @author maoyz0621 on 19-12-27
+ * @version: v1.0
  */
-public class MyTomcat {
-
-    ThreadPoolTaskExecutor poolTaskExecutor = new ThreadPoolTaskExecutor();
+public class TomcatServer {
 
 
     public static void main(String[] args) {
+        ThreadPoolTaskExecutor poolTaskExecutor = new ThreadPoolTaskExecutor();
+        poolTaskExecutor.setMaxPoolSize(100);
+        poolTaskExecutor.setThreadNamePrefix("Tomcat-Server-");
         ServerSocket server = null;
         Socket socket = null;
         try {
@@ -26,10 +29,11 @@ public class MyTomcat {
             while (true) {
                 // 开始监听,浏览器相当于客户端
                 socket = server.accept();
-                new Thread(new TomcatRunnable(socket)).start();
+                poolTaskExecutor.execute(new TomcatRunnable(socket));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }
