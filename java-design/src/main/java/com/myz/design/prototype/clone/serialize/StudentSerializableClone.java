@@ -1,8 +1,8 @@
 package com.myz.design.prototype.clone.serialize;
 
 import com.alibaba.fastjson.JSON;
-import com.myz.java.study.design.prototype.clone.City;
-import com.myz.java.study.design.prototype.clone.Province;
+import com.myz.design.prototype.clone.City;
+import com.myz.design.prototype.clone.Province;
 import org.apache.commons.compress.utils.IOUtils;
 
 import java.io.*;

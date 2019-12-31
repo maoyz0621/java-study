@@ -1,7 +1,7 @@
 package com.myz.design.prototype.clone.deep;
 
-import com.myz.java.study.design.prototype.clone.City;
-import com.myz.java.study.design.prototype.clone.Province;
+import com.myz.design.prototype.clone.City;
+import com.myz.design.prototype.clone.Province;
 import org.junit.Test;
 
 /**

@@ -3,7 +3,7 @@
  **/
 package com.myz.design.chain.handler;
 
-import com.myz.java.study.design.chain.request.AbstractRequestInfo;
+import com.myz.design.chain.request.AbstractRequestInfo;
 
 import java.util.Objects;
 

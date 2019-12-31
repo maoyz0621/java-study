@@ -1,7 +1,7 @@
 package com.myz.design.chain;
 
-import com.myz.java.study.design.chain.handler.AbstractChainHandler;
-import com.myz.java.study.design.chain.request.AbstractRequestInfo;
+import com.myz.design.chain.handler.AbstractChainHandler;
+import com.myz.design.chain.request.AbstractRequestInfo;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,6 +29,7 @@ public class Chain {
 
     /**
      * 处理者需要形成环状
+     *
      * @param chainHandlers
      */
     public void setChainHandlers(List<AbstractChainHandler> chainHandlers) {

@@ -1,11 +1,13 @@
 package com.myz.design.chain.handler;
 
-import com.myz.java.study.design.chain.request.AbstractRequestInfo;
+
+import com.myz.design.chain.request.AbstractRequestInfo;
 
 import java.util.Objects;
 
 /**
  * 定义抽象类
+ *
  * @author maoyz on 18-3-9.
  */
 public abstract class AbstractChainHandler implements Handler {

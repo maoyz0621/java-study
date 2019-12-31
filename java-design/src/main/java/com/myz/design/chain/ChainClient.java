@@ -1,9 +1,11 @@
 package com.myz.design.chain;
 
-import com.myz.java.study.design.chain.handler.*;
-import com.myz.java.study.design.chain.request.AbstractRequestInfo;
-import com.myz.java.study.design.chain.request.FirstRequestInfo;
-import com.myz.java.study.design.chain.request.SecondRequestInfo;
+import com.myz.design.chain.handler.FirstHandler;
+import com.myz.design.chain.handler.SecondHandler;
+import com.myz.design.chain.handler.ThirdHandler;
+import com.myz.design.chain.request.AbstractRequestInfo;
+import com.myz.design.chain.request.FirstRequestInfo;
+import com.myz.design.chain.request.SecondRequestInfo;
 
 import java.util.Arrays;
 

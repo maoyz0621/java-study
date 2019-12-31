@@ -1,10 +1,11 @@
 package com.myz.design.prototype.clone.deep;
 
-import com.myz.java.study.design.prototype.clone.City;
-import com.myz.java.study.design.prototype.clone.Province;
+import com.myz.design.prototype.clone.City;
+import com.myz.design.prototype.clone.Province;
 
 /**
  * https://www.cnblogs.com/Qian123/p/5710533.html#4289901
+ *
  * @author maoyz
  */
 public class StudentDeepClone implements Cloneable {
@@ -61,6 +62,7 @@ public class StudentDeepClone implements Cloneable {
 
     /**
      * 没有clone() 引用类型
+     *
      * @return
      */
     @Override

@@ -14,14 +14,14 @@ import java.lang.reflect.Method;
  * @author maoyz on 2018/9/26
  * @version: v1.0
  */
-public class MyInvocationHandler<T> implements InvocationHandler {
+public class JdkInvocationHandler<T> implements InvocationHandler {
 
     /**
      * 此对象为实现接口的被代理类
      */
     private Class<T> target;
 
-    public MyInvocationHandler(Class<T> target) {
+    public JdkInvocationHandler(Class<T> target) {
         this.target = target;
     }
 
@@ -32,6 +32,7 @@ public class MyInvocationHandler<T> implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object result;
+        // 鉴于methodName
         if ("process".equals(method.getName())) {
             System.out.println("可以先做些事");
             // 执行obj反射方法
