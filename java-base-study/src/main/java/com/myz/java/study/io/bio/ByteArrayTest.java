@@ -6,7 +6,7 @@ import java.io.*;
 
 /**
  * 字节数组
- *
+ * <p>
  * ByteArrayInputStream
  * ByteArrayOutputStream
  * 此类中的方法在关闭此流后仍可被调用，而不会产生任何IOException
@@ -16,38 +16,38 @@ import java.io.*;
  */
 public class ByteArrayTest {
 
-  @Test
-  public void testRead() throws Exception {
-    byte[] data = "是否离开是附件是离开飞机上了飞机".getBytes("utf-8");
+    @Test
+    public void testRead() throws Exception {
+        byte[] data = "是否离开是附件是离开飞机上了飞机".getBytes("utf-8");
 
-    try (
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(data);
-            BufferedInputStream in = new BufferedInputStream(inputStream);
-    ) {
-      int len = 0;
-      byte[] buf = new byte[1024];
+        try (
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(data);
+                BufferedInputStream in = new BufferedInputStream(inputStream);
+        ) {
+            int len = 0;
+            byte[] buf = new byte[1024];
 
-      while (-1 != (len = in.read(buf))) {
-        System.out.println(new String(buf, 0, len));
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
+            while (-1 != (len = in.read(buf))) {
+                System.out.println(new String(buf, 0, len));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-  }
 
-  @Test
-  public void testWrite() throws Exception {
-    byte[] data = "是否离开是附件是离开飞机上了飞机".getBytes("UTF-8");
+    @Test
+    public void testWrite() throws Exception {
+        byte[] data = "是否离开是附件是离开飞机上了飞机".getBytes("UTF-8");
 
-    try (
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            BufferedOutputStream out = new BufferedOutputStream(outputStream);
-    ) {
-      out.write(data, 0, data.length);
-      out.flush();
+        try (
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                BufferedOutputStream out = new BufferedOutputStream(outputStream);
+        ) {
+            out.write(data, 0, data.length);
+            out.flush();
 
-    } catch (IOException e) {
-      e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-  }
 }
