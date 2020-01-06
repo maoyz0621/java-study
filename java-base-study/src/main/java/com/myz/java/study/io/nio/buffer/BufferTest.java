@@ -22,14 +22,14 @@ public class BufferTest {
     }
 
     @Test
-    public void testWAllocate() {
+    public void testAllocate() {
         final int size = 5;
         IntBuffer intBuffer = IntBuffer.allocate(size);
         for (int i = 0; i < size; i++) {
             intBuffer.put(i);
         }
 
-        // Import
+        // Important
         intBuffer.flip();
 
         while (intBuffer.hasRemaining()) {

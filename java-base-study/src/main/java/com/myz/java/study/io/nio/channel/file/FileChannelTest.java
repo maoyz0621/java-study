@@ -20,19 +20,23 @@ import java.nio.channels.FileChannel;
  */
 public class FileChannelTest {
 
+    String basePath = this.getClass().getClassLoader().getResource("").getPath();
+
     /**
      * 写入文件
+     *
      * @throws IOException
      */
     @Test
     public void testWrite() throws IOException {
         RandomAccessFile file = null;
         FileChannel channel = null;
-        String pathName = "resources/files/demo/2.txt";
-        String path = this.getClass().getClassLoader().getResource("resources/files/demo/2.txt").getPath();
+        String pathName = "/files/demo/2.txt";
+
         try {
             // 方法1
-            file = new RandomAccessFile(pathName, "rw");
+            file = new RandomAccessFile(basePath + pathName, "rw");
+
             // 获取文件Channel
             channel = file.getChannel();
 
@@ -53,10 +57,10 @@ public class FileChannelTest {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (channel != null){
+            if (channel != null) {
                 channel.close();
             }
-            if (file != null){
+            if (file != null) {
                 file.close();
             }
         }
@@ -64,15 +68,16 @@ public class FileChannelTest {
 
     /**
      * 读取文件
+     *
      * @throws IOException
      */
     @Test
     public void testRead() throws IOException {
-        String pathName = "resources/files/demo/1.txt";
+        String pathName = "/files/demo/1.txt";
         RandomAccessFile file = null;
         FileChannel channel = null;
         try {
-            file = new RandomAccessFile(pathName, "rw");
+            file = new RandomAccessFile(basePath + pathName, "rw");
             // 获取Channel
             channel = file.getChannel();
             // 设置Buffer缓存区大小
@@ -91,7 +96,7 @@ public class FileChannelTest {
 
                 // 只会清除已经读过的数据，任何未读的数据都被转移到缓冲区起始处，新写入的数据将放到缓冲区未读数据的后面。
                 buffer.compact();
-                // 清除整个缓冲区
+                // 并不将缓冲区的数据清空，而是设置position，mark，limit这三个变量的值
                 buffer.clear();
                 // 3 Channel从Buffer中读取数据
                 read = channel.read(buffer);
@@ -100,8 +105,12 @@ public class FileChannelTest {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            channel.close();
-            file.close();
+            if (channel != null) {
+                channel.close();
+            }
+            if (file != null) {
+                file.close();
+            }
         }
     }
 }
