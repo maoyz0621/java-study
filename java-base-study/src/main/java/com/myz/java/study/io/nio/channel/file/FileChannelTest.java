@@ -33,7 +33,6 @@ public class FileChannelTest {
 
     /**
      * 写入文件
-     *
      * @throws IOException
      */
     @Test
@@ -107,7 +106,7 @@ public class FileChannelTest {
 
                 // 只会清除已经读过的数据，任何未读的数据都被转移到缓冲区起始处，新写入的数据将放到缓冲区未读数据的后面。
                 buffer.compact();
-                // 并不将缓冲区的数据清空，而是设置position，mark，limit这三个变量的值
+                // 清除整个缓冲区
                 buffer.clear();
                 // 3 Channel从Buffer中读取数据
                 read = channel.read(buffer);
