@@ -5,26 +5,36 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 
 /**
  * 路径分隔符 File.pathSeparator
  * 文件分隔符 File.separator
- *@author maoyz
+ *
+ * @author maoyz
  */
 public class FileTest {
+
+    //获取项目的根路径
+    public final static String classPath;
+
+    static {
+        //获取的是classpath路径，适用于读取resources下资源
+        classPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+        System.out.println("classpath路径=" + classPath);
+    }
+
     /**
      * 文件路径表示方法
      */
-	// String pathname = "myz" + File.separator + "files/demo/1.txt";
+    // String pathname = "myz" + File.separator + "files/demo/1.txt";
 
 
     /**
      * 相对路径
-     *      new File(String parent, String child)
+     * new File(String parent, String child)
      * 绝对路径
-     *      new File(String pathname)
+     * new File(String pathname)
      * 获取路径名称：getPath()
      * 获取文件名称：getName()
      * 获取绝对路径名称：file.getAbsolutePath()
@@ -34,13 +44,7 @@ public class FileTest {
     public void testPath() {
         String parentPath = "files" + File.separator + "demo";
         String path = "1.txt";
-        URL resource = this.getClass().getClassLoader().getResource(parentPath + File.separator + path);
-        String path0 = null;
-        if (resource != null){
-            path0 = resource.getPath();
-        }
-        System.out.println(path0);
-        File file = new File(parentPath, path);
+        File file = new File(classPath + parentPath, path);
         // 路径名称
         System.out.println(file.getPath());
         // 文件名称
@@ -60,14 +64,7 @@ public class FileTest {
     @Test
     public void test() {
         String path = "files" + File.separator + "demo" + File.separator + "1.txt";
-        URL resource = Thread.currentThread().getContextClassLoader().getResource(path);
-        String path0 = null;
-        if (resource != null) {
-            path0 = resource.getPath();
-        }
-
-        System.out.println(path0);
-        File file = new File(path0);
+        File file = new File(classPath + path);
         // 判断文件是否存在
         System.out.println(file.exists());
         // 判断文件的可读性
@@ -86,14 +83,7 @@ public class FileTest {
     @Test
     public void testCreateAndDel() throws IOException {
         String path = "files" + File.separator + "demo" + File.separator + "2.txt";
-        URL resource = Thread.currentThread().getContextClassLoader().getResource(path);
-        String path0 = null;
-        if (resource != null) {
-            path0 = resource.getPath();
-        }
-
-
-        File file = new File(path);
+        File file = new File(classPath + path);
         if (!file.exists()) {
             file.createNewFile();
             System.out.println("文件不存在，创建");
@@ -109,17 +99,17 @@ public class FileTest {
      */
     @Test
     public void testTemp() throws IOException, InterruptedException {
-        String path = "/home/maoyz/文档/JAVAWeb/first/resources/files/demo";
-        File temp =  File.createTempFile("myz",".tmp",new File(path));
+        String path = "files" + File.separator + "demo";
+        File temp = File.createTempFile("myz", ".tmp", new File(classPath + path));
         Thread.sleep(5000);
         temp.deleteOnExit();
     }
 
     /**
-	* new File("..")表示上一级目录,new File(".")表示当前根目录
-    * FileFilter
-	* listFiles()
-	 */
+     * new File("..")表示上一级目录,new File(".")表示当前根目录
+     * FileFilter
+     * listFiles()
+     */
     @Test
     public void testFile() {
         File f = new File("..");
