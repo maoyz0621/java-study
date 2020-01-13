@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 Inc.
  **/
-package com.myz.netty.study.handler;
+package com.myz.netty.study.base.handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
