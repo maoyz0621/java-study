@@ -15,7 +15,18 @@ import java.io.*;
  */
 public class BufferedTest {
 
-    String pathname = "/home/maoyz/文档/JAVAWeb/first/resources"+ File.separator + "files/demo/2.txt";
+    String pathname = "/files/demo/2.txt".replace("/", File.separator);
+    String pathname0 = "/src/main/resources/files/demo/3.txt".replace("/", File.separator);
+
+    /* 如果以 / 开头，则从根路径开始搜索资源 */
+    private String basePath = getClass().getResource("/").getPath();
+
+    /* 如果不以 / 开头，则从当前类所在的路径开始搜索资源 */
+    private String basePath0 = getClass().getResource("").getPath();
+
+    /* 不能以 / 开头，统一从根路径开始搜索资源 */
+    private String basePath2 = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+
 
     /**
      * BufferedInputStream
@@ -23,17 +34,17 @@ public class BufferedTest {
      */
     @Test
     public void testStream() {
-        File file = new File(pathname);
+        File file = new File(basePath + pathname);
         //　如果是目录
         if (file.isDirectory()) {
             return;
         }
         try (
                 InputStream in = new FileInputStream(file);
-                OutputStream out = new FileOutputStream("/home/maoyz/文档/JAVAWeb/first/resources" + File.separator + "files/demo/3.txt", true);
+                OutputStream out = new FileOutputStream(new File(basePath).getParentFile().getParent() + pathname0, true);
                 //　包装
                 BufferedInputStream r = new BufferedInputStream(in);
-                BufferedOutputStream w = new BufferedOutputStream(out);
+                BufferedOutputStream w = new BufferedOutputStream(out)
         ) {
             int len = 0;
             byte[] buf = new byte[1024];
@@ -53,17 +64,17 @@ public class BufferedTest {
      */
     @Test
     public void testReader() {
-        File file = new File(pathname);
+        File file = new File(basePath + pathname);
         //　如果是目录
         if (file.isDirectory()) {
             return;
         }
         try (
                 Reader in = new FileReader(file);
-                Writer out = new FileWriter("/home/maoyz/文档/JAVAWeb/first/resources" + File.separator + "files/demo/4.txt");
+                Writer out = new FileWriter((new File(".").getAbsolutePath().replace(".", "") + "src/main/resources/files/demo/4.txt").replace("/", File.separator));
                 //　包装
                 BufferedReader r = new BufferedReader(in);
-                BufferedWriter w = new BufferedWriter(out);
+                BufferedWriter w = new BufferedWriter(out)
         ) {
             int len = 0;
             String info = null;

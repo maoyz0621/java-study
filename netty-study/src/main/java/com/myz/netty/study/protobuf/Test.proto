@@ -1,0 +1,7 @@
+syntax = "proto3"; // 版本
+option java_outer_classname = "TestPOJO"; // 外部类名
+
+message Test {
+    int32 id = 1; // 1表示属性序号
+    string name = 2;
+}

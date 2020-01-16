@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.stream.Stream;
 
 
 /**
@@ -77,13 +79,20 @@ public class FileTest {
     }
 
     /**
+     * 不存在的文件
      * 创建文件 createNewFile()
      * 删除文件 delete()
      */
     @Test
     public void testCreateAndDel() throws IOException {
         String path = "files" + File.separator + "demo" + File.separator + "2.txt";
-        File file = new File(classPath + path);
+        URL resource = Thread.currentThread().getContextClassLoader().getResource("");
+        String path0 = null;
+        if (resource != null) {
+            path0 = resource.getPath();
+        }
+
+        File file = new File(path0 + path);
         if (!file.exists()) {
             file.createNewFile();
             System.out.println("文件不存在，创建");
@@ -111,15 +120,23 @@ public class FileTest {
      * listFiles()
      */
     @Test
-    public void testFile() {
+    public void testFile() throws IOException {
         File f = new File("..");
         System.out.println(f.getPath());
+        System.out.println(f.getAbsolutePath());
+        System.out.println(f.getCanonicalPath());
+        System.out.println(new File(".").getAbsolutePath());
+
 
         // listFiles()
-        File[] fs = f.listFiles(pathname -> pathname.getName().startsWith(".")
-        );
+        File[] fs = f.listFiles(pathname -> pathname.getName().startsWith("."));
         for (File file : fs) {
             System.out.println(file);
         }
+
+        System.out.println("==============================");
+
+        File[] files = f.listFiles();
+        Stream.of(files).forEach((file) -> System.out.println(file.getName()));
     }
 }
