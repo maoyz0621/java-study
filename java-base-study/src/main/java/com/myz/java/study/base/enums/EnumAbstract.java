@@ -4,7 +4,7 @@
  * @Copyright: 2019-09-19 17:36 www.xiniaoyun.com Inc. All rights reserved.
  * 注意：本内容仅限于南京微欧科技有限公司内部传阅，禁止外泄以及用于其他的商业目的
  */
-package com.myz.java.study.base.enum1;
+package com.myz.java.study.base.enums;
 
 /**
  * 枚举 包含abstract抽象方法,枚举值需要实现 抽象方法
@@ -13,6 +13,9 @@ package com.myz.java.study.base.enum1;
  */
 public enum EnumAbstract {
 
+    /**
+     * 加
+     */
     PLUS {
         @Override
         public int calculate(int x, int y) {

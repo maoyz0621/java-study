@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.util.concurrent.FutureTask</OriginalElement>
+  <nodes>
+    <node x="38.0" y="77.0">java.util.concurrent.RunnableFuture</node>
+    <node x="9.0" y="0.0">java.util.concurrent.Future</node>
+    <node x="0.0" y="154.0">java.util.concurrent.FutureTask</node>
+    <node x="0.0" y="272.0">java.util.concurrent.Callable</node>
+    <node x="123.0" y="0.0">java.lang.Runnable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.util.concurrent.RunnableFuture" target="java.lang.Runnable">
+      <point x="39.5" y="-13.5" />
+      <point x="156.5" y="52.0" />
+      <point x="178.0" y="52.0" />
+      <point x="0.0" y="13.5" />
+    </edge>
+    <edge source="java.util.concurrent.FutureTask" target="java.util.concurrent.RunnableFuture">
+      <point x="0.0" y="-36.5" />
+      <point x="0.0" y="13.5" />
+    </edge>
+    <edge source="java.util.concurrent.RunnableFuture" target="java.util.concurrent.Future">
+      <point x="-39.5" y="-13.5" />
+      <point x="77.5" y="52.0" />
+      <point x="56.0" y="52.0" />
+      <point x="0.0" y="13.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="1005.0" y="615.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

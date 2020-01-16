@@ -1,7 +1,7 @@
 /**
  * Copyright 2018 asiainfo Inc.
  **/
-package com.myz.java.study.base.thread.threadpool;
+package com.myz.java.study.juc.thread.threadpool;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;

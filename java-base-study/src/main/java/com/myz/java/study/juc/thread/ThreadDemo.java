@@ -1,4 +1,4 @@
-package com.myz.java.study.base.thread;
+package com.myz.java.study.juc.thread;
 
 import java.util.concurrent.TimeUnit;
 

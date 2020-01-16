@@ -1,4 +1,4 @@
-package com.myz.java.study.base.thread.threadpool;
+package com.myz.java.study.juc.thread.threadpool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -8,17 +8,17 @@ import java.util.concurrent.TimeUnit;
 /**
  * 线程池
  * newCachedThreadPool()
- *     阻塞队列 SynchronousQueue (一个不存储元素的阻塞队列。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态，吞吐量通常要高于LinkedBlockingQueue)
- *     拒绝策略 AbortPolicy()
+ * * * * 阻塞队列 SynchronousQueue (一个不存储元素的阻塞队列。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态，吞吐量通常要高于LinkedBlockingQueue)
+ * * * * 拒绝策略 AbortPolicy()
  * newScheduledThreadPool(n)
- *     阻塞队列 DelayedWorkQueue()
- *     拒绝策略 AbortPolicy()
+ * * * * 阻塞队列 DelayedWorkQueue()
+ * * * * 拒绝策略 AbortPolicy()
  * newSingleThreadExecutor()
- *     阻塞队列 LinkedBlockingQueue()
- *     拒绝策略 AbortPolicy()
+ * * * * 阻塞队列 LinkedBlockingQueue()
+ * * * * 拒绝策略 AbortPolicy()
  * newFixedThreadPool()
- *     阻塞队列 LinkedBlockingQueue()
- *     拒绝策略 AbortPolicy()
+ * * * * 阻塞队列 LinkedBlockingQueue()
+ * * * * 拒绝策略 AbortPolicy()
  * <p>
  * ExecutorService threadPool = Executors.newFixedThreadPool(n)创建n个空线程池
  * threadPool.execute(Runnable command)设置线程池要执行的任务

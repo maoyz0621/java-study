@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 Inc.
  **/
-package com.myz.java.study.base.thread;
+package com.myz.java.study.juc.thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 

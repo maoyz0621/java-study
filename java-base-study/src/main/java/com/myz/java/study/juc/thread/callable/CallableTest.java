@@ -1,4 +1,4 @@
-package com.myz.java.study.base.thread.callable;
+package com.myz.java.study.juc.thread.callable;
 
 import lombok.extern.slf4j.Slf4j;
 

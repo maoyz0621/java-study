@@ -1,4 +1,4 @@
-package com.myz.java.study.juc.atomic;
+package com.myz.java.study.juc.thread.threadlocal;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 Inc.
  **/
-package com.myz.java.study.base.thread;
+package com.myz.java.study.juc.thread;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -25,6 +25,7 @@ public class ThreadUtils extends org.apache.commons.lang3.ThreadUtils {
             globalThreadPoolExecutor.shutdown();
         }));
     }
+
     /**
      * 可用处理器数
      */
