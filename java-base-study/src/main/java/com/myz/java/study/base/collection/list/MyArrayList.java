@@ -15,7 +15,7 @@ import java.util.*;
 public class MyArrayList<E> implements Iterable<E>, List<E> {
     private static final Logger logger = LoggerFactory.getLogger(MyArrayList.class);
     /**
-     * 被用于默认大小的空实例的共享数组实例。A
+     * 被用于默认大小的空实例的共享数组实例。ThreadUseObject
      * 其与EMPTY_ELEMENTDATA的区别是：当我们向数组中添加第一个元素时，知道数组该扩充多少
      */
     private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};

@@ -48,8 +48,8 @@ public class LockCondition<E> {
      * 放置
      */
     public void put(E obj) throws InterruptedException {
+        lock.lock();
         try {
-            lock.lock();
             // 当集合已满,则"添加"线程等待
             while (num == DEFAULT_LIST_SIZE) {
                 // 阻塞写线程
@@ -76,8 +76,8 @@ public class LockCondition<E> {
      * 拿取
      */
     public E take() throws InterruptedException {
+        lock.lock();
         try {
-            lock.lock();
             // 当集合为空时,"减少"线程等待
             while (num == DEFAULT_EMPTY_LIST) {
                 notEmpty.await();

@@ -14,4 +14,8 @@ public class InheritableThreadLocalContext {
         Integer age;
     }
 
+    public static String get() {
+        return threadLocalContext.get().username;
+    }
+
 }

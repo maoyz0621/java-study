@@ -47,23 +47,30 @@ public class ObjectDemo {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         ObjectDemo other = (ObjectDemo) obj;
         if (num == null) {
-            if (other.num != null)
+            if (other.num != null) {
                 return false;
-        } else if (!num.equals(other.num))
+            }
+        } else if (!num.equals(other.num)) {
             return false;
+        }
         if (str == null) {
-            if (other.str != null)
+            if (other.str != null) {
                 return false;
-        } else if (!str.equals(other.str))
+            }
+        } else if (!str.equals(other.str)) {
             return false;
+        }
         return true;
     }
 
