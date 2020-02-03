@@ -4,6 +4,7 @@
  * juc-sync 同步器框架
  * juc-collections 集合框架
  * juc-executors 执行器框架
+ * juc
  * <p>
  * https://segmentfault.com/a/1190000015558984 参考文档
  * http://www.iocoder.cn/categories/JUC/
