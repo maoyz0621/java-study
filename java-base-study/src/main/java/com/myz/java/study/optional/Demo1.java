@@ -36,7 +36,7 @@ public class Demo1 {
 		@SuppressWarnings("unused")
 		final float A;
 		A = 3.4f;
-//		A = 3.5f;
+//		ThreadUseObject = 3.5f;
 		@SuppressWarnings("unused")
 		float b;
 		b = 3.4f;
