@@ -60,7 +60,7 @@ public class MapTest {
     @Test
     public void count() {
         countChar("asdasd, sdfd ,df ");
-        countWord(" I am demo good student, I will work hard !");
+        countWord(" I am demo good student, I will listen hard !");
     }
 
     /**

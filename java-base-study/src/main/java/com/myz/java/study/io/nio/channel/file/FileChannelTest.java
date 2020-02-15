@@ -23,16 +23,17 @@ public class FileChannelTest {
 
 
     //获取项目的根路径
-    public final static String classPath;
+    private final static String classPath;
 
     static {
         //获取的是classpath路径，适用于读取resources下资源
-        classPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        System.out.println("classpath路径=" + classPath);
+        classPath = new File(Thread.currentThread().getContextClassLoader().getResource("").getPath()).getParentFile().getParent();
+        System.out.println("classpath路径 = " + classPath);
     }
 
     /**
      * 写入文件
+     *
      * @throws IOException
      */
     @Test
@@ -40,12 +41,12 @@ public class FileChannelTest {
         RandomAccessFile file = null;
         FileChannel channel = null;
 
-        String pathName = "files" + File.separator + "demo" + File.separator + "2.txt";
-        String path = classPath + pathName;
+        String pathName = "/src/main/resources/files/demo/2.txt";
+        String path = (classPath + pathName).replace("/", File.separator);
 
         try {
             // 方法1
-            file = new RandomAccessFile(path + pathName, "rw");
+            file = new RandomAccessFile(path, "rw");
 
             // 获取文件Channel
             channel = file.getChannel();
@@ -83,15 +84,16 @@ public class FileChannelTest {
      */
     @Test
     public void testRead() throws IOException {
-        String pathName = "files" + File.separator + "demo" + File.separator + "1.txt";
+        String pathName = "/src/main/resources/files/demo/1.txt";
+        String path = (classPath + pathName).replace("/", File.separator);
         RandomAccessFile file = null;
         FileChannel channel = null;
+        // 设置Buffer缓存区大小
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
         try {
-            file = new RandomAccessFile(classPath + pathName, "rw");
+            file = new RandomAccessFile(path, "rw");
             // 获取Channel
             channel = file.getChannel();
-            // 设置Buffer缓存区大小
-            ByteBuffer buffer = ByteBuffer.allocate(1024);
             // 1 Channel从Buffer read into buffer.
             int read = channel.read(buffer);
             while (-1 != read) {
