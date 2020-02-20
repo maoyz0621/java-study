@@ -1,14 +1,11 @@
 /**
  * Copyright 2019 Inc.
  **/
-package com.myz.netty.study.base;
+package com.myz.netty.study.taskqueue;
 
-import com.myz.netty.study.base.handler.DiscardServerHandler;
+import com.myz.netty.study.taskqueue.handler.TaskQueueServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -17,19 +14,19 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @author maoyz0621 on 19-3-18
  * @version: v1.0
  */
-public class NettyServer {
+public class TaskQueueNettyServer {
 
     public static final int PORT = 8880;
 
     public static void main(String[] args) {
         try {
-            new NettyServer().main0();
+            new TaskQueueNettyServer().main0(new TaskQueueServerHandler());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void main0() throws Exception {
+    private void main0(ChannelHandler... handlers) throws Exception {
         // 启动服务引导 框架启动引导类 屏蔽网络通讯配置信息
         ServerBootstrap serverBootstrap = new ServerBootstrap();
 
@@ -47,7 +44,6 @@ public class NettyServer {
                     // 使用NioServerSocketChannel作为服务器的通道实现
                     .channel(NioServerSocketChannel.class)
                     // 该handler对应　boss; childHandler对应　worker
-                    // .handler(null)
                     // 监听器
                     .childHandler(new ChannelInitializer<SocketChannel>() {
 
@@ -55,7 +51,7 @@ public class NettyServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             // 通道添加handler
-                            ch.pipeline().addLast(new DiscardServerHandler());
+                            ch.pipeline().addLast(handlers);
                         }
                     })
                     //　线程队列得到的连接个数
@@ -65,19 +61,6 @@ public class NettyServer {
 
             //　绑定端口并同步，启动服务器
             ChannelFuture channelFuture = serverBootstrap.bind(PORT).sync();
-
-            // future-listener机制
-            channelFuture.addListener(future -> {
-
-                if (future.isDone()) {
-                    System.out.println("=========== isDone ===========");
-                }
-
-                if (future.isSuccess()) {
-                    System.out.println("=========== isSuccess ===========");
-                }
-            });
-
             //　对关闭通道进行监听
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {

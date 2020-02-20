@@ -45,8 +45,13 @@ public class GroupChatServer {
         }
     }
 
+    /**
+     * 注：其中select() accept() read() 使用的是同一个Thread
+     */
     public void listen() throws IOException {
         try {
+            System.out.println("Selector 处理select()的线程： " + Thread.currentThread());
+
             for (; ; ) {
                 if (selector.select(TIMEOUT) > 0) {
                     Iterator<SelectionKey> keyIterator = selector.selectedKeys().iterator();
@@ -81,11 +86,15 @@ public class GroupChatServer {
     private void handleKey(SelectionKey key) {
         // 处理Accept
         if (key.isAcceptable()) {
+            System.out.println("Selector 处理accept()的线程： " + Thread.currentThread());
+
             socketHandler.handleAccept(selector, key);
         }
 
         // 处理Read
         if (key.isReadable()) {
+            System.out.println("Selector 处理read()的线程： " + Thread.currentThread());
+
             socketHandler.handleRead(key);
         }
 

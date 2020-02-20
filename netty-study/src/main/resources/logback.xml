@@ -118,7 +118,7 @@
     <logger name="io.netty" level="info"/>
 
     <!-- 业务日志 -->
-    <logger name="om.myz.netty.study" level="DEBUG" additivity="false">
+    <logger name="com.myz.netty.study" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
 

@@ -31,7 +31,6 @@ public class GroupChatClient {
 
     private boolean hasNickName = false;
     private String clientName;
-    private SocketHandler socketHandler;
     private Selector selector;
     private SocketChannel socketChannel;
     private ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
@@ -48,7 +47,6 @@ public class GroupChatClient {
             // sb之前是OP_ACCEPT
             socketChannel.register(selector, SelectionKey.OP_READ);
 
-            socketHandler = new SocketHandler(selector);
             clientName = socketChannel.getLocalAddress().toString().substring(1);
             System.out.println(clientName + " 上线了");
         } catch (IOException e) {
@@ -145,6 +143,26 @@ public class GroupChatClient {
      * @return
      */
     public Boolean send(Object msg) {
+        msg = handleKeyBoardMessage(msg);
+
+        try {
+            byteBuffer.clear();
+            byteBuffer.put(("" + msg).getBytes(StandardCharsets.UTF_8));
+            byteBuffer.flip();
+            socketChannel.write(byteBuffer);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * 1. 注册名称
+     * 2. 注册成功之后才能发送消息
+     * 3. 使用@Xxx表示私聊某一用户
+     */
+    private Object handleKeyBoardMessage(Object msg) {
         // 注册用户
         if (hasNickName) {
             // 私聊　@XXX
@@ -159,17 +177,7 @@ public class GroupChatClient {
             }
         }
         // 否则msg表示用户名称
-
-        try {
-            byteBuffer.clear();
-            byteBuffer.put(("" + msg).getBytes(StandardCharsets.UTF_8));
-            byteBuffer.flip();
-            socketChannel.write(byteBuffer);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return msg;
     }
 
     public static void main(String[] args) throws IOException {

@@ -3,7 +3,7 @@
  **/
 package com.myz.opensource.orika.converter;
 
-import com.myz.java.study.opensource.orika.BeanCopyUtil;
+import com.myz.opensource.orika.BeanCopyUtil;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.converter.ConverterFactory;
