@@ -17,7 +17,7 @@ import java.nio.ByteBuffer;
  * hasRemaining()
  *
  * @author maoyz0621 on 19-12-28
- * @version: v1.0
+ * @version v1.0
  */
 public class ByteBufferTest {
 

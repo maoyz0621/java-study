@@ -9,6 +9,8 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 /**
  * 监听浏览的信息
@@ -32,6 +34,7 @@ public class TcpNettyServer {
         try {
             serverBootstrap.group(boss, worker)
                     .channel(NioServerSocketChannel.class)
+                    .handler(new LoggingHandler(LogLevel.INFO))
                     // 监听器
                     .childHandler(new TcpNettyServerInitializer())
                     .option(ChannelOption.SO_BACKLOG, 128)

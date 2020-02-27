@@ -5,6 +5,7 @@ package com.myz.java.study.io.nio.channel.file;
 
 import org.apache.commons.compress.utils.IOUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
@@ -18,9 +19,9 @@ import java.nio.channels.FileChannel;
  */
 public class FileChannelCopy {
 
-    static String basePath = FileChannelCopy.class.getClassLoader().getResource("").getPath();
+    static String basePath = new File(Thread.currentThread().getContextClassLoader().getResource("").getPath()).getParentFile().getParent();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         main0();
         main1();
     }
@@ -29,8 +30,8 @@ public class FileChannelCopy {
      * transferFrom()
      */
     public static void main0() {
-        String pathName0 = "/files/demo/1.png";
-        String pathName1 = "/files/demo/2.png";
+        String pathName0 = "/src/main/resources/files/demo/1.png";
+        String pathName1 = "/src/main/resources/files/demo/2.png";
         RandomAccessFile fileIn = null;
         RandomAccessFile fileOut = null;
         FileChannel channelIn = null;
@@ -57,8 +58,8 @@ public class FileChannelCopy {
      * transferTo()
      */
     public static void main1() {
-        String pathName0 = "/files/demo/1.png";
-        String pathName1 = "/files/demo/3.png";
+        String pathName0 = "/src/main/resources/files/demo/1.png";
+        String pathName1 = "/src/main/resources/files/demo/3.png";
         RandomAccessFile fileIn = null;
         RandomAccessFile fileOut = null;
         FileChannel channelIn = null;
