@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  * Channel和ChannelPipeline，你中有我，我中有你
  *
  * @author maoyz0621 on 19-3-19
- * @version: v1.0
+ * @version v1.0
  */
 public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
 
