@@ -61,7 +61,7 @@ public class HttpNettyServerHandler extends SimpleChannelInboundHandler<HttpObje
                 return;
             }
 
-            // 是netty的ByteBuf
+            // netty的ByteBuf
             ByteBuf byteBuf = Unpooled.copiedBuffer("Hello World!", CharsetUtil.UTF_8);
 
             FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, byteBuf);

@@ -1,7 +1,7 @@
 /**
  * Copyright 2020 Inc.
  **/
-package com.myz.netty.study.groupchat;
+package com.myz.netty.study.websocket;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -9,23 +9,23 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 /**
- * @author maoyz0621 on 20-1-13
- * @version: v1.0
+ * @author maoyz0621 on 20-2-27
+ * @version v1.0
  */
-public class GroupChatServer {
-
-
+public class WebsocketNettyServer {
     private static final int PORT = 8880;
 
     private int port;
 
-    public GroupChatServer() {
+    public WebsocketNettyServer() {
         this(PORT);
     }
 
-    public GroupChatServer(int port) {
+    public WebsocketNettyServer(int port) {
         this.port = port;
     }
 
@@ -47,10 +47,9 @@ public class GroupChatServer {
             serverBootstrap.group(boss, worker)
                     // 使用NioServerSocketChannel作为服务器的通道实现
                     .channel(NioServerSocketChannel.class)
-                    // 该handler对应　boss; childHandler对应　worker
-                    // .handler(null)
+                    .handler(new LoggingHandler(LogLevel.DEBUG))
                     // 监听器
-                    .childHandler(new GroupChatServerInitializer())
+                    .childHandler(new WebsocketServerInitializer())
                     //　线程队列得到的连接个数
                     .option(ChannelOption.SO_BACKLOG, 128)
                     // 保存活动连接状态
@@ -84,13 +83,6 @@ public class GroupChatServer {
         // future-listener机制
         channelFuture.addListener(future -> {
 
-            if (future.isDone()) {
-                System.out.println("=========== isDone ===========");
-            }
-
-            if (future.isSuccess()) {
-                System.out.println("=========== isSuccess ===========");
-            }
         });
 
         //　对关闭通道进行监听
@@ -99,7 +91,7 @@ public class GroupChatServer {
 
     public static void main(String[] args) {
         try {
-            new GroupChatServer().main0();
+            new WebsocketNettyServer().main0();
         } catch (Exception e) {
             e.printStackTrace();
         }

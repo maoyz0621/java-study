@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author maoyz0621 on 19-3-19
- * @version: v1.0
+ * @version v1.0
  */
 public class TimeServerHandler extends ChannelInboundHandlerAdapter {
 
