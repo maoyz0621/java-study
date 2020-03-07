@@ -1,0 +1,31 @@
+syntax = "proto3"; // 版本
+option optimize_for = SPEED; //　加快解析
+option java_package = "com.myz.netty.study.protocol"; // 指定生成那个包下
+option java_outer_classname = "Test0POJO"; // 外部类名
+
+message MyMessage {
+
+    enum DataType {
+        Test0Type = 0;
+        Test1Type = 1;
+    }
+
+    // data_type 传的哪一个枚举类型
+    DataType data_type = 1;
+
+    // 每次枚举类型最多只能出现的一个
+    oneof dataBody {
+        Test0 test0 = 2;
+        Test1 test2 = 3;
+    }
+}
+message Test0 {
+    int32 id = 1; // 1表示属性序号
+    string name = 2;
+}
+
+message Test1 {
+    int32 id = 1; // 1表示属性序号
+    string name = 2;
+}
+

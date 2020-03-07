@@ -43,7 +43,7 @@ public abstract class ChannelSupervise {
         channelGroup.writeAndFlush(tws);
     }
 
-    public static void sendToOther(Channel channel, TextWebSocketFrame tws) {
+    public static void sendToOthers(Channel channel, TextWebSocketFrame tws) {
         channelGroup.forEach((ch) -> {
             if (ch != channel) {
                 channel.writeAndFlush(tws);

@@ -18,7 +18,7 @@ import io.netty.handler.logging.LoggingHandler;
  * @author maoyz0621 on 20-1-9
  * @version: v1.0
  */
-public class TcpNettyServer {
+public class PackageNettyServer {
 
     public static void main(String[] args) {
         main0();
@@ -36,7 +36,7 @@ public class TcpNettyServer {
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     // 监听器
-                    .childHandler(new TcpNettyServerInitializer())
+                    .childHandler(new PackageNettyServerInitializer())
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
             ChannelFuture channelFuture = serverBootstrap.bind(8080).sync();
