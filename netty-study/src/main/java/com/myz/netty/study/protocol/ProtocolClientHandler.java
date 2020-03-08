@@ -27,15 +27,12 @@ public class ProtocolClientHandler extends ChannelInboundHandlerAdapter {
         logger.debug("=================== ProtocolClientHandler channelActive() =======================");
 
         // 连续发送10次请求
-        for (int i = 0; i < 10; i++) {
-            MessageProtocol protocol = new MessageProtocol();
-            protocol.setHeader("mao");
-            String msg = "Hello - " + i + "\n";
-            protocol.setLength(msg.length());
-            protocol.setContent(msg.getBytes());
-            ctx.writeAndFlush(protocol);
-        }
+        sendMoreMessage(ctx);
+
+        // sendOneMessage(ctx);
+
     }
+
 
     /**
      * 通道读取事件
@@ -60,9 +57,29 @@ public class ProtocolClientHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        logger.error(cause.getMessage());
+        logger.error("", cause);
         if (ctx.channel().isActive()) {
             ctx.channel().close();
+        }
+    }
+
+    private void sendOneMessage(ChannelHandlerContext ctx) {
+        MessageProtocol protocol = new MessageProtocol();
+        protocol.setHeader("mao");
+        String msg = "Hello - " + "\n";
+        protocol.setLength(msg.length());
+        protocol.setContent(msg.getBytes());
+        ctx.writeAndFlush(protocol);
+    }
+
+    private void sendMoreMessage(ChannelHandlerContext ctx) {
+        for (int i = 0; i < 10; i++) {
+            MessageProtocol protocol = new MessageProtocol();
+            protocol.setHeader("mao");
+            String msg = "Hello - " + i + "\n";
+            protocol.setLength(msg.length());
+            protocol.setContent(msg.getBytes());
+            ctx.writeAndFlush(protocol);
         }
     }
 }

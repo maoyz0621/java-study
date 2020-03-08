@@ -49,7 +49,8 @@ public class ProtocolNettyServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             // 通道添加handler
-                            ch.pipeline().addLast(new MessageProtocolEncode(),
+                            ch.pipeline().addLast(
+                                    new MessageProtocolEncode(),
                                     new MessageProtocolDecode(),
                                     new ProtocolServerHandler());
                         }

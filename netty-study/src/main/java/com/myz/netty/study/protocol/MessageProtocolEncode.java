@@ -15,6 +15,22 @@ public class MessageProtocolEncode extends MessageToByteEncoder<MessageProtocol>
 
     @Override
     protected void encode(ChannelHandlerContext ctx, MessageProtocol msg, ByteBuf out) throws Exception {
+        encode0(msg, out);
+
+        // encode1(msg, out);
+    }
+
+    /**
+     * 此方法在处理多条msg时,  java.io.StreamCorruptedException: invalid stream header: 896DF935
+     */
+    private void encode1(MessageProtocol msg, ByteBuf out) {
+        // 方法2　使用对象序列化
+        byte[] bytes = ByteObjectConverter.objectToByte(msg);
+        out.writeBytes(bytes, 0, bytes.length);
+    }
+
+
+    private void encode0(MessageProtocol msg, ByteBuf out) {
         out.writeBytes(msg.getHeader().getBytes());
         out.writeInt(msg.getLength());
         out.writeBytes(msg.getContent());

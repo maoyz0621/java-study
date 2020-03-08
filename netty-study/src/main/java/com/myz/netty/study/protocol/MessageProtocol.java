@@ -64,11 +64,16 @@ public class MessageProtocol implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("MessageProtocol{");
-        sb.append("header='").append(header).append('\'');
-        sb.append(", length=").append(length);
-        sb.append(", content=").append(new String(content));
-        sb.append('}');
+        StringBuilder sb = new StringBuilder();
+        try {
+            sb.append("MessageProtocol{");
+            sb.append("header='").append(header).append('\'');
+            sb.append(", length=").append(length);
+            sb.append(", content=").append(new String(content, "utf-8"));
+            sb.append('}');
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return sb.toString();
     }
 }

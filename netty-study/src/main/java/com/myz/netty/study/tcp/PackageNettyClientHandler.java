@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 只触发下一个handler的fireChannelRead()事件
+ * 发送拆包和粘包数据
  *
  * @author maoyz0621 on 20-3-1
  * @version v1.0

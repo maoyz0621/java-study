@@ -55,7 +55,7 @@ public class ProtocolServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        logger.error(cause.getMessage());
+        logger.error("", cause);
 
         if (ctx.channel().isActive()) {
             ctx.channel().close();
