@@ -5,6 +5,6 @@
  * 适配者角色（Adapter）: 通过包装被适配的对象，将原接口转换为用户所期待的目标接口
  *
  * @author maoyz0621 on 19-10-28
- * @version: v1.0
+ * @version v1.0
  */
 package com.myz.design.adapter;

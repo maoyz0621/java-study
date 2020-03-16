@@ -7,10 +7,7 @@ import com.myz.netty.study.ChannelSupervise;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
-import io.netty.handler.codec.http.DefaultFullHttpResponse;
-import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.HttpResponseStatus;
-import io.netty.handler.codec.http.HttpVersion;
+import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.*;
 import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
@@ -114,7 +111,8 @@ public class WebsocketServerHandler extends SimpleChannelInboundHandler<Object> 
             return;
         }
 
-        WebSocketServerHandshakerFactory wsFactory = new WebSocketServerHandshakerFactory("ws://127.0.0.1:8880/talk", null, false);
+        WebSocketServerHandshakerFactory wsFactory =
+                new WebSocketServerHandshakerFactory("ws://127.0.0.1:8880/talk", null, false);
         handshaker = wsFactory.newHandshaker(req);
         if (handshaker == null) {
             WebSocketServerHandshakerFactory.sendUnsupportedVersionResponse(ctx.channel());
@@ -126,7 +124,7 @@ public class WebsocketServerHandler extends SimpleChannelInboundHandler<Object> 
     /**
      * 拒绝不合法的请求，并返回错误信息
      */
-    private static void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest req, DefaultFullHttpResponse res) {
+    private static void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest req, FullHttpResponse res) {
         // 返回应答给客户端
         if (HttpResponseStatus.OK.code() != res.status().code()) {
             ByteBuf buf = Unpooled.copiedBuffer(res.status().toString(), CharsetUtil.UTF_8);
@@ -134,10 +132,10 @@ public class WebsocketServerHandler extends SimpleChannelInboundHandler<Object> 
             buf.release();
         }
 
-        ChannelFuture f = ctx.channel().writeAndFlush(res);
+        ChannelFuture channelFuture = ctx.channel().writeAndFlush(res);
         // 如果是非Keep-Alive，关闭连接
         if (!isKeepAlive(req) || HttpResponseStatus.OK.code() != res.status().code()) {
-            f.addListener(ChannelFutureListener.CLOSE);
+            channelFuture.addListener(ChannelFutureListener.CLOSE);
         }
     }
 }

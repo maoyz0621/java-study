@@ -9,11 +9,12 @@ import java.util.Date;
  *
  * @author maoyz on 18-1-6.
  */
-public abstract class AbstractLogStrategy implements LogStrategy{
+public abstract class AbstractLogStrategy implements LogStrategy {
 
     /**
      * 算法实现
-     * @param msg　日志信息
+     *
+     * @param msg 　日志信息
      */
     @Override
     public final void log(String msg) {
@@ -26,6 +27,7 @@ public abstract class AbstractLogStrategy implements LogStrategy{
 
     /**
      * 真正日志记录方法
+     *
      * @param msg 日志信息
      */
     protected abstract void doLog(String msg);

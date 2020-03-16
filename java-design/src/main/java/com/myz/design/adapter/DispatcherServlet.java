@@ -38,7 +38,7 @@ public class DispatcherServlet {
      * 适配合适的Adapter
      */
     public HandlerAdapter getHandler(Controller controller) {
-        if (handlerAdapters != null) {
+        if (!handlerAdapters.isEmpty()) {
             for (HandlerAdapter handler : handlerAdapters) {
                 if (handler.supports(controller)) {
                     return handler;

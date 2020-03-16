@@ -34,7 +34,7 @@ public class TaskQueueServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         logger.debug("=========== TaskQueueServerHandler channelRead() ============");
 
-        // 都是痛的同一个Thread, nioEventLoopGroup-n
+        // 都是用的同一个Thread, nioEventLoopGroup-n
         // 1 用户自定义任务, 队列是TaskQueue
         ctx.channel().eventLoop().execute(() -> {
             try {

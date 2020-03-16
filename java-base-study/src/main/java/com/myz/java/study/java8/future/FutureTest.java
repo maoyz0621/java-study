@@ -49,14 +49,19 @@ public class FutureTest {
      */
     @Test
     public void testRun() {
-        CompletableFuture.supplyAsync(() -> {
-            try {
-                Thread.sleep(3 * 1000);
-            } catch (InterruptedException e) {
+        for (int i = 0; i < 1000; i++) {
+            CompletableFuture.supplyAsync(() -> {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
 
-            }
-            return LocalDateTime.now().format(formatter);
-        }).thenRun(() -> System.out.println(Thread.currentThread().getName() + " => now is " + LocalDateTime.now().format(formatter))).join();
+                }
+                return LocalDateTime.now().format(formatter);
+            }).thenRun(() -> System.out.println(Thread.currentThread().getName() + " => now is " + LocalDateTime.now().format(formatter))).join();
+        }
+        while (true){
+
+        }
     }
 
     ///////////////////////////////////// CompletionStage ////////////////////////////////////////

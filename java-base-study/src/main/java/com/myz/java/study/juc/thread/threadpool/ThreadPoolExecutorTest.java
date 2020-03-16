@@ -28,30 +28,122 @@ public class ThreadPoolExecutorTest {
                         ThreadFactory threadFactory,
                         RejectedExecutionHandler handler)*/
         ExecutorService fixedThreadPool = new ThreadPoolExecutor(
-                100,
-                150,
-                5,
+                2,
+                4,
+                30,
                 TimeUnit.SECONDS,
-                new LinkedBlockingDeque<>(50),
+                new LinkedBlockingDeque<>(5),
                 threadFactory,
-                new ThreadPoolExecutor.AbortPolicy());
+                new ThreadPoolExecutor.CallerRunsPolicy());
 
 
-        for (int i = 0; i < 10; i++) {
-            fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
+        // execute(fixedThreadPool);
+
+        for (int i = 0; i < 100; i++) {
+            final int j = i;
+            new Thread(() -> {
+                submit(fixedThreadPool, j);
+            }).start();
+            new Thread(() -> {
+                submit(fixedThreadPool, j);
+            }).start();
+            new Thread(() -> {
+                submit(fixedThreadPool, j);
+            }).start();
+            new Thread(() -> {
+                submit(fixedThreadPool, j);
+            }).start();
+            new Thread(() -> {
+                submit(fixedThreadPool, j);
+            }).start();
+            new Thread(() -> {
+                submit(fixedThreadPool, j);
+            }).start();
+            new Thread(() -> {
+                submit(fixedThreadPool, j);
+            }).start();
+            new Thread(() -> {
+                submit(fixedThreadPool, j);
+            }).start();
+            new Thread(() -> {
+                submit(fixedThreadPool, j);
+            }).start();
+
+
         }
 
-        fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
-        fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
-        fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
-        fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
-        fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
-        fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
+        // fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
+        // fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
+        // fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
+        // fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
+        // fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
+        // fixedThreadPool.execute(() -> System.out.println(Thread.currentThread().getName()));
 
          /* 通常放在execute后面。如果调用 了这个方法，一方面，表明当前线程池已不再接收新添加的线程，新添加的线程会被拒绝执行。
         另一方面，表明当所有线程执行完毕时，回收线程池的资源。
         注意，它不会马上关闭线程池！ */
         Runtime.getRuntime().addShutdownHook(new Thread(() -> shutdownThreadPool(fixedThreadPool, Thread.currentThread().getName())));
+        // while (true) {
+        //
+        // }
+    }
+
+    private static void submit(ExecutorService fixedThreadPool, int j) {
+        Future<String> future0 = null;
+        future0 = fixedThreadPool.submit(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if (j % 5 == 0) {
+                    throw new RuntimeException("%5 call error: j = " + j);
+                }
+                return Thread.currentThread().getName() + " -> (0) " + j;
+            }
+        });
+
+        Future<String> future1 = null;
+        future1 = fixedThreadPool.submit(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if (j % 10 == 0) {
+                    throw new RuntimeException("10% call error: j = " + j);
+                }
+                return Thread.currentThread().getName() + " -> (1) " + j;
+            }
+        });
+
+        try {
+            System.out.println(Thread.currentThread().getName() + " [j] " + j + " = " + future0.get(5, TimeUnit.SECONDS));
+            System.out.println(Thread.currentThread().getName() + " [j] " + j + " = " + future1.get(5, TimeUnit.SECONDS));
+        } catch (InterruptedException | ExecutionException | TimeoutException e) {
+            System.err.println(e);
+            throw new RuntimeException("future submit error:", e);
+        }
+    }
+
+    private static void execute(ExecutorService fixedThreadPool) {
+        for (int i = 0; i < 100; i++) {
+            fixedThreadPool.execute(() -> {
+                try {
+                    Thread.sleep(3000);
+
+                    System.out.println(Thread.currentThread().getName());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
     }
 
 

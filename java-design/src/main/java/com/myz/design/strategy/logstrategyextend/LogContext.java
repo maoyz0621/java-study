@@ -2,6 +2,7 @@ package com.myz.design.strategy.logstrategyextend;
 
 /**
  * 日志记录上下文
+ *
  * @author maoyz on 18-1-6.
  */
 public class LogContext {
@@ -10,9 +11,10 @@ public class LogContext {
 
     /**
      * 提供给客户端记录日志的方法
-     * @param msg　日志信息
+     *
+     * @param msg 　日志信息
      */
-    public void log(String msg){
+    public void log(String msg) {
         // 优先选择sql策略
         logStrategy = new SqlLog();
 

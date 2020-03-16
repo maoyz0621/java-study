@@ -19,8 +19,8 @@ import io.netty.util.CharsetUtil;
 public class NettyByteBuf {
 
     public static void main(String[] args) {
-        // main0();
-        main1();
+        main0();
+        // main1();
     }
 
     /**
@@ -39,6 +39,7 @@ public class NettyByteBuf {
 
         // UnpooledByteBufAllocator$InstrumentedUnpooledUnsafeHeapByteBuf(ridx: 0, widx: 10, cap: 10)
         System.out.println(buffer);
+        System.out.println(buffer.readableBytes());
 
         // readByte()改变index
         for (int i = 0; i < buffer.capacity(); i++) {
@@ -47,6 +48,7 @@ public class NettyByteBuf {
 
         // UnpooledByteBufAllocator$InstrumentedUnpooledUnsafeHeapByteBuf(ridx: 10, widx: 10, cap: 10)
         System.out.println(buffer);
+        System.out.println(buffer.readableBytes());
     }
 
     private static void main1() {

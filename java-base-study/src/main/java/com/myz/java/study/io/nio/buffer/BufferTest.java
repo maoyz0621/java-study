@@ -38,7 +38,7 @@ public class BufferTest {
     }
 
     @Test
-    public void testWAllocate0() {
+    public void testAllocate0() {
         final int size = 10;
         IntBuffer intBuffer = IntBuffer.allocate(size);
         for (int i = 0; i < size; i++) {
@@ -54,7 +54,7 @@ public class BufferTest {
     }
 
     @Test
-    public void testWAllocate1() {
+    public void testAllocate1() {
         final int size = 10;
         IntBuffer intBuffer = IntBuffer.allocate(size);
         for (int i = 0; i < size; i++) {
