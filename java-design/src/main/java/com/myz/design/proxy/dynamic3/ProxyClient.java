@@ -20,6 +20,7 @@ public class ProxyClient {
     }
 
     public static void main(String[] args) {
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         Subject sub = new ProxyClient().newInstance(Subject.class);
         // Subject调用
         sub.produce();

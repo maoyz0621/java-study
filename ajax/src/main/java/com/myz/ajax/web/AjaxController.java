@@ -11,10 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 /**
@@ -250,5 +253,23 @@ public class AjaxController {
             logger.info("************* age instanceof Integer: {} ***************", map.get("age") instanceof Integer);
         }
         return ResultGenerator.genSuccessResult().setData(new User());
+    }
+
+    @PostMapping(value = "/postFile", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    @ResponseBody
+    public Result postMulti(HttpServletRequest request) throws IOException {
+        if (request instanceof MultipartHttpServletRequest) {
+            MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+            MultipartFile file = multipartRequest.getFile("file");
+            String filename = file.getOriginalFilename();
+            InputStream inputStream = file.getInputStream();
+
+            String username = multipartRequest.getParameter("username");
+            String age = multipartRequest.getParameter("age");
+
+            return ResultGenerator.genSuccessResult().setData(new User(username, Integer.valueOf(age)));
+        }
+        return null;
+
     }
 }
