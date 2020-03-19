@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * @author maoyz0621 on 19-3-24
- * @version: v1.0
+ * @version v1.0
  */
 public class LambdaTest {
 
@@ -59,5 +59,24 @@ public class LambdaTest {
                 System.out.println(" 匿名类： " + this);
             }
         }).start();
+    }
+}
+
+class Hello {
+    Runnable r1 = () -> {
+        System.out.println(this);
+    };
+    Runnable r2 = () -> {
+        System.out.println(toString());
+    };
+
+    public static void main(String[] args) {
+        new Hello().r1.run();
+        new Hello().r2.run();
+    }
+
+    @Override
+    public String toString() {
+        return "Hello World";
     }
 }

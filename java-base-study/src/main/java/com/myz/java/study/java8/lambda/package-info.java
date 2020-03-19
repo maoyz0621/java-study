@@ -9,6 +9,6 @@
  * 如果 Lambda 表达式的主体包含一条以上语句，则表达式必须包含在花括号{}中（形成代码块）。匿名函数的返回类型与代码块的返回类型一致，若没有返回则为空
  *
  * @author maoyz0621 on 19-3-24
- * @version: v1.0
+ * @version v1.0
  */
 package com.myz.java.study.java8.lambda;

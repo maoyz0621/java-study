@@ -20,7 +20,7 @@ import java.util.stream.Stream;
  * 不是一个数据结构, 为lambda表达式设计, 不支持索引访问, 很方便的作为数组或集合输出, 支持惰性访问, 并行计算
  *
  * @author maoyz0621 on 2019/3/18
- * @version: v1.0
+ * @version v1.0
  */
 public class StreamTest {
 

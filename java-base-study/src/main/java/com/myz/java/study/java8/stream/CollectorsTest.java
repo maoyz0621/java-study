@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
+ * Stream.generate()
+ *
  * @author maoyz
  */
 public class CollectorsTest {
