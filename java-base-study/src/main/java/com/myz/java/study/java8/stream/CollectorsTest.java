@@ -3,6 +3,7 @@ package com.myz.java.study.java8.stream;
 import com.myz.java.study.base.collection.domain.User;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -100,5 +101,12 @@ public class CollectorsTest {
                         (s1, s2) -> s1 + " | " + s2,
                         ConcurrentHashMap::new));
         System.out.println(m);
+    }
+
+    @Test
+    public void test() {
+        Stream<String> s = Stream.of("apple", "banana", "orange");
+        ArrayList<String> collect = s.collect(Collectors.toCollection(ArrayList::new));
+        System.out.println(collect);
     }
 }

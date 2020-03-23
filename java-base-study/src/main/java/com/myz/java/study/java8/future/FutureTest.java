@@ -3,11 +3,12 @@
  **/
 package com.myz.java.study.java8.future;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.*;
 
 /**
  * CompletableFuture 和 CompletionStage
@@ -18,29 +19,20 @@ import java.util.concurrent.CompletableFuture;
 public class FutureTest {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    final ExecutorService executor = new ThreadPoolExecutor(20, 20, 5, TimeUnit.SECONDS,
+            new LinkedBlockingDeque<>(50),
+            new ThreadFactoryBuilder().setNameFormat("thread_pool_%d").build(),
+            new ThreadPoolExecutor.AbortPolicy());
 
     /**
      * thenApply()进行变换
      */
     @Test
     public void testApply() {
-        String join = CompletableFuture.supplyAsync(() -> LocalDateTime.now().format(formatter))
-                .thenApply((s) -> "now is " + s)
+        String join = CompletableFuture.supplyAsync(() -> LocalDateTime.now().format(formatter), executor)
+                .thenApply((s) -> Thread.currentThread().getName() + " => now is " + s)
                 .join();
         System.out.println(join);
-    }
-
-
-    /**
-     * thenAccept()是针对结果进行消耗，因为他的入参是Consumer，有入参无返回值
-     */
-    @Test
-    public void testAccept() {
-        for (int i = 0; i < 1000; i++) {
-            CompletableFuture.supplyAsync(() -> LocalDateTime.now().format(formatter))
-                    .thenAccept(s -> System.out.println(Thread.currentThread().getName() + " => now is " + s))
-                    .join();
-        }
     }
 
 
@@ -59,28 +51,12 @@ public class FutureTest {
                 return LocalDateTime.now().format(formatter);
             }).thenRun(() -> System.out.println(Thread.currentThread().getName() + " => now is " + LocalDateTime.now().format(formatter))).join();
         }
-        while (true){
+        while (true) {
 
         }
     }
 
     ///////////////////////////////////// CompletionStage ////////////////////////////////////////
-
-    /**
-     * CompletionStage.thenCombine()多个结果进行转化后返回
-     */
-    @Test
-    public void testCombine() {
-        System.out.println(LocalDateTime.now());
-
-        String join = CompletableFuture.supplyAsync(() -> sleep1(3))
-                .thenCombine(CompletableFuture.supplyAsync(() -> sleep2(5)),
-                        (s1, s2) -> s1 + " =====　" + s2)
-                .join();
-        System.out.println(LocalDateTime.now());
-
-        System.out.println(join);
-    }
 
     /**
      * CompletionStage.thenAcceptBoth()结合多个CompletionStage的结果，进行消耗
@@ -212,31 +188,6 @@ public class FutureTest {
         System.out.println(error);
     }
 
-
-    /**
-     * handle()
-     */
-    @Test
-    public void testHandle() {
-
-        String error = CompletableFuture.supplyAsync(() -> {
-            try {
-                Thread.sleep(2 * 1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            // if (1 == 1) {
-            //     throw new RuntimeException("Error");
-            // }
-            return Thread.currentThread().getName() + " " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        }).handle((s, e) -> {
-            if (e != null) {
-                return "error";
-            }
-            return s;
-        }).join();
-        System.out.println(error);
-    }
 
     private String sleep2(int i) {
         try {
