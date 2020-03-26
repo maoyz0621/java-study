@@ -9,6 +9,8 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.concurrent.DefaultEventExecutorGroup;
+import io.netty.util.concurrent.EventExecutorGroup;
 
 /**
  * @author maoyz0621 on 19-3-18
@@ -17,6 +19,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class TaskQueueNettyServer {
 
     public static final int PORT = 8880;
+
+    final EventExecutorGroup executorGroup = new DefaultEventExecutorGroup(2);
 
     public static void main(String[] args) {
         try {
@@ -51,7 +55,10 @@ public class TaskQueueNettyServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             // 通道添加handler
-                            ch.pipeline().addLast(handlers);
+                            // ch.pipeline().addLast(handlers);
+
+                            // handler会优先使用executorGroup，若不指定，使用默认的IO线程
+                            ch.pipeline().addLast(executorGroup, handlers);
                         }
                     })
                     //　线程队列得到的连接个数

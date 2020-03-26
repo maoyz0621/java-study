@@ -4,6 +4,11 @@ import java.lang.annotation.*;
 
 /**
  * 自定义注解
+ * 1 成员必须是无参的
+ * 2 成员参数必须是无异常的
+ * 3 类型受限制
+ *
+ * @author maoyz0621
  */
 @Target({ElementType.TYPE, ElementType.METHOD})   //作用域
 @Retention(RetentionPolicy.RUNTIME)   //生命周期
@@ -12,19 +17,27 @@ import java.lang.annotation.*;
 public @interface MyAnnotation {
 
     /**
-     * 1 成员必须是无参的
-     * 2 成员参数必须是无异常的
-     * 3 类型受限制
+     * String类型
      */
-    //String类型
     String[] value() default "";
 
-    //基本数据类型，不能使用包装类
+    /**
+     * 基本数据类型，不能使用包装类
+     */
     int age() default 18;
 
-//    double price(double d);
+    /**
+     * 成员必须是无参的
+     */
+    // double price(double d);
 
-//    double price() throws Exception;
+    /**
+     * 成员参数必须是无异常的
+     */
+    // double price() throws Exception;
 
-//    List list();
+    /**
+     * 类型受限制
+     */
+    // List list();
 }

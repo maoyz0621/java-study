@@ -28,7 +28,27 @@ public class CodecNettyServerHandler extends SimpleChannelInboundHandler {
             LOGGER.debug("Client send ByteBuf Long: {}", buf.readLong());
         }
 
-        // 此类型　encode不起作用
+        // 此类型　encode不起作用 MessageToByteEncoder.write() 判断msg的处理类型
+        /*if (acceptOutboundMessage(msg)) {
+            @SuppressWarnings("unchecked")
+            I cast = (I) msg;
+            buf = allocateBuffer(ctx, cast, preferDirect);
+            try {
+                encode(ctx, cast, buf);
+            } finally {
+                ReferenceCountUtil.release(cast);
+            }
+
+            if (buf.isReadable()) {
+                ctx.write(buf, promise);
+            } else {
+                buf.release();
+                ctx.write(Unpooled.EMPTY_BUFFER, promise);
+            }
+            buf = null;
+        } else {
+            ctx.write(msg, promise);
+        }*/
         // ctx.writeAndFlush(Unpooled.copiedBuffer("Hello " + ctx.channel().remoteAddress(), CharsetUtil.UTF_8));
 
         // 发送long 类型，　encode编码

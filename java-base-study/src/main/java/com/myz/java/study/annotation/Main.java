@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 public class Main {
 
     public static void main(String[] args) {
+        // 自动生成jdk动态代理后的class文件
         System.setProperty("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         MyAnnotation myAnnotation = Main.class.getAnnotation(MyAnnotation.class);
         System.out.println(myAnnotation.age());
@@ -26,10 +27,12 @@ public class Main {
             if (flag) {
                 //3 获取注解
                 MyAnnotation myAnnotation1 = (MyAnnotation) clz.getAnnotation(MyAnnotation.class);
+                System.out.println("获取类上注解");
                 System.out.println(myAnnotation1);
             }
             // 4 获取方法上的注解
             Method[] methods = clz.getMethods();
+            System.out.println("\r\n获取方法上注解");
             //　遍历方法
             for (Method m : methods) {
                 // 判断方法上是否有注解

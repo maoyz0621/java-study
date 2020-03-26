@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
- * 自定义解码器 方式2
+ * 自定义解码器 方式2　Void　-> 用户状态管理
  * ReplayingDecoder, 实际是ChannelInboundHandler
  *
  * @author maoyz0621 on 20-2-29
@@ -23,8 +23,10 @@ public class MyDecoder1 extends ReplayingDecoder<Void> {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyDecoder1.class);
 
     /**
+     * 　不需要判断数据是否足够读取
+     *
      * @param ctx
-     * @param in  　入站的ByteBuf
+     * @param in  入站的ByteBuf
      * @param out 将解码后的数据放入list 传给下一个handler
      * @throws Exception
      */

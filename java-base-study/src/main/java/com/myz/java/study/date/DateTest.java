@@ -38,6 +38,8 @@ public class DateTest {
 
     /**
      * 部分线程获取的时间不对，部分线程直接报 java.lang.NumberFormatException:multiple points错，线程直接挂死了。
+     * 原因：
+     * 共享变量calendar, calendar.setTime(date);
      */
     @Test
     public void testThreadSimpleDateFormat() {

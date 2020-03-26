@@ -8,6 +8,8 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
+import io.netty.util.concurrent.DefaultEventExecutorGroup;
+import io.netty.util.concurrent.EventExecutorGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,11 +30,26 @@ public class TaskQueueServerHandler extends ChannelInboundHandlerAdapter {
     private static final Logger logger = LoggerFactory.getLogger(TaskQueueServerHandler.class);
 
     /**
+     * 充当业务处理线程池，将任务提交到该线程池中
+     */
+    static final EventExecutorGroup executorGroup = new DefaultEventExecutorGroup(16);
+
+    /**
      * 通道读取事件
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        logger.debug("=========== TaskQueueServerHandler channelRead() ============");
+        logger.debug("=========== TaskQueueServerHandler channelRead() {}============", Thread.currentThread().getName());
+
+        // 使用自定义的业务线程池
+        //　无返回值
+        executorGroup.execute(() -> {
+        });
+
+        // 返回值的
+        executorGroup.submit(() -> {
+            return null;
+        });
 
         // 都是用的同一个Thread, nioEventLoopGroup-n
         // 1 用户自定义任务, 队列是TaskQueue

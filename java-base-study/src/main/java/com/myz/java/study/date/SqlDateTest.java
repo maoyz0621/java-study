@@ -12,6 +12,10 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
+/**
+ * 对应数据库中字段类型,日期，时间，时间戳
+ * @author maoyz0621
+ */
 public class SqlDateTest {
 
     @Test
