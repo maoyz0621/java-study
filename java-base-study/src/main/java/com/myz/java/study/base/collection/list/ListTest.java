@@ -223,6 +223,7 @@ public class ListTest {
             list.add("sh" + i);
         }
 
+        // 循环中list的size是变化的
         for (int i = 0; i < list.size(); i++) {
             // 每次remove()时，list发生变化
             list.remove(i);
@@ -231,7 +232,7 @@ public class ListTest {
             // 秘密 => sh5
             // 秘密 => sh7
             // 秘密 => sh9
-            System.out.println("秘密 => " + list.get(i));
+            System.out.println(i + " 秘密 => " + list + " " + list.get(i));
         }
     }
 
@@ -259,6 +260,7 @@ public class ListTest {
 
         for (Iterator<String> iterator = list.iterator(); iterator.hasNext(); ) {
             String next = iterator.next();
+            System.out.println(next);
             // java.util.ConcurrentModificationException
             list.remove(next);
         }

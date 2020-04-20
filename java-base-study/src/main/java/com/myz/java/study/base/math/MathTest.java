@@ -12,9 +12,21 @@ import java.math.RoundingMode;
  * BigDecimal的使用
  *
  * @author maoyz0621 on 19-6-9
- * @version: v1.0
+ * @version v1.0
  */
 public class MathTest {
+
+    /**
+     * 浮点计算，精度丢失
+     */
+    @Test
+    public void test() {
+        float a = 1.0f - .9f;
+        float b = .9f - .8f;
+        System.out.println(a); // 0.100000024
+        System.out.println(b);  // 0.099999964
+        System.out.println(a == b);  // false
+    }
 
     /**
      * float类型的小数运算
@@ -116,5 +128,29 @@ public class MathTest {
         System.out.println(a2.subtract(b2));
         System.out.println(a2.multiply(b2));
         System.out.println(a2.divide(b2, RoundingMode.HALF_UP));
+    }
+
+    /**
+     * 浮点比较大小 -1 表示小于，0 表示 等于， 1表示 大于
+     */
+    @Test
+    public void testBigDecimalCompare() {
+        BigDecimal a = new BigDecimal(0);
+        BigDecimal b = new BigDecimal(0);
+        // 0
+        System.out.println(a.compareTo(b));
+        BigDecimal c = new BigDecimal(1);
+        System.out.println(c.compareTo(b));
+    }
+
+    /**
+     * 保留小数
+     */
+    @Test
+    public void test0() {
+        BigDecimal a = new BigDecimal("1.222222222222");
+        System.out.println(a.setScale(2, BigDecimal.ROUND_HALF_UP));
+        BigDecimal b = new BigDecimal("-1.222222222222");
+        System.out.println(b.setScale(2, BigDecimal.ROUND_HALF_UP));
     }
 }
