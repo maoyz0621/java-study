@@ -13,19 +13,41 @@ package com.myz.design.singleton;
  *
  * @author maoyz on 18-1-6.
  */
-enum SingletonEnum {
+public enum SingletonEnum {
 
     /**
      * 枚举的元素,它就代表了Singleton的一个实例,无延迟加载
      */
     INSTANCE;
 
+    SingletonEnum() {
+        // todo something
+    }
+
+    private SingletonEnumStrategy strategy = SingletonEnumStrategy.NORMAL;
+
+    /**
+     * 提供单例方法
+     *
+     * @return
+     */
+    public static SingletonEnum getInstance() {
+        return INSTANCE;
+    }
+
     /**
      * 示意方法，单例可以有自己的操作
      */
-    public void singletonOperation() {
+    public SingletonEnumStrategy singletonOperation() {
         //功能处理
+        return strategy;
     }
 
+    public static void main(String[] args) {
+        // 获取单里方法
+        SingletonEnum instance = SingletonEnum.getInstance();
 
+        SingletonEnumStrategy strategy = SingletonEnum.getInstance().singletonOperation();
+        strategy.t();
+    }
 }

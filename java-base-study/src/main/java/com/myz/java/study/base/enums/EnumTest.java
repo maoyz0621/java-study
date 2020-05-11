@@ -11,6 +11,40 @@ package com.myz.java.study.base.enums;
  */
 public class EnumTest {
 
+    private Day day;
+
+    public EnumTest() {
+    }
+
+    public EnumTest(Day day) {
+        this.day = day;
+    }
+
+    /**
+     * 枚举类型的switch
+     * @return
+     */
+    public int getSwitchDay() {
+        switch (day) {
+            case MONDAY:
+                return 2;
+            case TUESDAY:
+            case FRIDAY:
+            case SUNDAY:
+                return 3;
+            default:
+                return 0;
+        }
+    }
+
+    public Day getDay() {
+        return day;
+    }
+
+    public void setDay(Day day) {
+        this.day = day;
+    }
+
     /**
      * 定义枚举类
      * 关键字 enum
@@ -76,6 +110,22 @@ public class EnumTest {
 
     public static void main(String[] args) {
         System.out.println(Day.getDay(1).getDesc());
+
+        System.out.println(Day.FRIDAY.name());  // FRIDAY
+        System.out.println(Day.FRIDAY); // Day{index=6, desc='星期五'}
+        System.out.println(Day.FRIDAY.getClass());  // class com.myz.java.study.base.enums.EnumTest$Day
+        System.out.println(Day.FRIDAY.name().getClass());   // class java.lang.String
+
+        EnumTest test = new EnumTest();
+
+        // 类型比较
+        // System.out.println(test.getDay().equals(Day.FRIDAY));    // NullPointerException
+        System.out.println(test.getDay() == (Day.FRIDAY));   // false
+
+        // switch语句中使用
+        test.setDay(Day.MONDAY);
+        System.out.println(test.getSwitchDay());
+
         // Day day = Day.FRIDAY;
         // System.out.println(day);
         // System.out.println(day.getDesc());

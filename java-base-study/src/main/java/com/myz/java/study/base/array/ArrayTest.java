@@ -3,6 +3,8 @@ package com.myz.java.study.base.array;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -63,5 +65,17 @@ public class ArrayTest {
         System.out.println(Arrays.toString(deepArray));
         // [[沉默, 王二], [一枚有趣的程序员]]
         System.out.println(Arrays.deepToString(deepArray));
+    }
+
+    @Test
+    public void testListToArray() {
+        String[] s = new String[]{"dog", "lazy", "a", "over", "jumps", "fox", "brown", "quick", "A"};
+        List<String> list = Arrays.asList(s);
+        Collections.reverse(list);
+        System.out.println(list);
+        Object[] objects = list.toArray();
+        System.out.println(objects);
+        String[] strings = list.toArray(new String[0]);
+        System.out.println(strings);
     }
 }

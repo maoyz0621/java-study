@@ -23,6 +23,7 @@ public class EnumMapTest {
         map.put(Season.WINTER, "冬天");
         // 4
         System.out.println(map.size());
+        System.out.println(map);
 
     }
 
