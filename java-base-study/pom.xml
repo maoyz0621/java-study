@@ -22,6 +22,7 @@
         <vjkit_version>1.0.8</vjkit_version>
         <dozer.version>5.5.1</dozer.version>
         <assertj.version>2.6.0</assertj.version>
+        <auto-service.version>1.0-rc6</auto-service.version>
     </properties>
 
     <dependencies>
@@ -251,11 +252,23 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
+                    <!--<annotationProcessorPaths>-->
+                    <!--    <path>-->
+                    <!--        <groupId>com.google.auto.service</groupId>-->
+                    <!--        <artifactId>auto-service</artifactId>-->
+                    <!--        <version>${auto-service.version}</version>-->
+                    <!--    </path>-->
+                    <!--    <path>-->
+                    <!--        <groupId>org.projectlombok</groupId>-->
+                    <!--        <artifactId>lombok</artifactId>-->
+                    <!--        <version>${lombok.version}</version>-->
+                    <!--    </path>-->
+                    <!--</annotationProcessorPaths>-->
                 </configuration>
             </plugin>
 
