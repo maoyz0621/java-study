@@ -1,12 +1,21 @@
 package com.myz.java.study.annotation;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @MyAnnotation(value = {"a", "b"}, age = 21)
 public class Main {
 
     public static void main(String[] args) {
+
+        System.out.println(StringUtils.contains("abc", "ab"));
+        Collection<Integer> col = CollectionUtils.union(new ArrayList<>(), new ArrayList<>());
+        System.out.println(col);
         System.setProperty("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         MyAnnotation myAnnotation = Main.class.getAnnotation(MyAnnotation.class);
         System.out.println(myAnnotation.age());

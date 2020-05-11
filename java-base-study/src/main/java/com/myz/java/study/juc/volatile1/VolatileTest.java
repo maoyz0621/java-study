@@ -3,6 +3,8 @@
  **/
 package com.myz.java.study.juc.volatile1;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -103,7 +105,10 @@ public class VolatileTest {
     public static void main(String[] args) {
         // volatileTs();
         // syncTs();
-        lockTs();
+        // lockTs();
+        Map mao = new HashMap();
+        mao.put("1", 1);
+        System.out.println(mao);
     }
 
 }

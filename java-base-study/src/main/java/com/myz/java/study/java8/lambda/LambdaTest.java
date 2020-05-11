@@ -60,6 +60,30 @@ public class LambdaTest {
             }
         }).start();
     }
+
+    @Test
+    public void testRunnableLambda() {
+        Runnable runnable = create0();
+        runnable.run();
+    }
+
+    private Runnable create() {
+        int val = 3;
+        Runnable runnable = () -> System.out.println(val);
+        return runnable;
+    }
+
+    private Runnable create0() {
+        int val = 3;
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(this);
+                System.out.println(val);
+            }
+        };
+        return runnable;
+    }
 }
 
 class Hello {

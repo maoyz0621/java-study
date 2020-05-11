@@ -164,4 +164,13 @@ public class StreamTest {
         map: ab1
         [A1, AB1]*/
     }
+
+    @Test
+    public void test10() {
+        char[] chars = "abc".toCharArray();
+        System.out.println(chars);
+        Stream.of(chars).forEach(System.out::println);
+        // Arrays.stream(chars).forEach(System.out::println);
+    }
+
 }

@@ -64,4 +64,19 @@ public class MapReferenceTest {
         }
         map.put("a", 1);
     }
+
+    @Test
+    public void test2() {
+        Map map1 = new HashMap();
+        System.out.println("start = " + map1.hashCode());
+        reference2(map1);
+        // {}
+        System.out.println(map1);
+    }
+
+    private void reference2(Map map) {
+        map = new HashMap();
+        map.put("a", 1);
+        System.out.println("end = " + map.hashCode());
+    }
 }

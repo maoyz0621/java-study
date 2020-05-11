@@ -10,6 +10,8 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import java.util.TreeMap;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author maoyz
@@ -30,8 +32,8 @@ public class LockTest {
     public static void main(String[] args) {
         // main0();
         // main1();
-        main2();
-
+        // main2();
+        main3();
     }
 
     /**
@@ -77,4 +79,40 @@ public class LockTest {
         fixedThreadPool.shutdown();
         System.out.println("************** 运行结束 ****************");
     }
+
+    Lock lock = new ReentrantLock();
+    static int a = 0;
+
+    private static void main3() {
+        LockTest lockTest = new LockTest();
+        for (int i = 0; i < 10; i++) {
+            int temp = i;
+            fixedThreadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    lockTest.lock0();
+                }
+            });
+
+        }
+    }
+
+    public void lock0() {
+        System.out.println(lock);
+        // lock.lock();
+        // System.out.println(a++);
+        try {
+            // java.lang.IllegalMonitorStateException
+            if (lock.tryLock(5, TimeUnit.SECONDS)) {
+                Thread.sleep(1000);
+                System.out.println(a++);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+
 }

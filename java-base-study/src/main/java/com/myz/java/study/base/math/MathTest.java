@@ -59,6 +59,7 @@ public class MathTest {
         // BigDecimal()  传入String类型才能精确计算
         BigDecimal a1 = new BigDecimal("0.03");
         BigDecimal b1 = new BigDecimal("0.02");
+        System.out.println(b1.intValue());
         // 0.05
         System.out.println(b1.add(a1));
         // 0.01
