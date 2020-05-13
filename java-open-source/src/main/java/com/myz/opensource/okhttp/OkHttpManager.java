@@ -3,6 +3,10 @@
  **/
 package com.myz.opensource.okhttp;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 import java.io.IOException;

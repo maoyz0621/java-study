@@ -3,10 +3,11 @@
  **/
 package com.myz.opensource.okhttp;
 
-import com.myz.java.study.okhttp.handle.CommonJsonCallback;
-import com.myz.java.study.okhttp.handle.DisposeDataHandle;
-import com.myz.java.study.okhttp.handle.DisposeDataListener;
-import com.myz.java.study.okhttp.handle.RequestParams;
+import com.myz.opensource.okhttp.handle.CommonJsonCallback;
+import com.myz.opensource.okhttp.handle.DisposeDataHandle;
+import com.myz.opensource.okhttp.handle.DisposeDataListener;
+import com.myz.opensource.okhttp.handle.RequestParams;
+import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

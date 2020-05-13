@@ -11,7 +11,7 @@ public interface MyMap<K, V> {
 
     V put(K k, V v);
 
-    V get(Object v);
+    V get(Object key);
 
     int size();
 

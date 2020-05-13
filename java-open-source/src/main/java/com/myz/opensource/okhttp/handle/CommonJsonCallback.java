@@ -5,7 +5,7 @@ package com.myz.opensource.okhttp.handle;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.myz.java.study.okhttp.OkHttpException;
+import com.myz.opensource.okhttp.OkHttpException;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -73,7 +72,7 @@ public class CommonJsonCallback<T> implements Callback {
     }
 
     @Override
-    public void onFailure(@Nonnull Call call, @Nonnull IOException e) {
+    public void onFailure(Call call, IOException e) {
         LOGGER.error("请求失败= {} ", e);
         threadPool.execute(() -> {
             if (e instanceof SocketTimeoutException) {
@@ -90,7 +89,7 @@ public class CommonJsonCallback<T> implements Callback {
 
 
     @Override
-    public void onResponse(@Nonnull Call call, @Nonnull Response response) throws IOException {
+    public void onResponse(Call call, Response response) throws IOException {
         assert response.body() != null;
         final String result = response.body().string();
         threadPool.execute(() -> handleResponse(result));

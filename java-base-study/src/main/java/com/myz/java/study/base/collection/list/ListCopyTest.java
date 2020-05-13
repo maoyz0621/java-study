@@ -15,7 +15,7 @@ import java.util.List;
  * List拷贝
  *
  * @author maoyz0621 on 19-4-3
- * @version: v1.0
+ * @version v1.0
  */
 public class ListCopyTest {
 

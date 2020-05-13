@@ -3,7 +3,7 @@
  **/
 package com.myz.opensource.okhttp.handle;
 
-import com.myz.java.study.okhttp.OkHttpException;
+import com.myz.opensource.okhttp.OkHttpException;
 
 /**
  * @author maoyz0621 on 19-8-4
