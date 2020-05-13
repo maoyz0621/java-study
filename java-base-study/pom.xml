@@ -203,6 +203,14 @@
             <scope>compile</scope>
         </dependency>
 
+        <!--<dependency>-->
+        <!--    <groupId>com.myz</groupId>-->
+        <!--    <artifactId>java-ast</artifactId>-->
+        <!--    <version>1.0</version>-->
+        <!--    <type>jar</type>-->
+        <!--    <scope>compile</scope>-->
+        <!--</dependency>-->
+
     </dependencies>
 
     <build>

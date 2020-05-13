@@ -3,7 +3,7 @@
  * @author: maoyz
  * @Copyright: 2020-05-11 17:54  Inc. All rights reserved.
  */
-package com.myz.java.study.ast.anno;
+package com.myz.ast.anno;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,5 +15,5 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.SOURCE)  // 源码中保留
 @Target(ElementType.TYPE)   // 使用在类上
-public @interface NyGetter {
+public @interface MySetter {
 }

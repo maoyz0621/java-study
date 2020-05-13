@@ -15,4 +15,9 @@ public class TypeBRobot implements Robot {
     public void sayHello() {
         System.out.println("TypeBRobot");
     }
+
+    @Override
+    public String m1() {
+        return "TypeBRobot";
+    }
 }
