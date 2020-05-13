@@ -34,43 +34,15 @@ public class ProducerConsumerLock {
             new ThreadPoolExecutor.AbortPolicy());
 
     public static void main(String[] args) {
-        // lock1();
+        lock1();
         // lock2();
-        lock3();
 
-
-        fixedThreadPool.shutdown();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> fixedThreadPool.shutdown()));
     }
 
-    private static void lock3() {
-        Lock lock = new ReentrantLock();
-        WorkerLock worker0 = new WorkerLock(lock);
-        WorkerLock worker1 = new WorkerLock(lock);
-        for (int j = 0; j < 3; j++) {
-            fixedThreadPool.execute(() -> {
-                for (int i = 0; i < 20; i++) {
-                    try {
-                        worker0.increment();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
-
-        for (int j = 0; j < 3; j++) {
-            fixedThreadPool.execute(() -> {
-                for (int i = 0; i < 20; i++) {
-                    try {
-                        worker1.decrement();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
-    }
-
+    /**
+     * 不同worker，不是同一个lock
+     */
     private static void lock2() {
         WorkerLock worker0 = new WorkerLock();
         WorkerLock worker1 = new WorkerLock();
@@ -130,15 +102,10 @@ public class ProducerConsumerLock {
 class WorkerLock {
 
     private int count;
-    private Lock lock;
-    private Condition condition;
+    private Lock lock = new ReentrantLock();
+    private Condition condition = lock.newCondition();
 
     public WorkerLock() {
-    }
-
-    public WorkerLock(Lock lock) {
-        this.lock = lock;
-        this.condition = lock.newCondition();
     }
 
     public void increment() throws InterruptedException {
@@ -167,7 +134,6 @@ class WorkerLock {
         } finally {
             lock.unlock();
         }
-
     }
 
 }

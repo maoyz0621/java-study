@@ -23,7 +23,7 @@ public class ClassLoaderTest {
         System.out.println("应用程序类加载器:" + ClassLoader.getSystemClassLoader());
         // sun.misc.Launcher$ExtClassLoader
         System.out.println("扩展类加载器:" + ClassLoader.getSystemClassLoader().getParent());
-        // null
+        // null ，实则是BootstrapClassLoader
         System.out.println(ClassLoader.getSystemClassLoader().getParent().getParent());
     }
 
