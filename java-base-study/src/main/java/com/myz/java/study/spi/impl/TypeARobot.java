@@ -10,4 +10,9 @@ public class TypeARobot implements Robot {
     public void sayHello() {
         System.out.println("TypeARobot");
     }
+
+    @Override
+    public String m1() {
+        return "TypeARobot";
+    }
 }

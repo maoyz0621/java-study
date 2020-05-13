@@ -5,6 +5,7 @@
  */
 package com.myz.java.study.spi;
 
+import java.util.Iterator;
 import java.util.ServiceLoader;
 
 /**
@@ -16,5 +17,10 @@ public class SpiClient {
         ServiceLoader<Robot> robots = ServiceLoader.load(Robot.class);
 
         robots.forEach(Robot::sayHello);
+
+        Iterator<Robot> iterator = robots.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 }

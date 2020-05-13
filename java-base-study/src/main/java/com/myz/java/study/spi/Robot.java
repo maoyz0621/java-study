@@ -7,4 +7,6 @@ public interface Robot {
 
     void sayHello();
 
+    String m1();
+
 }
