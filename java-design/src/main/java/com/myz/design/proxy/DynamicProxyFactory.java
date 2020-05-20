@@ -3,8 +3,8 @@ package com.myz.design.proxy;
 import com.myz.design.proxy.cglib.CglibClient;
 import com.myz.design.proxy.cglib.TargetInterceptor;
 import com.myz.design.proxy.cglib.TargetObject;
-import com.myz.design.proxy.dynamic1.ProxyClient;
-import com.myz.design.proxy.dynamic1.RealSubject;
+import com.myz.design.proxy.jdk.dynamic1.ProxyClient;
+import com.myz.design.proxy.jdk.dynamic1.RealSubject;
 import net.sf.cglib.proxy.MethodInterceptor;
 
 /**

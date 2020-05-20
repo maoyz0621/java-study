@@ -1,7 +1,7 @@
 /**
  * Copyright 2018 asiainfo Inc.
  **/
-package com.myz.design.proxy.dynamic3;
+package com.myz.design.proxy.jdk.dynamic3;
 
 import java.lang.reflect.Proxy;
 

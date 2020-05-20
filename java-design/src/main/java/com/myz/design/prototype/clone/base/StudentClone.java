@@ -9,9 +9,19 @@ public class StudentClone implements Cloneable {
 
     private int number;
 
+    private int grade;
+
     private Integer age;
 
     private String addr;
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
 
     public Integer getAge() {
         return age;
@@ -52,6 +62,7 @@ public class StudentClone implements Cloneable {
     public String toString() {
         final StringBuilder sb = new StringBuilder("StudentClone{");
         sb.append("number=").append(number);
+        sb.append(", grade=").append(grade);
         sb.append(", age=").append(age);
         sb.append(", addr='").append(addr).append('\'');
         sb.append('}');

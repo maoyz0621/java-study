@@ -1,7 +1,7 @@
 /**
  * Copyright 2018 asiainfo Inc.
  **/
-package com.myz.design.proxy.dynamic2;
+package com.myz.design.proxy.jdk.dynamic1;
 
 /**
  * @author maoyz on 2018/9/26

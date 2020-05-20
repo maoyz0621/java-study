@@ -1,11 +1,10 @@
 /**
  * Copyright 2018 asiainfo Inc.
  **/
-package com.myz.design.proxy.dynamic1;
+package com.myz.design.proxy.jdk.dynamic;
 
 /**
  * 被代理类，目标对象
- *
  * @author maoyz on 2018/9/26
  * @version: v1.0
  */

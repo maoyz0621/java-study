@@ -1,7 +1,7 @@
 /**
  * Copyright 2018 asiainfo Inc.
  **/
-package com.myz.design.proxy.dynamic1;
+package com.myz.design.proxy.jdk.dynamic;
 
 /**
  * 静态代理类

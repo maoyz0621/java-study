@@ -13,9 +13,9 @@ import java.util.ServiceLoader;
  */
 public class SpiClient {
 
-    public static void main(String[] args) {
-        ServiceLoader<Robot> robots = ServiceLoader.load(Robot.class);
+    private static ServiceLoader<Robot> robots = ServiceLoader.load(Robot.class);
 
+    public static void main(String[] args) {
         robots.forEach(Robot::sayHello);
 
         Iterator<Robot> iterator = robots.iterator();

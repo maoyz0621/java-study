@@ -1,10 +1,11 @@
 /**
  * Copyright 2018 asiainfo Inc.
  **/
-package com.myz.design.proxy.dynamic3;
+package com.myz.design.proxy.jdk.dynamic;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
  * 动态代理类InvocationHandler
@@ -14,19 +15,22 @@ import java.lang.reflect.Method;
  * @author maoyz on 2018/9/26
  * @version: v1.0
  */
-public class MyInvocationHandler<T> implements InvocationHandler {
+public class MyInvocationHandler implements InvocationHandler {
 
     /**
      * 此对象为实现接口的被代理类
      */
-    private Class<T> target;
+    private Object obj;
 
-    public MyInvocationHandler(Class<T> target) {
-        this.target = target;
-    }
-
-    public Class<T> getTarget() {
-        return target;
+    /**
+     * 绑定委托对象，被代理类实例化，返回代理类对象
+     */
+    public Object bind(Object obj) {
+        // 被代理类实例化
+        this.obj = obj;
+        // 返回代理类对象
+        return Proxy.newProxyInstance(obj.getClass().getClassLoader(),
+                obj.getClass().getInterfaces(), this);
     }
 
     @Override
@@ -34,10 +38,11 @@ public class MyInvocationHandler<T> implements InvocationHandler {
         Object result = null;
         if ("process".equals(method.getName())) {
             System.out.println("可以先做些事");
-            System.out.println("反射接口 process()");
+            // 执行obj反射方法
+            result = method.invoke(this.obj, args);
             System.out.println("还可以先做些事");
         } else {
-            System.out.println("反射接口 produce()");
+            result = method.invoke(this.obj, args);
         }
         return result;
     }

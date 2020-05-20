@@ -45,12 +45,15 @@ public class BaseCloneTest {
         student1.setAddr("anhui");
         // 堆地址引用
         StudentClone student2 = student1;
+        System.out.println("student1=" + student1.hashCode());
+        System.out.println("student2=" + student2.hashCode()+"\r\n");
         // true
         System.out.println(student1 == student2);
         System.out.println(student1);
         System.out.println(student2);
 
         // student1 变化
+        student1.setGrade(2);
         student1.setNumber(11);
         student1.setAge(101);
         student1.setAddr("anhui1");
@@ -59,7 +62,9 @@ public class BaseCloneTest {
         // StudentClone{number=11, age=101, addr='anhui1'}
         System.out.println("student1发生变化: " + student2);
 
+        System.out.println("\r\n");
         // student2变化
+        student1.setGrade(20);
         student2.setNumber(12);
         student2.setAge(102);
         student2.setAddr("anhui2");
@@ -79,6 +84,8 @@ public class BaseCloneTest {
         studentClone1.setAge(10);
         studentClone1.setAddr("anhui");
         StudentClone studentClone2 = (StudentClone) studentClone1.clone();
+        System.out.println("student1=" + studentClone1.hashCode());
+        System.out.println("student2=" + studentClone2.hashCode()+"\r\n");
         // false
         System.out.println(studentClone1 == studentClone2);
         System.out.println(studentClone1);
@@ -93,6 +100,7 @@ public class BaseCloneTest {
         // StudentClone{number=1, age=10, addr='anhui'}
         System.out.println("student1发生变化: " + studentClone2);
 
+        System.out.println("\r\n");
         // student变化
         studentClone2.setNumber(12);
         studentClone2.setAge(102);
