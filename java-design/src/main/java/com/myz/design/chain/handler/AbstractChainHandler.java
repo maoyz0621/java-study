@@ -10,26 +10,62 @@ import java.util.Objects;
  *
  * @author maoyz on 18-3-9.
  */
-public abstract class AbstractChainHandler implements Handler {
-    /**
-     * 传递请求, 自己拥有自己,表示下一个handler
-     */
-    private AbstractChainHandler nextChainhandler;
+public abstract class AbstractChainHandler {
+    /* 传递请求, 自己拥有自己,表示下一个handler */
+    private AbstractChainHandler nextChainHandler;
+
+    /* 处理级别 */
+    private int level;
+
+    public AbstractChainHandler() {
+    }
+
+    public AbstractChainHandler(int level) {
+        this.level = level;
+    }
 
     /**
-     * 执行目标抽象方法之后，交于链式对象执行
+     * 执行目标抽象方法之后，交于链式对象执行,level可修改
      */
     public final void execute(AbstractRequestInfo requestInfo) {
-        // 执行目标方法
-        if (!Objects.isNull(nextChainhandler)) {
-            nextChainhandler.handlerChainProcess(requestInfo);
+        if (level == requestInfo.getCode()) {
+            handlerChainProcess(requestInfo);
+        } else {
+            // 执行目标方法
+            if (nextChainHandler != null) {
+                nextChainHandler.execute(requestInfo);
+            }
         }
     }
 
-    protected abstract int getHandlerCode();
+    /**
+     * level每个Concrete已经定义好
+     */
+    public final void handle(AbstractRequestInfo requestInfo) {
+        if (getHandlerLevel() == requestInfo.getCode()) {
+            handlerChainProcess(requestInfo);
+        } else {
+            // 执行目标方法
+            if (nextChainHandler != null) {
+                nextChainHandler.handle(requestInfo);
+            }
+        }
+    }
 
-    public void setNextChainhandler(AbstractChainHandler nextChainhandler) {
-        this.nextChainhandler = nextChainhandler;
+    /**
+     * 此方法也可以通过入参的level进行convent
+     */
+    protected abstract int getHandlerLevel();
+
+    /**
+     * 定义的抽象待执行方法，交于execute()执行
+     *
+     * @param request
+     */
+    protected abstract void handlerChainProcess(AbstractRequestInfo request);
+
+    public void setNextChainHandler(AbstractChainHandler nextChainHandler) {
+        this.nextChainHandler = nextChainHandler;
     }
 
 }

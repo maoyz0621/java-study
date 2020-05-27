@@ -5,25 +5,25 @@ package com.myz.design.chain.handler;
 
 import com.myz.design.chain.request.AbstractRequestInfo;
 
-import java.util.Objects;
-
 /**
  * @author maoyz on 2018/7/23
  * @version: v1.0
  */
 public class FirstHandler extends AbstractChainHandler {
+    public FirstHandler() {
+    }
 
-    @Override
-    public void handlerChainProcess(AbstractRequestInfo requestInfo) {
-        if (Objects.equals("first", requestInfo.getInfo())) {
-            System.out.println(requestInfo.getInfo());
-        } else {
-            super.execute(requestInfo);
-        }
+    public FirstHandler(int level) {
+        super(level);
     }
 
     @Override
-    public int getHandlerCode() {
+    public void handlerChainProcess(AbstractRequestInfo requestInfo) {
+        System.out.println("FirstHandler " + requestInfo.getInfo());
+    }
+
+    @Override
+    public int getHandlerLevel() {
         return 0;
     }
 }

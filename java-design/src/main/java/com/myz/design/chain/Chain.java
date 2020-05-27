@@ -22,10 +22,21 @@ public class Chain {
      * 请求信息
      */
     private AbstractRequestInfo requestInfo;
+
+    public Chain() {
+    }
+
+    public Chain(List<AbstractChainHandler> chainHandlers, AbstractRequestInfo requestInfo) {
+        this.chainHandlers = chainHandlers;
+        this.requestInfo = requestInfo;
+    }
+
     /**
-     * todo 游标
+     * 执行目标对象方法,同时移动游标
      */
-    private int size = 0;
+    public void proceed() {
+        chainHandlers.get(0).execute(requestInfo);
+    }
 
     /**
      * 处理者需要形成环状
@@ -35,22 +46,11 @@ public class Chain {
     public void setChainHandlers(List<AbstractChainHandler> chainHandlers) {
         this.chainHandlers = chainHandlers;
         for (int i = 0; i < chainHandlers.size() - 1; i++) {
-            chainHandlers.get(i).setNextChainhandler(chainHandlers.get(i + 1));
+            chainHandlers.get(i).setNextChainHandler(chainHandlers.get(i + 1));
         }
     }
 
     public void setRequestInfo(AbstractRequestInfo requestInfo) {
         this.requestInfo = requestInfo;
-    }
-
-    /**
-     * 执行目标对象方法,同时移动游标
-     */
-    public void proceed() {
-        // todo 判断游标位置
-        if (size >= chainHandlers.size() || size < 0) {
-            return;
-        }
-        chainHandlers.get(0).handlerChainProcess(requestInfo);
     }
 }

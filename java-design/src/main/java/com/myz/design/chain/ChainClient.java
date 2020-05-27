@@ -16,7 +16,7 @@ public class ChainClient {
 
     public static void main(String[] args) {
         Chain chain = new Chain();
-        chain.setChainHandlers(Arrays.asList(new FirstHandler(), new SecondHandler(), new ThirdHandler()));
+        chain.setChainHandlers(Arrays.asList(new FirstHandler(0), new SecondHandler(1), new ThirdHandler(2)));
 
         AbstractRequestInfo infoA = new FirstRequestInfo("first");
         AbstractRequestInfo infoB = new SecondRequestInfo("second");

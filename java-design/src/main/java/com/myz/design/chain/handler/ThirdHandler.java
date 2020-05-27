@@ -6,25 +6,26 @@ package com.myz.design.chain.handler;
 
 import com.myz.design.chain.request.AbstractRequestInfo;
 
-import java.util.Objects;
-
 /**
  * @author maoyz on 2018/7/23
  * @version: v1.0
  */
 public class ThirdHandler extends AbstractChainHandler {
 
-    @Override
-    public void handlerChainProcess(AbstractRequestInfo requestInfo) {
-        if (Objects.equals("third", requestInfo.getInfo())) {
-            System.out.println(requestInfo.getInfo());
-        } else {
-            super.execute(requestInfo);
-        }
+    public ThirdHandler() {
+    }
+
+    public ThirdHandler(int level) {
+        super(level);
     }
 
     @Override
-    public int getHandlerCode() {
-        return 1;
+    public void handlerChainProcess(AbstractRequestInfo requestInfo) {
+        System.out.println("ThirdHandler " + requestInfo.getInfo());
+    }
+
+    @Override
+    public int getHandlerLevel() {
+        return 2;
     }
 }
