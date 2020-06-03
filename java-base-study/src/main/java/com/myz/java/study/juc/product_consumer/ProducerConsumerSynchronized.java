@@ -1,7 +1,7 @@
 /**
  * Copyright 2020 Inc.
  **/
-package com.myz.java.study.juc.productconsumer;
+package com.myz.java.study.juc.product_consumer;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
