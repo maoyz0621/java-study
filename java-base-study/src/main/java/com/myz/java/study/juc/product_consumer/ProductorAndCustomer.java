@@ -1,4 +1,4 @@
-package com.myz.java.study.juc.productconsumer;
+package com.myz.java.study.juc.product_consumer;
 /**
  * @ClassName: ProductorAndCustomer
  * @Description: 生产者与消费者

@@ -9,7 +9,7 @@ import org.junit.Test;
  * VirtualMachineError
  *
  * @author maoyz0621 on 19-11-24
- * @version: v1.0
+ * @version v1.0
  */
 public class JvmError {
 
