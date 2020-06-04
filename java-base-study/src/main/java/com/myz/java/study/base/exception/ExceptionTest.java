@@ -10,10 +10,13 @@ package com.myz.java.study.base.exception;
 public class ExceptionTest {
 
     public static void main(String[] args) {
-        new ExceptionTest().t2();   // t2 error
+        // new ExceptionTest().t2();   // t2 error
         // new ExceptionTest().t3();   // t1 error
         // new ExceptionTest().t4();   // t1 error
         // new ExceptionTest().t5();   // java.lang.RuntimeException: t1 error \n Caused by: java.lang.RuntimeException: t1 error
+
+        new ExceptionTest().innerForeach();
+        // new ExceptionTest().outterForeach();
     }
 
     /**
@@ -69,6 +72,40 @@ public class ExceptionTest {
             // java.lang.RuntimeException: t1 error
             System.err.println(e);
             throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 循环内的 try-catch 在发生异常之后，可以继续执行循环；
+     * throw 循环终止
+     */
+    public void innerForeach() {
+        for (int i = 0; i < 5; i++) {
+            try {
+                if (i == 3) {
+                    throw new RuntimeException("error");
+                }
+            } catch (RuntimeException e) {
+                // throw e;
+            }
+            System.out.println(i);
+        }
+    }
+
+    /**
+     * 循环外的 try-catch 在发生异常之后会终止循环。
+     * throw 循环终止
+     */
+    public void outterForeach() {
+        try {
+            for (int i = 0; i < 5; i++) {
+                if (i == 3) {
+                    throw new RuntimeException("error");
+                }
+                System.out.println(i);
+            }
+        } catch (RuntimeException e) {
+            // throw e;
         }
     }
 }

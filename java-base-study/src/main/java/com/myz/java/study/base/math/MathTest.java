@@ -153,4 +153,24 @@ public class MathTest {
         BigDecimal b = new BigDecimal("-1.222222222222");
         System.out.println(b.setScale(2, BigDecimal.ROUND_HALF_UP));
     }
+
+    @Test
+    public void testEqu() {
+        BigDecimal a = new BigDecimal("1");
+        BigDecimal b = new BigDecimal("1.00");
+        System.out.println(a.equals(b));    // false
+        System.out.println(a.equals(b.setScale(0, BigDecimal.ROUND_HALF_UP)));    // true
+        System.out.println(a.setScale(2, BigDecimal.ROUND_HALF_UP).equals(b));    // true
+    }
+
+    @Test
+    public void testCompare() {
+        BigDecimal a = new BigDecimal("1");
+        BigDecimal b = new BigDecimal("1.00");
+        BigDecimal c = new BigDecimal("1.01");
+        System.out.println(a.compareTo(b));    // 0
+        System.out.println(b.compareTo(c));    // -`
+        System.out.println(c.compareTo(a));    // 1
+
+    }
 }
