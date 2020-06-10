@@ -2,6 +2,8 @@ package com.myz.java.study.base.final0;
 
 import org.junit.Test;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
@@ -10,11 +12,23 @@ import java.util.concurrent.*;
  * final修饰类，无法子类化，即不能被继承。
  * final修饰类，类中的方法默认都是final 修饰的。
  * final修饰方法，如果从设计（Design）的角度去考虑，如果类之间体现了继承关系，那么final 修饰的方法则不能被子类重写或覆盖。如果没有体现继承关系，就从效率的角度考虑吧，但是请切记：对于Java虚拟机来说编译器在编译期间会自动进行内联优化，这是由编译器决定的，对于我们开发人员来说，我们一定要设计好break-even的平衡，不要滥用final。
- * final修饰局部变量，对于基本类型，值恒定，对于引用类型，引用地址保持不变, 但是引用指向的对象是可以改变的
+ * final修饰局部变量，对于基本类型，值恒定，对于引用类型，引用地址保持不变, 但是引用指向的堆内存是可以改变的
  *
  * @author maoyz
  */
 public class FinalModifierTest {
+
+    @Test
+    public void test0() {
+        final int[] a = {1, 2, 3};
+        a[1] = 10;
+        System.out.println(Arrays.toString(a)); // [1, 10, 3]
+
+
+        System.out.println("反射直接改array");
+        Array.set(a, 2, 20);
+        System.out.println(Arrays.toString(a));     // [1, 10, 20]
+    }
 
     @Test
     public void test() {

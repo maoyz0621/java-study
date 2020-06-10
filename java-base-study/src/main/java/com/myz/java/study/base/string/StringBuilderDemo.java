@@ -3,6 +3,7 @@ package com.myz.java.study.base.string;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * @author myz
@@ -58,7 +59,8 @@ public class StringBuilderDemo {
         System.out.println(sb1.toString().toUpperCase());
     }
 
-    /**将给定字符串倒转
+    /**
+     * 将给定字符串倒转
      * 1 String-->StringBuilder
      * 2 调用StringBuilder中reverse()
      * 3 将StringBuilder-->String
@@ -114,5 +116,18 @@ public class StringBuilderDemo {
          */
         String str2 = "a1b2b3b4";
         System.out.println(str2.replaceAll("\\d+", "*"));
+    }
+
+    @Test
+    public void testEqual() {
+        HashSet<StringBuilder> set = new HashSet<>();
+        final StringBuilder a = new StringBuilder("aa");
+        final StringBuilder b = new StringBuilder("bb");
+        set.add(a);
+        set.add(b);
+
+        final StringBuilder c = a;
+        c.append("c");
+        System.out.println(set);    // [aac, bb]
     }
 }

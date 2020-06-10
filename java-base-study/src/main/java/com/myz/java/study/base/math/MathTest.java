@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 /**
  * BigDecimal的使用
@@ -121,7 +122,9 @@ public class MathTest {
     @Test
     public void testBigDecimal2() {
         BigDecimal a2 = new BigDecimal(0.03d);
-        BigDecimal b2 = new BigDecimal(0.02d);
+        System.out.println("a2 = " + a2);   // 0.0299999999999999988897769753748434595763683319091796875
+        BigDecimal b2 = new BigDecimal(0.02d + "");
+        System.out.println("b2 = " + b2);   // 0.02
         // 0.0499999999999999993061106096092771622352302074432373046875
         System.out.println(a2.add(b2));
         // 0.0099999999999999984734433411404097569175064563751220703125
@@ -169,8 +172,11 @@ public class MathTest {
         BigDecimal b = new BigDecimal("1.00");
         BigDecimal c = new BigDecimal("1.01");
         System.out.println(a.compareTo(b));    // 0
-        System.out.println(b.compareTo(c));    // -`
+        System.out.println(a.equals(b));    // false
+        System.out.println(b.compareTo(c));    // -1
         System.out.println(c.compareTo(a));    // 1
-
+        System.out.println(new BigDecimal("0").compareTo(new BigDecimal("0.00")));    // 0
+        System.out.println(new BigDecimal("0").equals(new BigDecimal("0.00")));    // false
+        System.out.println(Objects.equals(a, b));    // false
     }
 }
