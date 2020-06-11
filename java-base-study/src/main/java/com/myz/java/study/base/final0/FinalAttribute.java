@@ -39,6 +39,10 @@ public class FinalAttribute {
         attrB = "123";
     }
 
+    public FinalAttribute() {
+        this("123");
+    }
+
     public FinalAttribute(String attr) {
         this.attrC = attr;
     }
