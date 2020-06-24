@@ -43,7 +43,7 @@ public class NumberWrapperTest {
     @Test
     public void test3() {
         Long a = null;
-        // fasle
+        // false
         System.out.println(Objects.equals(a, 1L));
     }
 
