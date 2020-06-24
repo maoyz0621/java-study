@@ -1,0 +1,3 @@
+com.myz.design.aop.proxy.CglibProxyFactory
+com.myz.design.aop.proxy.SpringCglibProxyFactory
+com.myz.design.aop.proxy.JdkProxyFactory
