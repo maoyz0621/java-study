@@ -6,6 +6,7 @@
 package com.myz.design.state.base;
 
 /**
+ * 抽象状态角色
  * @author maoyz
  */
 public abstract class State {

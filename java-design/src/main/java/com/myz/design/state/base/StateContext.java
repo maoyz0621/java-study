@@ -6,6 +6,7 @@
 package com.myz.design.state.base;
 
 /**
+ * 维护State的实例，这个实例定义当前状态
  * @author maoyz
  */
 public class StateContext {
