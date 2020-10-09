@@ -12,7 +12,7 @@ import java.util.concurrent.*;
  * 自定义线程池
  *
  * @author maoyz on 2018/8/3
- * @version: v1.0
+ * @version v1.0
  */
 @Slf4j
 public class ThreadPoolExecutorTest {

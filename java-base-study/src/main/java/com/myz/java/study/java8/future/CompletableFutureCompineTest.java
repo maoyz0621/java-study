@@ -24,7 +24,7 @@ public class CompletableFutureCompineTest {
         }
     }
 
-    /////////////////////////////////////////// thenCompose(BiFunction)  多个CompletableFuture之间是并行执行的 ,返回Void /////////////////////////////////////////////////
+    /////////////////////////////////////////// thenCombine(BiFunction)  多个CompletableFuture之间是并行执行的 ,返回Void /////////////////////////////////////////////////
 
     @Test
     public void test() throws Exception {

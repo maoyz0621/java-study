@@ -13,6 +13,7 @@ import java.util.concurrent.*;
  * 如果信号量的数量减为0，acquire调用就会阻塞，直到release调用释放信号后，acquire才会获得信号返回。
  * <p>
  * 主要用于多个共享资源的互斥使用; 并发线程数的控制
+ * 重要：当设置型号量 = 0 时，相当于单线程工作
  *
  * @author maoyz on 18-1-10.
  */

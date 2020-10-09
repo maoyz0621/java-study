@@ -14,7 +14,7 @@ import org.springframework.core.io.ClassPathResource;
 
 /**
  * @author maoyz0621 on 19-5-28
- * @version: v1.0
+ * @version v1.0
  */
 @Configuration
 @EnableCaching

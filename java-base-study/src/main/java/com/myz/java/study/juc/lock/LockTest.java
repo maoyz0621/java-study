@@ -31,9 +31,9 @@ public class LockTest {
 
     public static void main(String[] args) {
         // main0();
-        // main1();
+        main1();
         // main2();
-        main3();
+        // main3();
     }
 
     /**

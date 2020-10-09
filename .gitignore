@@ -150,3 +150,9 @@ fabric.properties
 /ajax/target/
 /java-base-study/target/
 /java-design/target/
+!/java-study.iml
+java-base-study.iml
+src/main/java/com/myz/java/study/encrypt/symmetry/des/
+src/main/java/com/myz/java/study/xml/jdom/
+src/main/java/com/myz/java/study/xml/json/
+!/java-study.iml

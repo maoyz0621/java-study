@@ -58,8 +58,6 @@ public class CyclicBarrierDemo {
                 // cyclicBarrier.await(10, TimeUnit.SECONDS);
                 cyclicBarrier.await();
                 // logger.debug(" {} ", cyclicBarrier.getParties());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }

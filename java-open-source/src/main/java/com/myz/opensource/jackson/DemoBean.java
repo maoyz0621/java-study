@@ -72,7 +72,7 @@ public class DemoBean implements Serializable {
     @Setter
     @Getter
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class InnerDemoBean {
+    public class InnerDemoBean {
         @JsonProperty("username")
         private String userName;
 

@@ -3,9 +3,16 @@
  **/
 package com.myz.java.study.juc.lock;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.TreeMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -29,10 +36,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * 灵活、强大选择Lock;快捷、安全选择synchronized。
  *
  * @author maoyz0621 on 19-3-25
- * @version: v1.0
+ * @version v1.0
  */
 @Slf4j
 public class ReentrantReadWriteLockTest {
+    private static final Logger logger = LoggerFactory.getLogger(ReentrantReadWriteLockTest.class);
 
     private final TreeMap<String, String> treeMap = new TreeMap<>();
 
@@ -42,23 +50,28 @@ public class ReentrantReadWriteLockTest {
 
     private volatile boolean useCache;
 
-    /**
-     * 读写锁
-     */
+    /* 读写锁 */
     private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-
+    /* 读锁 */
     private final Lock readLock = lock.readLock();
-
+    /* 写锁 */
     private final Lock writeLock = lock.writeLock();
 
     /////////////////////////////////////////// TreeMap Start ////////////////////////////////////////////////
     public String get(String key) {
         readLock.lock();
         try {
-            return treeMap.get(key);
+            logger.debug("{}", key);
+            Thread.sleep(100);
+            String val = treeMap.get(key);
+            logger.debug("{} get end", key);
+            return val;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             readLock.unlock();
         }
+        return null;
     }
 
     public String[] allKeys() {
@@ -73,10 +86,17 @@ public class ReentrantReadWriteLockTest {
     public String put(String key, String val) {
         writeLock.lock();
         try {
-            return treeMap.put(key, val);
+            logger.debug("key = {}, val = {}", key, val);
+            Thread.sleep(300);
+            treeMap.put(key, val);
+            logger.debug("key = {}, val = {} put end", key, val);
+            return val;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             writeLock.unlock();
         }
+        return null;
     }
 
     public void clear() {
@@ -160,4 +180,23 @@ public class ReentrantReadWriteLockTest {
         atomicSize.getAndAdd(1);
     }
     ////////////////////////////////////////// End /////////////////////////////////////////////////
+
+    public static void main(String[] args) {
+        ExecutorService fixedThreadPool = new ThreadPoolExecutor(3, 5, 5, TimeUnit.SECONDS,
+                new LinkedBlockingDeque<>(50),
+                new ThreadFactoryBuilder().setNameFormat("thread_pool_%d").build(),
+                new ThreadPoolExecutor.AbortPolicy());
+        ReentrantReadWriteLockTest lockTest = new ReentrantReadWriteLockTest();
+        for (int i = 0; i < 10; i++) {
+            String j = i + "";
+            fixedThreadPool.execute(() -> lockTest.put(j, j));
+        }
+
+        for (int i = 0; i < 10; i++) {
+            String j = i + "";
+            fixedThreadPool.execute(() -> lockTest.get(j));
+        }
+
+        fixedThreadPool.shutdown();
+    }
 }

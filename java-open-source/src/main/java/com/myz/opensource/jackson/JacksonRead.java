@@ -29,7 +29,7 @@ public class JacksonRead {
                 "\t\t\"index\": \"123\"\n" +
                 "\t}, {\n" +
                 "\t\t\"index\": \"456\"\n" +
-                "\t}]\n" +
+                "\t}]\n,\"inner\": {\"username\":\"inner\"}" +
                 "}";
 
         String dataList = "[{\n" +
@@ -74,11 +74,11 @@ public class JacksonRead {
          * 		"index": "abc"
          *        },
          * 	"context": [{
-         *
          * 		"index": "123"
          *    }, {
          * 		"index": "456"
-         *    }]
+         *    }],
+         *    "inner": {"username":"inner"}
          * }
          */
         DemoBean readValue = null;
