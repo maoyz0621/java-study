@@ -152,9 +152,48 @@ public class MathTest {
     @Test
     public void test0() {
         BigDecimal a = new BigDecimal("1.222222222222");
-        System.out.println(a.setScale(2, BigDecimal.ROUND_HALF_UP));
+        System.out.println(a.setScale(2, RoundingMode.HALF_UP));
         BigDecimal b = new BigDecimal("-1.222222222222");
-        System.out.println(b.setScale(2, BigDecimal.ROUND_HALF_UP));
+        System.out.println(b.setScale(2, RoundingMode.HALF_UP));
+    }
+
+    /**
+     * 银行家算法
+     * 舍去位数值 < 5 直接舍去
+     * 舍去位数值 > 5 直接进位
+     * 舍去位数值 = 5
+     * 1、5后面还有其他非0数值，进位
+     * 2、5后面 = 0，看前一位是偶数舍，奇数进位
+     */
+    @Test
+    public void testBank() {
+        BigDecimal a = new BigDecimal("5.54");
+        System.out.println(a.setScale(1, RoundingMode.HALF_EVEN));  // 5.5
+
+        BigDecimal a2 = new BigDecimal("1.66");
+        System.out.println(a2.setScale(1, RoundingMode.HALF_EVEN));   // 1.7
+
+        BigDecimal a4 = new BigDecimal("1.06");
+
+        System.out.println(a4.setScale(1, RoundingMode.HALF_EVEN));  // 1.1
+
+
+        BigDecimal a1 = new BigDecimal("2.450");
+        System.out.println(a1.setScale(1, RoundingMode.HALF_EVEN));   // 2.4
+
+        BigDecimal a10 = new BigDecimal("2.550");
+        System.out.println(a10.setScale(1, RoundingMode.HALF_EVEN));  // 2.6
+
+        BigDecimal a11 = new BigDecimal("2.551");
+        System.out.println(a11.setScale(1, RoundingMode.HALF_EVEN));  // 2.6
+        BigDecimal a12 = new BigDecimal("2.555");
+        System.out.println(a12.setScale(1, RoundingMode.HALF_EVEN));  // 2.6
+
+
+        BigDecimal a3 = new BigDecimal("1.25");
+        System.out.println(a3.setScale(1, RoundingMode.HALF_EVEN));  // 1.2
+        BigDecimal a5 = new BigDecimal("1.55");
+        System.out.println(a5.setScale(1, RoundingMode.HALF_EVEN));  // 1.6
     }
 
     @Test
