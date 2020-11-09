@@ -22,6 +22,8 @@
         <dozer.version>5.5.1</dozer.version>
         <assertj.version>2.6.0</assertj.version>
         <auto-service.version>1.0-rc6</auto-service.version>
+        <!-- 对象转换 -->
+        <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
     </properties>
 
     <dependencies>
@@ -163,5 +165,38 @@
             <artifactId>spring-context</artifactId>
             <version>4.3.13.RELEASE</version>
         </dependency>
+
+        <!--对象转换-->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.10</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
