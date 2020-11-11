@@ -9,6 +9,8 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 /**
  * 定义这是一个MapStruct对象属性转换接口，在这个类里面规定转换规则
  * 在项目构建时，会自动生成改接口的实现类，这个实现类将实现对象属性值复制
@@ -34,12 +36,29 @@ public interface CarMapper {
     })
     CarDto car2CarDto(Car source);
 
+    /**
+     * 集合形式
+     * @param source
+     * @return
+     */
+    @Mappings({
+            @Mapping(source = "numberOfSeats", target = "seatCount"),
+            @Mapping(source = "type.type", target = "type")
+    })
+    List<CarDto> car2CarDto(List<Car> source);
+
 
     @Mappings({
             @Mapping(source = "seatCount", target = "numberOfSeats"),
             @Mapping(source = "type", target = "type.type")
     })
     Car carDto2car(CarDto carDto);
+
+    @Mappings({
+            @Mapping(source = "seatCount", target = "numberOfSeats"),
+            @Mapping(source = "type", target = "type.type")
+    })
+    List<Car> carDto2car(List<CarDto> carDto);
 
     /**
      * 多个参数中的值绑定

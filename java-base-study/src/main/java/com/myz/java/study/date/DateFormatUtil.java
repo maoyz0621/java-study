@@ -11,13 +11,13 @@ import java.util.Date;
 
 /**
  * @author maoyz0621 on 19-5-13
- * @version: v1.0
+ * @version v1.0
  */
 public class DateFormatUtil {
 
-    private static final String PATTERN_DEFAULT_ON_SECOND = "yyyy-MM-dd HH:mm:ss";
-    private static final DateTimeFormatter FORMATE_DATE = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    private static ThreadLocal<DateFormat> threadLocal = ThreadLocal.withInitial(() -> new SimpleDateFormat(PATTERN_DEFAULT_ON_SECOND));
+    public static final String PATTERN_DEFAULT_ON_SECOND = "yyyy-MM-dd HH:mm:ss";
+    public static final DateTimeFormatter FORMATE_DATE = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    public static ThreadLocal<DateFormat> threadLocal = ThreadLocal.withInitial(() -> new SimpleDateFormat(PATTERN_DEFAULT_ON_SECOND));
 
     public static String formatDate(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_DEFAULT_ON_SECOND);
