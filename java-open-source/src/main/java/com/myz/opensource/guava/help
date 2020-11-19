@@ -1,0 +1,20 @@
+第三方帮助软件
+google  guava
+
+1 不可变集合：
+    ImmutableList
+    ImmutableSet
+    ImmutableMap
+
+2 函数式
+    Predicates
+    Function
+    Constraint
+
+3 工具类
+    Lists Sets Maps
+    Collections2
+    Functions
+    Predictions
+    Constraints
+

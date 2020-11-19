@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	default-init-method="init" default-destroy-method="destory"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<!-- 静态工厂方法配置bean,不是配置bean的实例
+	 	class属性：指向静态工厂方法的全类名  
+        factory-method：指向静态工厂方法的名字  
+        constructor-arg：如果工厂方法需要传入参数，则使用constructor-arg来配置参数  
+	 -->
+	<bean id="dog1" class="com.myz.spring.factory.DogStaticFactory" factory-method="getDog">
+		<constructor-arg value="xiao hei"></constructor-arg>
+	</bean>	
+	
+	
+	<!-- 实例工厂方法配置bean
+		class属性：指向实例工厂方法的全类名  
+        factory-method：指向静态工厂方法的名字  
+        constructor-arg：如果工厂方法需要传入参数，则使用constructor-arg来配置参数  
+     -->    
+     <bean id="dogFactory" class="com.myz.spring.factory.DogInstanceFactory"/>
+     <!-- 通过实例工厂方法来配置bean --> 
+     <bean id="dog2" factory-bean="dogFactory" factory-method="getDog">
+    	<constructor-arg value="xiaohua"></constructor-arg> 
+    </bean>
+     
+</beans>

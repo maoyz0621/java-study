@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       default-init-method="init" default-destroy-method="destory"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+    <bean id="school" class="com.myz.spring.School">
+        <!-- <property name="name" value="chuzhong"></property> -->
+    </bean>
+
+
+    <!-- 集合注入 -->
+    <bean id="person1" class="com.myz.spring.collection.Person">
+        <property name="age" value="21"/>
+        <property name="name" value="mmm"/>
+        <property name="schools">
+            <!-- list集合属性,使用list节点 -->
+            <list>
+                <ref bean="school1"/>
+                <bean class="com.myz.spring.collection.School">
+                    <property name="name" value="bbbb"/>
+                </bean>
+                <bean class="com.myz.spring.collection.School">
+                    <property name="name" value="cccc"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <bean id="school1" class="com.myz.spring.collection.School">
+        <property name="name" value="aaaa"/>
+    </bean>
+
+
+    <!-- 配置单独的集合 -->
+    <util:list id="schools">
+        <ref bean="school1"/>
+        <bean class="com.myz.spring.collection.School">
+            <property name="name" value="dddd"/>
+        </bean>
+        <bean class="com.myz.spring.collection.School">
+            <property name="name" value="eeee"/>
+        </bean>
+    </util:list>
+
+
+    <bean id="person2" class="com.myz.spring.collection.Person">
+        <property name="age" value="23"/>
+        <property name="name" value="m11"/>
+        <property name="schools" ref="schools"/>
+    </bean>
+
+
+</beans>

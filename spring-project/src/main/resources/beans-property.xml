@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	default-init-method="init" default-destroy-method="destory"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!--
+		 配置属性文件路径，使用<context:property-placeholder>
+		 多个文件，用，隔开
+	 -->
+	<context:property-placeholder location="classpath:person.properties,classpath:school.properties"/>
+	<!-- <context:property-placeholder location="school.properties"/> -->
+	
+	<!-- 配置外部文件属性，使用${var} -->
+	<bean id="person" class="com.myz.spring.property.Person">
+		<property name="age" value="${age}"></property>
+		<property name="username" value="${username1}"></property>
+	</bean>
+	
+
+</beans>

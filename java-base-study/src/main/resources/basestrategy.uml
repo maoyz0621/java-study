@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.design.strategy.basestrategy</OriginalElement>
+  <nodes>
+    <node x="361.5" y="0.0">com.design.strategy.basestrategy.Strategy</node>
+    <node x="240.99999999999997" y="145.5">com.design.strategy.basestrategy.ConcreteStrategyA</node>
+    <node x="482.0" y="145.5">com.design.strategy.basestrategy.ConcreteStrategyC</node>
+    <node x="723.0" y="107.0">com.design.strategy.basestrategy.Context</node>
+    <node x="0.0" y="145.5">com.design.strategy.basestrategy.ConcreteStrategyB</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.design.strategy.basestrategy.Context" target="com.design.strategy.basestrategy.Strategy">
+      <point x="0.0" y="-67.0" />
+      <point x="840.5" y="77.0" />
+      <point x="554.875" y="77.0" />
+      <point x="82.875" y="28.5" />
+    </edge>
+    <edge source="com.design.strategy.basestrategy.ConcreteStrategyB" target="com.design.strategy.basestrategy.Strategy">
+      <point x="0.0" y="-28.5" />
+      <point x="110.5" y="77.0" />
+      <point x="389.125" y="77.0" />
+      <point x="-82.875" y="28.5" />
+    </edge>
+    <edge source="com.design.strategy.basestrategy.ConcreteStrategyC" target="com.design.strategy.basestrategy.Strategy">
+      <point x="0.0" y="-28.5" />
+      <point x="592.5" y="87.0" />
+      <point x="499.625" y="87.0" />
+      <point x="27.625" y="28.5" />
+    </edge>
+    <edge source="com.design.strategy.basestrategy.ConcreteStrategyA" target="com.design.strategy.basestrategy.Strategy">
+      <point x="0.0" y="-28.5" />
+      <point x="351.5" y="87.0" />
+      <point x="444.375" y="87.0" />
+      <point x="-27.625" y="28.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.1999999999999997" x="485.2139249639252" y="91.55869130869132" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

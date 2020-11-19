@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>java-study</artifactId>
+        <groupId>com.myz</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <artifactId>java-base-study</artifactId>
+    <name>java-base-study</name>
+
+    <properties>
+        <slf4j_version>1.7.21</slf4j_version>
+        <junit_version>4.12</junit_version>
+        <mysql_version>5.1.40</mysql_version>
+        <commonsdbcp_version>1.4</commonsdbcp_version>
+        <commonsLang_version>3.4</commonsLang_version>
+        <vjkit_version>1.0.8</vjkit_version>
+        <dozer.version>5.5.1</dozer.version>
+        <assertj.version>2.6.0</assertj.version>
+        <auto-service.version>1.0-rc6</auto-service.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>25.1-jre</version>
+        </dependency>
+
+        <!-- 二维码com.google.zxing/core start-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <!-- 二维码com.google.zxing/core end-->
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+        </dependency>
+
+        <!-- IO工具类 -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <!-- 编码与解码 -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.11</version>
+        </dependency>
+
+        <!-- 时间工具 -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j_version}</version>
+        </dependency>
+
+        <!-- 由于是在main工程中,scope=compile,实际项目中scope=test -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <!--<scope>compile</scope>-->
+        </dependency>
+
+        <!-- logback日志 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+            <scope>runtime</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.51</version>
+        </dependency>
+
+        <!-- jackson start -->
+        <!--<dependency>-->
+        <!--    <groupId>org.codehaus.jackson</groupId>-->
+        <!--    <artifactId>jackson-mapper-asl</artifactId>-->
+        <!--    <version>1.9.13</version>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- jackson end -->
+
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <!-- 唯品会提供的工具类 start-->
+        <dependency>
+            <groupId>com.vip.vjtools</groupId>
+            <artifactId>vjkit</artifactId>
+            <version>${vjkit_version}</version>
+        </dependency>
+        <!-- optional for BaseBeanMapper -->
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>${dozer.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
+            <version>6.4.1</version>
+        </dependency>
+        <!-- 唯品会提供的工具类 end-->
+
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jdom/jdom2 -->
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom2</artifactId>
+            <version>2.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.2.2.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.0.RELEASE</version>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--    <groupId>com.myz</groupId>-->
+        <!--    <artifactId>java-ast</artifactId>-->
+        <!--    <version>1.0</version>-->
+        <!--    <type>jar</type>-->
+        <!--    <scope>compile</scope>-->
+        <!--</dependency>-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--<plugin>-->
+            <!--    <groupId>org.apache.maven.plugins</groupId>-->
+            <!--    <artifactId>maven-checkstyle-plugin</artifactId>-->
+            <!--    <version>2.10</version>-->
+            <!--    <configuration>-->
+            <!--        <configLocation>${project.basedir}/../checkstyle.xml</configLocation>-->
+            <!--        <encoding>UTF-8</encoding>-->
+            <!--    </configuration>-->
+            <!--    <executions>-->
+            <!--        <execution>-->
+            <!--            <id>checkstyle</id>-->
+            <!--            <phase>validate</phase>-->
+            <!--            <goals>-->
+            <!--                <goal>check</goal>-->
+            <!--            </goals>-->
+            <!--            <configuration>-->
+            <!--                <failOnViolation>true</failOnViolation>-->
+            <!--            </configuration>-->
+            <!--        </execution>-->
+            <!--    </executions>-->
+            <!--</plugin>-->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                    <!--<annotationProcessorPaths>-->
+                    <!--    <path>-->
+                    <!--        <groupId>com.google.auto.service</groupId>-->
+                    <!--        <artifactId>auto-service</artifactId>-->
+                    <!--        <version>${auto-service.version}</version>-->
+                    <!--    </path>-->
+                    <!--    <path>-->
+                    <!--        <groupId>org.projectlombok</groupId>-->
+                    <!--        <artifactId>lombok</artifactId>-->
+                    <!--        <version>${lombok.version}</version>-->
+                    <!--    </path>-->
+                    <!--</annotationProcessorPaths>-->
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

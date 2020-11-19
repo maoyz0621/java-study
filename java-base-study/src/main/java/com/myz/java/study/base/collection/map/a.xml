@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>使用相对路径保存为.xml文件</comment>
+<entry key="age">12</entry>
+<entry key="name">123</entry>
+</properties>

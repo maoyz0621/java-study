@@ -1,0 +1,7 @@
+引用分类：
+    强引用(StrongReference):引用指向对象,gc运行时，不回收。
+    弱引用(SoftReference):gc运行时可能回收(当jvm内存不足时)。
+    软引用(WeakReference):当gc运行时，对象回收。
+    虚引用(phantomReference):类似于无引用，主要跟踪对象被回收的对象，不能单独使用，要与ReferenceQueue联合使用
+
+    目的：避免对象长期驻留在内存中，解决垃圾回收机制时机问题。

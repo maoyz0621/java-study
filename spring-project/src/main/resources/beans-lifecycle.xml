@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/c"
+       default-init-method="defaultInit" default-destroy-method="defaultDestory"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd ">
+
+    <!-- init-method="" destroy-method="" -->
+    <!--<bean id="helloworld1" class="com.myz.spring.lifecycle.HelloWorld" init-method="init" destroy-method="destory"/>-->
+
+    <!-- InitializingBean  DisposableBean -->
+    <!--<bean id="helloworld2" class="com.myz.spring.lifecycle.HelloWorldLifeCycle"/>-->
+
+    <!--　default-init-method="" default-destroy-method="" -->
+    <!--<bean id="helloworld3" class="com.myz.spring.lifecycle.HelloWorld"/>-->
+
+    <bean id="helloworld4" class="com.myz.spring.lifecycle.LifeCycleHelloWorld" init-method="init"
+          destroy-method="destory">
+        <property name="desc" value="hello"/>
+    </bean>
+
+    <bean id="beanPostProcessor" class="com.myz.spring.lifecycle.MyBeanPostProcessor"/>
+
+    <bean id="beanLifeWithPostProcessor" class="com.myz.spring.lifecycle.BeanLifeWithPostProcessor"/>
+
+</beans>
