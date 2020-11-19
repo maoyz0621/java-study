@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <spring.version>4.3.10.RELEASE</spring.version>
+        <spring.version>4.3.20.RELEASE</spring.version>
         <org.aspectj-version>1.6.10</org.aspectj-version>
 
         <!-- web -->
