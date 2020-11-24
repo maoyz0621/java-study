@@ -58,6 +58,7 @@
         <module>java-design</module>
         <module>java-open-source</module>
         <module>java-ast</module>
+        <module>java-buddy</module>
     </modules>
 
     <properties>
@@ -69,6 +70,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <netty.version>4.1.42.Final</netty.version>
+        <net.bytebuddy.version>1.9.2</net.bytebuddy.version>
     </properties>
 
     <dependencies>
@@ -76,7 +78,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
-            <scope>test</scope>
+            <!--<scope>test</scope>-->
         </dependency>
     </dependencies>
 
@@ -130,6 +132,18 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-compress</artifactId>
                 <version>1.19</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>${net.bytebuddy.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy-agent</artifactId>
+                <version>${net.bytebuddy.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
