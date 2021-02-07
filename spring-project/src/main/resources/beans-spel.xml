@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	default-init-method="init" default-destroy-method="destory"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+		
+	<!-- Spel表达式#{} -->
+	<bean id="person" class="com.myz.spring.spel.Person">
+		<property name="age" value="21"></property>
+		<property name="name" value="#{school.name}"></property>
+		<property name="schools" value="#{schools}"></property>
+	</bean>
+	
+	<bean id="school" class="com.myz.spring.spel.School">
+		<property name="name" value="aaaa"></property>
+	</bean>
+		
+	<!-- 配置单独的集合 -->
+	<util:list id="schools">
+		<bean class="com.myz.spring.spel.School" p:name="bbbb"/>
+	</util:list>
+
+	
+
+</beans>

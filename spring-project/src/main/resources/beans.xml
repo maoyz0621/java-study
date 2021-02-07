@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       default-init-method="init" default-destroy-method="destory"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd ">
+
+    <!--
+      id:
+      class:
+      scope: 作用域
+      lazy-init: 懒加载，容器启动时不初始化，使用时才初始化
+    -->
+    <bean id="helloworld" class="com.myz.spring.HelloWorld" scope="singleton" lazy-init="true">
+        <!-- setter注入 -->
+        <!-- <property name="name" value="myz"></property> -->
+        <!-- 构造注入 -->
+        <constructor-arg index="0">
+            <value>hyr</value>
+        </constructor-arg>
+    </bean>
+
+
+    <!-- 依赖注入 -->
+    <bean id="person" class="com.myz.spring.Person" lazy-init="true">
+        <property name="age" value="23"/>
+        <property name="name" value="myz"/>
+        <property name="school" ref="school"/>
+        <!-- 为级联属性赋值 -->
+        <property name="school.name" value="gaozhong"/>
+    </bean>
+
+    <bean id="school" class="com.myz.spring.School" lazy-init="true">
+        <!-- <property name="name" value="chuzhong"/> -->
+    </bean>
+
+</beans>

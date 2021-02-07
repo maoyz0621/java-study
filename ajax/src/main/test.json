@@ -1,0 +1,12 @@
+{
+  "birthday": "2019-06-28 21:40:43",
+  "postCode": "12323213",
+  "phone": "1233333333",
+  "age": 12,
+  "address": {
+    "province": "aaa",
+    "city": "aaaa"
+  },
+  "user_name": "aaa",
+  "password": "111111"
+}

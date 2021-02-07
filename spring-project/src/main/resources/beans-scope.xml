@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	default-init-method="init" default-destroy-method="destory"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- 作用域scope，默认singleton
+	        单例模式，在整个Spring IoC容器中，使用singleton定义的Bean将只有一个实例
+	-->
+	<bean id="helloworld" class="com.myz.spring.scope.Hello" scope="singleton"/>
+	
+	<!-- scope=prototype
+	        原型模式，每次通过容器的getBean方法获取prototype定义的Bean时，都将产生一个新的Bean实例
+	        destory()方式不生效
+	-->
+	<bean id="helloworld1" class="com.myz.spring.scope.Hello" scope="prototype"/>
+	
+</beans>
