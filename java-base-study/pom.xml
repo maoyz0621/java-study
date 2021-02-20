@@ -197,6 +197,11 @@
             <artifactId>spring-test</artifactId>
             <version>4.3.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.65.01</version>
+        </dependency>
 
         <!--<dependency>-->
         <!--    <groupId>com.myz</groupId>-->
