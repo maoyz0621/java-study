@@ -11,6 +11,6 @@ package com.myz.design.adapter;
  */
 public interface Controller {
 
-    public void doRequest();
+    void doRequest();
 
 }

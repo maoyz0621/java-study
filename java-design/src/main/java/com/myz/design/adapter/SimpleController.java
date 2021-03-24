@@ -7,14 +7,10 @@ package com.myz.design.adapter;
  * @author maoyz0621 on 19-10-24
  * @version: v1.0
  */
-public class SimpleController implements Controller {
+public class SimpleController extends AbstractController {
 
     @Override
-    public void doRequest() {
-        System.out.println(getType());
-    }
-
-    private String getType() {
+    public  String abstractMethod() {
         return "Simple";
     }
 }

@@ -19,6 +19,17 @@
  *
  * 3. 泛型类中的静态方法和静态变量不可以使用泛型类所声明的泛型类型参数
  * -- 因为泛型类中的泛型参数的实例化是在定义对象的时候指定的，而静态变量和静态方法不需要使用对象来调用。对象都没有创建，如何确定这个泛型参数是何种类型，所以当然是错误的
+ *
+ *
+ * PECS（Producer Extends Consumer Super）原则
+ * <? extends T>：是指 “上界通配符（Upper Bounds Wildcards）” 可读不可写
+ * <? super T>：是指 “下界通配符（Lower Bounds Wildcards）”   可写不可读
+ * 频繁往外读取内容的，适合用上界extends
+ * 经常往里插入的，适合用下界super
+ * 例如：
+ * A extend B 表示A是B的子类或者子孙，在B下面
+ * A super B  表示A是B的父类或者祖先，在B的上面
+ *
  * @author maoyz0621 on 20-3-13
  * @version v1.0
  */

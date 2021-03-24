@@ -6,6 +6,7 @@ package com.myz.java.study.date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -15,8 +16,8 @@ import java.util.TimeZone;
  */
 public class TimeZoneTest {
 
-    public static final String TIME_ZONE_GMT = "GMT+00:00";
-    public static final String TIME_ZONE_BEIJING = "GMT+08:00";
+    public static final String TIME_ZONE_GMT = "Etc/GMT+0";
+    public static final String TIME_ZONE_BEIJING = "Etc/GMT+8";
     public static ThreadLocal<DateFormat> threadLocal = ThreadLocal.withInitial(() -> new SimpleDateFormat(DateFormatUtil.PATTERN_DEFAULT_ON_SECOND));
 
     /**
@@ -135,6 +136,21 @@ public class TimeZoneTest {
     }
 
     /**
+<<<<<<< HEAD
+     * 获取当前时间戳 0时区
+     *
+     * @return Long
+     */
+    public static Long getCurrentTimeMillisZone() {
+        //设置时区
+        Calendar c=Calendar.getInstance();
+        int zoneOffset= c.get(Calendar.ZONE_OFFSET);
+        return c.getTimeInMillis() - zoneOffset;
+    }
+
+    /**
+=======
+>>>>>>> c69fd0f54278fcd92a6b25bb8fa8282e0a036c7e
      * 获取当前时间戳
      *
      * @return long

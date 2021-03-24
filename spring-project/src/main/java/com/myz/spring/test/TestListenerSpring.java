@@ -1,5 +1,6 @@
 package com.myz.spring.test;
 
+import com.myz.spring.listener.EventPublishService;
 import com.myz.spring.listener.ListenerConfig;
 import org.junit.Test;
 import org.springframework.context.ApplicationEvent;
@@ -9,6 +10,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * @author maoyz0621
  */
 public class TestListenerSpring {
+
+
 
     @Test
     public void testListener() {
@@ -22,6 +25,8 @@ public class TestListenerSpring {
             }
         });
 
+        EventPublishService bean = context.getBean(EventPublishService.class);
+        bean.push();
         context.close();
 
     }

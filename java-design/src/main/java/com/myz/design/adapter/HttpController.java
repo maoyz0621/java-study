@@ -7,13 +7,10 @@ package com.myz.design.adapter;
  * @author maoyz0621 on 19-10-24
  * @version: v1.0
  */
-public class HttpController implements Controller {
-    @Override
-    public void doRequest() {
-        System.out.println(getType());
-    }
+public class HttpController extends AbstractController {
 
-    private String getType() {
+    @Override
+    public String abstractMethod() {
         return "Http";
     }
 }

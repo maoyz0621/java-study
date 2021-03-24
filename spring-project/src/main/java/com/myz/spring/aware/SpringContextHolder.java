@@ -16,8 +16,8 @@ import java.util.Map;
  * @version: v1.0
  */
 public class SpringContextHolder implements ApplicationContextAware {
-    private static ApplicationContext applicationContext;
 
+    private static volatile ApplicationContext applicationContext;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
