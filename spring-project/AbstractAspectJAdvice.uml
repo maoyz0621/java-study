@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.aop.aspectj.AbstractAspectJAdvice</OriginalElement>
+  <nodes>
+    <node x="107.64222222222224" y="160.0">org.aopalliance.intercept.MethodInterceptor</node>
+    <node x="131.64222222222224" y="80.0">org.aopalliance.intercept.Interceptor</node>
+    <node x="220.0" y="270.0">org.springframework.aop.aspectj.AspectJAfterAdvice</node>
+    <node x="756.8888888888889" y="270.0">org.springframework.aop.aspectj.AspectJAfterReturningAdvice</node>
+    <node x="0.0" y="270.0">org.springframework.aop.aspectj.AspectJAroundAdvice</node>
+    <node x="1040.888888888889" y="270.0">org.springframework.aop.aspectj.AspectJMethodBeforeAdvice</node>
+    <node x="480.88888888888897" y="270.0">org.springframework.aop.aspectj.AspectJAfterThrowingAdvice</node>
+    <node x="314.1055555555556" y="80.0">org.springframework.aop.aspectj.AspectJPrecedenceInformation</node>
+    <node x="434.6055555555556" y="160.0">org.springframework.aop.aspectj.AbstractAspectJAdvice</node>
+    <node x="649.8055555555557" y="0.0">org.aopalliance.aop.Advice</node>
+    <node x="740.3333333333333" y="160.0">org.springframework.aop.AfterAdvice</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.aop.aspectj.AspectJAfterAdvice" target="org.springframework.aop.aspectj.AbstractAspectJAdvice">
+      <point x="0.0" y="-15.0" />
+      <point x="316.0" y="230.0" />
+      <point x="499.4055555555556" y="230.0" />
+      <point x="-43.19999999999999" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJAfterReturningAdvice" target="org.springframework.aop.AfterAdvice">
+      <point x="66.0" y="-15.0" />
+      <point x="954.8888888888889" y="250.0" />
+      <point x="853.6666666666667" y="250.0" />
+      <point x="45.33333333333337" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJMethodBeforeAdvice" target="org.springframework.aop.aspectj.AbstractAspectJAdvice">
+      <point x="-62.0" y="-15.0" />
+      <point x="1102.888888888889" y="210.0" />
+      <point x="629.0055555555556" y="210.0" />
+      <point x="86.39999999999998" y="15.0" />
+    </edge>
+    <edge source="org.aopalliance.intercept.Interceptor" target="org.aopalliance.aop.Advice">
+      <point x="0.0" y="-15.0" />
+      <point x="199.64222222222224" y="50.0" />
+      <point x="661.8055555555557" y="50.0" />
+      <point x="-36.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJAfterThrowingAdvice" target="org.aopalliance.intercept.MethodInterceptor">
+      <point x="-85.33333333333326" y="-15.0" />
+      <point x="523.5555555555557" y="210.0" />
+      <point x="260.9755555555555" y="210.0" />
+      <point x="61.33333333333326" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJAfterThrowingAdvice" target="org.springframework.aop.aspectj.AbstractAspectJAdvice">
+      <point x="0.0" y="-15.0" />
+      <point x="608.8888888888889" y="230.0" />
+      <point x="542.6055555555556" y="230.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJAroundAdvice" target="org.springframework.aop.aspectj.AbstractAspectJAdvice">
+      <point x="50.0" y="-15.0" />
+      <point x="150.0" y="220.0" />
+      <point x="456.20555555555563" y="220.0" />
+      <point x="-86.39999999999998" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJAfterThrowingAdvice" target="org.springframework.aop.AfterAdvice">
+      <point x="85.33333333333337" y="-15.0" />
+      <point x="694.2222222222224" y="250.0" />
+      <point x="808.3333333333333" y="250.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AbstractAspectJAdvice" target="org.aopalliance.aop.Advice">
+      <point x="54.0" y="-15.0" />
+      <point x="596.6055555555556" y="60.0" />
+      <point x="685.8055555555557" y="60.0" />
+      <point x="-12.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AbstractAspectJAdvice" target="org.springframework.aop.aspectj.AspectJPrecedenceInformation">
+      <point x="-54.0" y="-15.0" />
+      <point x="488.6055555555556" y="135.0" />
+      <point x="450.1055555555556" y="135.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJAfterAdvice" target="org.springframework.aop.AfterAdvice">
+      <point x="64.0" y="-15.0" />
+      <point x="380.0" y="240.0" />
+      <point x="763.0" y="240.0" />
+      <point x="-45.33333333333337" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJAroundAdvice" target="org.aopalliance.intercept.MethodInterceptor">
+      <point x="-50.0" y="-15.0" />
+      <point x="50.0" y="250.0" />
+      <point x="138.30888888888887" y="250.0" />
+      <point x="-61.33333333333337" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.AfterAdvice" target="org.aopalliance.aop.Advice">
+      <point x="0.0" y="-15.0" />
+      <point x="808.3333333333333" y="60.0" />
+      <point x="709.8055555555557" y="60.0" />
+      <point x="12.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJAfterAdvice" target="org.aopalliance.intercept.MethodInterceptor">
+      <point x="-64.0" y="-15.0" />
+      <point x="252.0" y="210.0" />
+      <point x="199.64222222222224" y="210.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJMethodBeforeAdvice" target="org.aopalliance.aop.Advice">
+      <point x="61.99999999999994" y="-15.0" />
+      <point x="1226.888888888889" y="50.0" />
+      <point x="733.8055555555557" y="50.0" />
+      <point x="36.0" y="15.0" />
+    </edge>
+    <edge source="org.aopalliance.intercept.MethodInterceptor" target="org.aopalliance.intercept.Interceptor">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.aop.aspectj.AspectJAfterReturningAdvice" target="org.springframework.aop.aspectj.AbstractAspectJAdvice">
+      <point x="-66.0" y="-15.0" />
+      <point x="822.8888888888889" y="220.0" />
+      <point x="585.8055555555557" y="220.0" />
+      <point x="43.200000000000045" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="620.0" y="155.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

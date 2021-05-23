@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 Inc.
  **/
-package com.myz.spring.ioc.circularReference.setter;
+package com.myz.spring.ioc.circularReference.constructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,16 +13,16 @@ import org.springframework.stereotype.Component;
  * @version: v1.0
  */
 @Component
-public class SetterIocB {
+public class ConstructorIocB {
 
-    /**
-     * 出现循环依赖 方法1
-     */
-    @Autowired
-    private SetterIocA setterIocA;
+    private ConstructorIocA setterIocA;
 
-    public SetterIocB() {
+    public ConstructorIocB() {
         System.out.println("IocB ...");
     }
 
+    @Autowired
+    public ConstructorIocB(ConstructorIocA setterIocA) {
+        this.setterIocA = setterIocA;
+    }
 }

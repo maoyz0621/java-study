@@ -1,13 +1,14 @@
 package com.myz.spring.test;
 
+import com.myz.spring.autowired.Person;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.myz.spring.autowired.Person;
-
+/**
+ * @author maoyz0621
+ */
 public class TestAutowiredSpring {
-
 
 	@Test
 	public void test() {

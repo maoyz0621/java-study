@@ -4,8 +4,11 @@ import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.vm.VM;
 
 
-public class AppTest {
+public class App64Test {
 
+    /**
+     * 64位
+     */
     public static void main(String[] args) {
         System.out.println(VM.current().details());
 

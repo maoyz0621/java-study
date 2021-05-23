@@ -6,42 +6,42 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
- *  合格者　@Qualifier
- *  作用域  @Scope(value = "prototype"), 默认单实例
+ * 合格者　@Qualifier
+ * 作用域  @Scope(value = "prototype"), 默认单实例
  */
 @Component
 @Scope(value = "prototype")
 public class School {
 
-	private String name;
+    private String name;
 
-	@Autowired
-	@Qualifier("person")
-	private Person person;
+    @Autowired
+    @Qualifier("person")
+    private Person person;
 
-	public School() {
-		System.out.println("执行School()构造");
-	}
+    public School() {
+        System.out.println("执行School()构造");
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setPerson(Person person) {
-		this.person = person;
-	}
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
-	public Person getPerson() {
-		return person;
-	}
+    public Person getPerson() {
+        return person;
+    }
 
-	@Override
-	public String toString() {
-		return "School [name=" + name + "]";
-	}
+    @Override
+    public String toString() {
+        return "School [name=" + name + "]";
+    }
 
 }

@@ -1,7 +1,7 @@
 /**
  * Copyright 2021 Inc.
  **/
-package com.myz.spring.LifecycleCallbacks;
+package com.myz.spring.lifecycleCallbacks;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

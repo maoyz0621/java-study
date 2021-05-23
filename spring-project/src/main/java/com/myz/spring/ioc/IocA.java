@@ -5,7 +5,6 @@ package com.myz.spring.ioc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,7 @@ public class IocA {
      * 出现循环依赖  方法1
      */
     @Autowired
-    @Lazy
+    // @Lazy
     private IocB iocB;
 
     public IocA() {

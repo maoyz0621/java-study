@@ -8,4 +8,8 @@ package com.myz.java.study.jvm;
  * @version v1.0
  */
 public class T {
+
+    public static void main(String[] args) {
+        Object o = new Object();
+    }
 }

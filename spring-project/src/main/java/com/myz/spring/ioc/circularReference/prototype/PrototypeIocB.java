@@ -1,7 +1,7 @@
 /**
  * Copyright 2019 Inc.
  **/
-package com.myz.spring.ioc;
+package com.myz.spring.ioc.circularReference.prototype;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -16,33 +16,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class IocB {
+public class PrototypeIocB {
 
-    /**
-     * 出现循环依赖 方法1
-     */
     @Autowired
-    // @Lazy
-    private IocA iocA;
+    private PrototypeIocA prototypeIocA;
 
-    public IocB() {
+    public PrototypeIocB() {
         System.out.println("IocB ...");
     }
 
-    /**
-     * 出现循环依赖 方法2 加上@Lazy
-     */
-    // @Autowired
-    // @Lazy
-    public IocB(IocA iocA) {
-        this.iocA = iocA;
-    }
-
-    public IocA getIocA() {
-        return iocA;
-    }
-
-    public void setIocA(IocA iocA) {
-        this.iocA = iocA;
-    }
 }

@@ -3,8 +3,8 @@
  **/
 package com.myz.spring.test;
 
-import com.myz.spring.LifecycleCallbacks.LifecycleCallbacks;
-import com.myz.spring.LifecycleCallbacks.LifecycleCallbacksBean;
+import com.myz.spring.lifecycleCallbacks.LifecycleCallbacks;
+import com.myz.spring.lifecycleCallbacks.LifecycleCallbacksBean;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -18,7 +18,5 @@ public class TestLifecycleCallbacksSpring {
     public void testAnnotationXml() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LifecycleCallbacks.class);
         LifecycleCallbacksBean p = (LifecycleCallbacksBean) context.getBean(LifecycleCallbacksBean.class);
-
-
     }
 }

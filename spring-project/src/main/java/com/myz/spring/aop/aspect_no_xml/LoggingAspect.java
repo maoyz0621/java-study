@@ -6,7 +6,6 @@ import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -47,7 +46,7 @@ public class LoggingAspect {
     public void beforeService(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         List<Object> args = Arrays.asList(joinPoint.getArgs());
-        System.out.println("begin .." + methodName + ":" + args);
+        System.out.println("log before .." + methodName + ":" + args);
     }
 
     /**
@@ -57,7 +56,7 @@ public class LoggingAspect {
      */
     @Before("joinPointMethod() && args(arg1,arg2)")
     public void beforeServiceWithArgs(int arg1, int arg2) {
-        System.out.println("begin args .." + ":" + arg1 + "/" + arg2);
+        System.out.println("log before args .." + ":" + arg1 + "/" + arg2);
     }
 
     /**
@@ -65,7 +64,7 @@ public class LoggingAspect {
      */
     @After("joinPointMethod()")
     public void afterService() {
-        System.out.println("after ..");
+        System.out.println("log after ..");
     }
 
     /**
@@ -76,7 +75,7 @@ public class LoggingAspect {
      */
     @AfterReturning(value = "joinPointMethod()", returning = "retVal")
     public void afterReturnService(JoinPoint jp, Object retVal) {
-        System.out.println("after returning .." + jp.getSignature().getName() + "==>" + retVal);
+        System.out.println("log after returning .." + jp.getSignature().getName() + "==>" + retVal);
     }
 
     /**
@@ -87,7 +86,7 @@ public class LoggingAspect {
      */
     @AfterThrowing(value = "joinPointMethod()", throwing = "e")
     public void afterThrowing(JoinPoint jp, Exception e) {
-        System.out.println("after throwing .." + jp.getSignature().getName() + e);
+        System.out.println("log after throwing .." + jp.getSignature().getName() + e);
     }
 
     /**
@@ -124,22 +123,22 @@ public class LoggingAspect {
         //method = pjp.getTarget().getClass().getMethod(methodName, argTypes);
 
         try {
-            System.out.println("前置通知...");
+            System.out.println("log around 前置通知...");
             // 让目标方法执行
             result = pjp.proceed();
-            System.out.println("执行结果为：" + result);
+            System.out.println("log around 执行结果为：" + result);
             // 对返回结果进行处理
             if (Objects.nonNull(result)) {
                 result = 1;
             } else {
                 result = "set around val";
             }
-            System.out.println("返回通知...");
+            System.out.println("log around 返回通知...");
         } catch (Throwable e) {
-            System.out.println("异常通知...");
+            System.out.println("log around 异常通知...");
             throw new RuntimeException(e);
         }
-        System.out.println("后置通知...");
+        System.out.println("log around 后置通知...");
         return result;
     }
 }

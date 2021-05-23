@@ -20,7 +20,7 @@ public class ValidateAspect {
      */
     @Before(value = "com.myz.spring.aop.aspect.LoggingAspect.joinPointMethod()")
     public void beforeValidate() {
-        System.out.println("validate begin ..");
+        System.out.println("validate before ..");
     }
 
     /**
@@ -63,15 +63,15 @@ public class ValidateAspect {
     public Object around(ProceedingJoinPoint pjp) {
         Object result = null;
         try {
-            System.out.println("validate前置通知...");
+            System.out.println("validate around 前置通知...");
             result = pjp.proceed();
-            System.out.println("validate返回通知...");
+            System.out.println("validate around 返回通知...");
         } catch (Throwable e) {
             e.printStackTrace();
-            System.out.println("validate异常通知...");
+            System.out.println("validate around 异常通知...");
             throw new RuntimeException(e);
         }
-        System.out.println("validate后置通知...");
+        System.out.println("validate around 后置通知...");
         return result;
     }
 

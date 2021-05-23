@@ -59,6 +59,15 @@ public class StreamGroupByTest {
         System.out.println(collect1);
     }
 
+    @Test
+    public void testSet() {
+        Department department = new Department("a");
+        Employee employee = new Employee(department.getName(),null);
+        System.out.println(employee.getName());
+        department.setName("b");
+        System.out.println(employee.getName());
+    }
+
 }
 
 class Student {

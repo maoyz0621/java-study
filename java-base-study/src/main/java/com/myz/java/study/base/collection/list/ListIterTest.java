@@ -12,7 +12,7 @@ import java.util.*;
  * @author maoyz
  * 2017年6月10日 下午1:09:03
  */
-public class ListTest {
+public class ListIterTest {
     /**
      * testCollection
      * 是一个接口
@@ -183,9 +183,9 @@ public class ListTest {
      */
     @Test
     public void testListChange() {
-        List list1 = new ArrayList<>(Arrays.asList("0", "1", "2"));
-        List list2 = new ArrayList<>(Arrays.asList("00", "11", "22"));
-        List list3 = new ArrayList<>(Arrays.asList("00", "11", "22"));
+        List<String> list1 = new ArrayList<>(Arrays.asList("0", "1", "2"));
+        List<String> list2 = new ArrayList<>(Arrays.asList("00", "11", "22"));
+        List<Object> list3 = new ArrayList<>(Arrays.asList("00", "11", "22"));
 
         list3.add(list1);
         // [00, 11, 22, [0, 1, 2]]
@@ -207,7 +207,7 @@ public class ListTest {
     @Test
     public void testIterator() {
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+        for (Iterator<Integer> iterator = list.iterator(); iterator.hasNext(); ) {
             Object next = iterator.next();
             System.out.println(next);
             iterator.remove();
@@ -218,27 +218,27 @@ public class ListTest {
 
     @Test
     public void testRemove0() {
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            list.add("sh" + i);
+            list.add("sh-" + i);
         }
-
+        System.out.println(list);
         // 循环中list的size是变化的
         for (int i = 0; i < list.size(); i++) {
             // 每次remove()时，list发生变化
             list.remove(i);
-            // 秘密 => sh1
-            // 秘密 => sh3
-            // 秘密 => sh5
-            // 秘密 => sh7
-            // 秘密 => sh9
-            System.out.println(i + " 秘密 => " + list + " " + list.get(i));
+            // 0 => [sh-1, sh-2, sh-3, sh-4, sh-5, sh-6, sh-7, sh-8, sh-9] sh-1
+            // 1 => [sh-1, sh-3, sh-4, sh-5, sh-6, sh-7, sh-8, sh-9] sh-3
+            // 2 => [sh-1, sh-3, sh-5, sh-6, sh-7, sh-8, sh-9] sh-5
+            // 3 => [sh-1, sh-3, sh-5, sh-7, sh-8, sh-9] sh-7
+            // 4 => [sh-1, sh-3, sh-5, sh-7, sh-9] sh-9
+            System.out.println(i + " => " + list + " " + list.get(i));
         }
     }
 
     @Test
     public void testRemove1() {
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             list.add("sh" + i);
         }
@@ -263,6 +263,20 @@ public class ListTest {
             System.out.println(next);
             // java.util.ConcurrentModificationException
             list.remove(next);
+        }
+    }
+
+    @Test
+    public void testRemove3() {
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("sh" + i);
+        }
+
+        for (String s : list) {
+            System.out.println(s);
+            // java.util.ConcurrentModificationException
+            list.remove(s);
         }
     }
 

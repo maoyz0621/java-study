@@ -59,6 +59,7 @@
         <module>java-open-source</module>
         <module>java-ast</module>
         <module>java-buddy</module>
+        <module>jol</module>
     </modules>
 
     <properties>

@@ -1,61 +1,60 @@
 package com.myz.spring.test;
 
-import com.myz.spring.aware.MyApplicationContextAware;
+import com.myz.spring.abstractClass.A1;
+import com.myz.spring.abstractClass.A2;
+import com.myz.spring.abstractClass.AbstractA;
+import com.myz.spring.abstractClass.ServerA;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Aware测试
- *
+ * <p>
  * 先加载.xml中的bean，在执行method
  */
-public class TestAwareSpring {
+public class TestAbstractSpring {
 
-    /**
-     * ApplicationContextAware测试
-     */
     @Test
-    public void testApplicationContextAware() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans-aware.xml");
-        System.out.println(context.getBean("myApplicationContextAware").hashCode());
+    public void testAbstractServer() {
+        ApplicationContext context = new AnnotationConfigApplicationContext("com.myz.spring.abstractClass");
 
-        System.out.println("---------------------------");
-
-        System.out.println(MyApplicationContextAware.getContext().getBean(MyApplicationContextAware.class).hashCode());
-
+        ServerA bean = context.getBean(ServerA.class);
+        bean.say();
     }
 
-    /**
-     * BeanFactoryAware测试
-     */
     @Test
-    public void testBeanFactoryAware() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans-aware.xml");
-        System.out.println(context.getBean("myBeanFactoryAware").hashCode());
+    public void testAbstract() {
+        ApplicationContext context = new AnnotationConfigApplicationContext("com.myz.spring.abstractClass");
+
+        AbstractA bean1 = (AbstractA) context.getBean("a1");
+        A1 bean10 = (A1) context.getBean("a1");
+
+        System.out.println(bean1);
+        System.out.println(bean10);
+
+        System.out.println("===========================");
+
+        AbstractA bean2 = (AbstractA) context.getBean("a2");
+        A2 bean20 = (A2) context.getBean("a2");
+        System.out.println(bean2);
+        System.out.println(bean20);
     }
 
-    /**
-     * BeanNameAware测试
-     */
     @Test
-    public void testMyBeanNameAware() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans-aware.xml");
-        System.out.println(context.getBean("myBeanNameAware").hashCode());
-    }
+    public void testAbstract1() {
+        ApplicationContext context = new AnnotationConfigApplicationContext("com.myz.spring.abstractClass");
+        AbstractA bean1 = (AbstractA) context.getBean("a1");
+        A1 bean10 = (A1) context.getBean("a1");
+        bean1.say();
+        bean10.say();
 
-    /**
-     * ApplicationContextAware和BeanNameAware
-     */
-    @Test
-    public void testAware() {
-        AbstractApplicationContext context = new ClassPathXmlApplicationContext("beans-aware.xml");
-        System.out.println(context.getBean("myAware").hashCode());
+        System.out.println("===========================");
 
-        System.out.println("---------------------");
-
-        System.out.println(context.getBean("myAware1").hashCode());
+        AbstractA bean2 = (AbstractA) context.getBean("a2");
+        A2 bean20 = (A2) context.getBean("a2");
+        bean2.say();
+        bean20.say();
     }
 
 }
