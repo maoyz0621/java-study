@@ -244,11 +244,14 @@ public class ListIterTest {
         }
 
         int size = list.size();
-        for (int i = 0; i < size; i++) {
-            list.remove(i);
-            // java.lang.IndexOutOfBoundsException
-            System.out.println("秘密 => " + list.get(i));
+        for (String s : list) {
+            list.remove(s);
         }
+        // for (int i = 0; i < size; i++) {
+        //     list.remove(i);
+        //     // java.lang.IndexOutOfBoundsException
+        //     System.out.println("秘密 => " + list.get(i));
+        // }
     }
 
     @Test

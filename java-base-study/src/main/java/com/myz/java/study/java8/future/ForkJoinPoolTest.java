@@ -22,6 +22,8 @@ public class ForkJoinPoolTest {
 
     public static void main(String[] args) {
         ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+        System.out.println(forkJoinPool.getActiveThreadCount());
+        System.out.println(forkJoinPool.getRunningThreadCount());
         // 处理器核心 2个
         ForkJoinPool forkJoinPool1 = new ForkJoinPool(2);
 
