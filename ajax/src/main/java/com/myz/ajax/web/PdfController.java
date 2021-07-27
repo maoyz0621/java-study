@@ -151,7 +151,7 @@ public class PdfController {
     @GetMapping(value = "/download1")
     public void download1(HttpServletResponse response) {
         try {
-            PdfReport.gen(response);
+            //PdfReport.gen(response);
         } catch (Exception e) {
             e.printStackTrace();
         }

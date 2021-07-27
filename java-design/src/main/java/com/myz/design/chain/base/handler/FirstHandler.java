@@ -1,9 +1,9 @@
 /**
  * Copyright 2018 asiainfo Inc.
  **/
-package com.myz.design.chain.handler;
+package com.myz.design.chain.base.handler;
 
-import com.myz.design.chain.request.AbstractRequestInfo;
+import com.myz.design.chain.base.request.AbstractRequestInfo;
 
 /**
  * @author maoyz on 2018/7/23

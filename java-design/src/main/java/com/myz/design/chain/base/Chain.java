@@ -1,7 +1,7 @@
-package com.myz.design.chain;
+package com.myz.design.chain.base;
 
-import com.myz.design.chain.handler.AbstractChainHandler;
-import com.myz.design.chain.request.AbstractRequestInfo;
+import com.myz.design.chain.base.handler.AbstractChainHandler;
+import com.myz.design.chain.base.request.AbstractRequestInfo;
 
 import java.util.LinkedList;
 import java.util.List;

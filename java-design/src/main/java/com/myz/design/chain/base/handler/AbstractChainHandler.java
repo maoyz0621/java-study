@@ -1,9 +1,7 @@
-package com.myz.design.chain.handler;
+package com.myz.design.chain.base.handler;
 
 
-import com.myz.design.chain.request.AbstractRequestInfo;
-
-import java.util.Objects;
+import com.myz.design.chain.base.request.AbstractRequestInfo;
 
 /**
  * 定义抽象类
