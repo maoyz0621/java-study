@@ -155,4 +155,6 @@ java-base-study.iml
 src/main/java/com/myz/java/study/encrypt/symmetry/des/
 src/main/java/com/myz/java/study/xml/jdom/
 src/main/java/com/myz/java/study/xml/json/
+/*.iml
 *.iml
+/.project

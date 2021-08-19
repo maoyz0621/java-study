@@ -16,7 +16,8 @@ import org.springframework.stereotype.Component;
  * @version v1.0
  */
 @Component
-public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+public class
+MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyBeanFactoryPostProcessor.class);
 
     @Override
