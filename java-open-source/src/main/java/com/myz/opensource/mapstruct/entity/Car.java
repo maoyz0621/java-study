@@ -1,9 +1,14 @@
 /**
  * Copyright 2020 Inc.
  **/
-package com.myz.opensource.mapstruct;
+package com.myz.opensource.mapstruct.entity;
 
+import com.myz.opensource.mapstruct.dto.CarEnum;
 import lombok.Data;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author maoyz0621 on 2020/11/9
@@ -30,4 +35,21 @@ public class Car {
      * 类的包名不一样，名称一致
      */
     private CarType carType;
+    /**
+     * 大数据类型
+     */
+    private BigDecimal height;
+    private BigDecimal length;
+    /**
+     * 类型不一致 LocalDateTime
+     */
+    private LocalDateTime createTime;
+    /**
+     * 类型不一致 Date
+     */
+    private Date updateTime;
+    /**
+     * 枚举类
+     */
+    private CarEnum carEnum;
 }

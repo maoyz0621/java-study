@@ -1,5 +1,7 @@
-package com.myz.opensource.mapstruct;
+package com.myz.opensource.mapstruct.convert;
 
+import com.myz.opensource.mapstruct.entity.Car;
+import com.myz.opensource.mapstruct.entity.CarDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

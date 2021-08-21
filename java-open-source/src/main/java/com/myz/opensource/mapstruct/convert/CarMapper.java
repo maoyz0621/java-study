@@ -1,8 +1,11 @@
 /**
  * Copyright 2020 Inc.
  **/
-package com.myz.opensource.mapstruct;
+package com.myz.opensource.mapstruct.convert;
 
+import com.myz.opensource.mapstruct.entity.Car;
+import com.myz.opensource.mapstruct.entity.CarDto;
+import com.myz.opensource.mapstruct.entity.CarType;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -38,6 +41,7 @@ public interface CarMapper {
 
     /**
      * 集合形式
+     *
      * @param source
      * @return
      */
