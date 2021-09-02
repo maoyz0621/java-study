@@ -27,6 +27,17 @@ import java.util.*;
 public class SetTest {
 
     @Test
+    public void testHashSetNull() {
+        Set<String> set = new HashSet<>();
+        set.addAll(null);
+        set.add(null);
+        System.out.println(set);
+        System.out.println(set.contains(null));
+        set.remove(null);
+        System.out.println(set);
+    }
+
+    @Test
     public void testHashSetRemove() {
         Set<String> set = new HashSet<>();
         set.add("a");

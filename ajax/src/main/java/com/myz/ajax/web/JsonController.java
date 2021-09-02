@@ -3,6 +3,9 @@
  **/
 package com.myz.ajax.web;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myz.ajax.common.Result;
 import com.myz.ajax.common.ResultGenerator;
 import com.myz.ajax.model.Address;
@@ -13,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +32,9 @@ import java.util.Date;
 public class JsonController {
 
     private static final Logger logger = LoggerFactory.getLogger(JsonController.class);
+
+    @Resource
+    ObjectMapper objectMapper;
 
     /**
      *
@@ -71,8 +78,21 @@ public class JsonController {
      * }
      */
     @PostMapping(value = "/b", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public Result json(@RequestBody @Validated UserJson userJson) {
+    public Result json(@RequestBody @Validated UserJson userJson) throws Exception {
         logger.info("**************** {} ******************", userJson);
+        UserJson userJson0 = userJson;
+
+        String s = objectMapper.writeValueAsString(userJson);
+        System.out.println(s);
+
+        userJson = JSON.parseObject(s, UserJson.class);
+        //UserJson userJson1 = objectMapper.readValue(s, UserJson.class);
+        logger.info("**************** {} ******************", userJson);
+
+        System.out.println("===========================");
+
+        String s1 = objectMapper.writeValueAsString(userJson0);
+        System.out.println(s1);
         return ResultGenerator.genSuccessResult(userJson);
     }
 
