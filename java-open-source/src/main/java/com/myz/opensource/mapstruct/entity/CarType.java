@@ -1,7 +1,7 @@
 /**
  * Copyright 2020 Inc.
  **/
-package com.myz.opensource.mapstruct;
+package com.myz.opensource.mapstruct.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

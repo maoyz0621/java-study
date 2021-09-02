@@ -15,3 +15,22 @@
  * @version v1.0
  */
 package com.myz.opensource.mapstruct;
+/*
+*  <!--对象转换-->
+   <dependency>
+       <groupId>org.mapstruct</groupId>
+       <artifactId>mapstruct</artifactId>
+       <version>1.4.1.Final</version>
+   </dependency>
+   <dependency>
+       <groupId>org.mapstruct</groupId>
+       <artifactId>mapstruct-jdk8</artifactId>
+       <version>1.3.1.Final</version>
+   </dependency>
+   <dependency>
+       <groupId>org.mapstruct</groupId>
+       <artifactId>mapstruct-processor</artifactId>
+       <version>1.4.1.Final</version>
+   </dependency>
+*
+* */

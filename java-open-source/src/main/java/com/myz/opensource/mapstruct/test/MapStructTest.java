@@ -1,19 +1,22 @@
 /**
  * Copyright 2020 Inc.
  **/
-package com.myz.opensource.mapstruct;
+package com.myz.opensource.mapstruct.test;
 
-import org.mapstruct.factory.Mappers;
+import com.myz.opensource.mapstruct.convert.CarMapper;
+import com.myz.opensource.mapstruct.entity.Car;
+import com.myz.opensource.mapstruct.entity.CarDto;
+import com.myz.opensource.mapstruct.entity.CarType;
 
 /**
  * @author maoyz0621 on 2020/11/9
  * @version v1.0
  */
-public class MapConverterStructTest {
+public class MapStructTest {
 
     public static void main(String[] args) {
-         baseConvert();
-        //baseConvertTarget();
+        // baseConvert();
+        baseConvertTarget();
         // baseConvertParam();
     }
 
@@ -25,8 +28,8 @@ public class MapConverterStructTest {
         car.setType(new CarType("abc"));
         car.setCarType(new CarType("carType"));
 
-        CarConverter INSTANCE = Mappers.getMapper(CarConverter.class);
-        CarDto carDto = INSTANCE.to(car);
+        CarDto carDto = CarMapper.INSTANCE.car2CarDto(car);
+        // true
         System.out.println(com.myz.opensource.mapstruct.dto.CarType.class == carDto.getCarType().getClass());
         System.out.println(carDto);
     }
