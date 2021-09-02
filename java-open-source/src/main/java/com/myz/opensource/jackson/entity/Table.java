@@ -1,7 +1,7 @@
 /**
  * Copyright 2020 Inc.
  **/
-package com.myz.opensource.jackson;
+package com.myz.opensource.jackson.entity;
 
 import lombok.Getter;
 import lombok.Setter;

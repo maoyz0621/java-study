@@ -1,5 +1,6 @@
 package com.myz.java.study.base.string;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.util.Date;
@@ -14,6 +15,25 @@ import java.util.Date;
  * 2017年6月8日 下午9:07:08
  */
 public class StringTest {
+
+    @Test
+    public void testsubstring1() {
+       String code = "222345";
+        System.out.println(code.length());
+        String lastCode = code.substring(code.length() - 2);
+        String middleCode = code.substring(code.length() - 4, code.length() - 2);
+        System.out.println(lastCode);
+        System.out.println(middleCode);
+
+    }
+
+    @Test
+    public void testsubstring() {
+        StringBuilder a = new StringBuilder();
+        //System.out.println(a.substring(0, a.length() - 1));
+        System.out.println("="+StringUtils.substring(a.toString(), 0, a.length() - 1));
+
+    }
 
     /**
      * 测试常量池intern()

@@ -97,6 +97,20 @@ public class EnumTest {
             return Day.MONDAY;
         }
 
+        /**
+         * 判断有效性
+         * @param index
+         * @return
+         */
+        public static boolean isValidEnum(int index) {
+            for (Day day : Day.values()) {
+                if (index == day.index) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         @Override
         public String toString() {
             final StringBuilder sb = new StringBuilder("Day{");

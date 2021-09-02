@@ -4,10 +4,9 @@
 package com.myz.ajax.model;
 
 import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.myz.ajax.config.MyJsonSerializer;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;
@@ -27,7 +26,8 @@ import java.util.Set;
 @Data
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true, value = {"price"})
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+//@JsonSerialize(using = MyJsonSerializer.class)
 public class UserJson implements Serializable {
 
     private static final long serialVersionUID = -8838124787476696726L;

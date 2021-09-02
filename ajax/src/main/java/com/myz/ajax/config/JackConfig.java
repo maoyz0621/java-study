@@ -14,7 +14,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
  * @author maoyz0621 on 19-6-26
  * @version: v1.0
  */
-@Configuration
+//@Configuration
 public class JackConfig {
 
     @Bean

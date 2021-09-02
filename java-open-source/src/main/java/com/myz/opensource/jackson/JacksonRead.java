@@ -5,6 +5,7 @@ package com.myz.opensource.jackson;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myz.opensource.jackson.entity.DemoBean;
 
 import java.io.IOException;
 import java.util.List;

@@ -4,7 +4,7 @@ if [ -d classes ]; then
 fi
 mkdir classes
 
-javac -cp D:\Javas\openjdk-8u41\lib\tools.jar com/myz/java/study/ast/anno/MySetter* -d classes/
+javac -cp C:\Program Files\Java\jdk1.8.0_291\lib\tools.jar com/myz/java/study/ast/anno/MySetter* -d classes/
 
 javac -cp classes -d classes -processor com/myz/java/study/ast/MyAnnotationProcessor com/myz/java/study/ast/AstUser.java
 

@@ -1,6 +1,8 @@
 package com.myz.java.study.base.collection.list;
 
 import com.myz.java.study.base.collection.domain.Book;
+import com.myz.java.study.base.collection.domain.User;
+import com.myz.java.study.utils.UserBean;
 import org.junit.Test;
 
 import java.util.*;
@@ -13,6 +15,44 @@ import java.util.*;
  * 2017年6月10日 下午1:09:03
  */
 public class ListIterTest {
+
+    @Test
+    public void testPut1() {
+        UserBean user = new UserBean();
+        user.setAge(1);
+        user.setAddr("1");
+        List<UserBean> list = new ArrayList<>();
+        list.add(user);
+        // [UserBean(age=1, height=0, sex=null, salary=null, birth=null, addr=1)]
+        System.out.println(list);
+        System.out.println("=====================================");
+        for (UserBean user1 : list) {
+            user1.setAge(2);
+        }
+        // [UserBean(age=2, height=0, sex=null, salary=null, birth=null, addr=1)]
+        System.out.println(list);
+
+    }
+
+    @Test
+    public void testPut() {
+        List<String> excludeIds = new ArrayList<>(Arrays.asList("0", "11", "2"));
+        excludeIds.add(0, "a");
+        System.out.println(excludeIds);
+    }
+
+    @Test
+    public void testCollection1() {
+        List<String> excludeIds = new ArrayList<>(Arrays.asList("0", "11", "2"));
+        List<String> orIncludeIds = new ArrayList<>(Arrays.asList("00", "11", "22"));
+        if (org.apache.commons.collections.CollectionUtils.isNotEmpty(excludeIds)
+                && org.apache.commons.collections.CollectionUtils.isNotEmpty(orIncludeIds)) {
+            excludeIds.removeIf(orIncludeIds::contains);
+        }
+        System.out.println(excludeIds);
+        System.out.println(orIncludeIds);
+    }
+
     /**
      * testCollection
      * 是一个接口
@@ -208,7 +248,10 @@ public class ListIterTest {
     public void testIterator() {
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
         for (Iterator<Integer> iterator = list.iterator(); iterator.hasNext(); ) {
-            Object next = iterator.next();
+            Integer next = iterator.next();
+            if (next == 2){
+                continue;
+            }
             System.out.println(next);
             iterator.remove();
         }
