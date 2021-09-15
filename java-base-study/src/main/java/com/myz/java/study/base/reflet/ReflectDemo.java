@@ -6,39 +6,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-class Book {
-    private String title;
-    private double price;
-
-    public Book() {
-        super();
-        System.out.println("Book");
-    }
-
-    private Book(String title) {
-        this.title = title;
-        System.out.println(this.title);
-    }
-
-    public Book(String title, double price) {
-        super();
-        this.title = title;
-        this.price = price;
-        System.out.println(this.title + ":" + this.price);
-    }
-
-
-    private void desc(int a, int b) {
-        System.out.println("描述" + a + b);
-    }
-
-    @Override
-    public String toString() {
-        // TODO Auto-generated methodfactory stub
-        return this.title + this.price;
-    }
-}
-
 public class ReflectDemo {
 
     public static void main(String[] args) throws Exception {
@@ -157,7 +124,7 @@ public class ReflectDemo {
         String[] str = new String[]{};
         // 返回的是虚拟机里面的class的表示     [Ljava.lang.String;
         // 首先 ‘[’ 表示数组，一个代表一维数组，比如 '[[' 代表二维数组。之后 'L' 代表类描述符，最后分号表示结束。
-        // 这种编码叫做JNI字段描述符（JavaNative Interface FieldDescriptors)。有兴趣的话可以自己学习下。
+        // 这种编码叫做JNI字段描述符（JavaNative Interface FieldDescriptors)
         System.out.println("getName            " + str.getClass().getName());
         // java.lang.String[]
         System.out.println("getCanonicalName   " + str.getClass().getCanonicalName());
