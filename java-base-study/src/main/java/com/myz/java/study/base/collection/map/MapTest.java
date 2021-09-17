@@ -17,6 +17,65 @@ import java.util.Map.Entry;
  */
 public class MapTest {
 
+    /**
+     * putIfAbsent在放入数据时，如果存在重复的key，那么putIfAbsent不会放入值。
+     */
+    @Test
+    public void testPutIfAbsent() {
+        Map<String, String> map = new HashMap<>();
+        map.putIfAbsent("1", "a");
+        // a
+        System.out.println(map.get("1"));
+        // a
+        map.putIfAbsent("1", "b");
+        System.out.println(map.get("1"));
+    }
+
+    /**
+     * computeIfAbsent对指定key的值进行重新计算，如果不存在这个key，则添加到 hashMap 中
+     */
+    @Test
+    public void testComputeIfAbsent() {
+        Map<String, String> map = new HashMap<>();
+        System.out.println(map.get("1"));
+        String s1 = map.computeIfAbsent("1", key -> "a1");
+        // a1; a1
+        System.out.println(map.get("1") + "; " + s1);
+        String s2 = map.computeIfAbsent("1", key -> "a2");
+        // a1; a1
+        System.out.println(map.get("1") + "; " + s2);
+
+        System.out.println("===============================");
+
+        String s3 = map.computeIfAbsent("2", key -> key(key));
+        // 2|; 2|
+        System.out.println(map.get("2") + "; " + s3);
+    }
+
+    private String key(String k) {
+        return k + "|";
+    }
+
+    /**
+     * computeIfPresent对指定key的值进行重新计算，前提是该key存在于hashMap中
+     */
+    @Test
+    public void testComputeIfPresent() {
+        Map<String, String> map = new HashMap<>();
+
+        String s1 = map.computeIfPresent("1", (k, v) -> v = v + "123");
+        // null; null
+        System.out.println(map.get("1") + "; " + s1);
+
+        map.put("2", "a");
+        // a
+        System.out.println(map.get("2"));
+        String s2 = map.computeIfPresent("2", (k, v) -> v = v + "123");
+        // a123; a123
+        System.out.println(map.get("2") + "; " + s2);
+
+    }
+
     @Test
     public void testMap() {
         Map<String, String> map = new HashMap<>();
@@ -156,7 +215,7 @@ public class MapTest {
         Map<String, String> map = Collections.EMPTY_MAP;
         System.out.println(map);
         // UnsupportedOperationException
-        map.putIfAbsent("key1","value1");
+        map.putIfAbsent("key1", "value1");
         map.forEach((key, value) -> System.out.println("key = " + key + ", value = " + value));
     }
 

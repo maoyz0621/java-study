@@ -13,6 +13,7 @@ class Context {
     private Strategy strategy;
 
     public Context() {
+        this(new ConcreteStrategyA());
     }
 
     /**

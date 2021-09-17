@@ -16,6 +16,19 @@ import org.junit.Test;
 public class StringTest {
 
     /**
+     * 包含任意一个：containsAny
+     */
+    @Test
+    public void testcontainsAny() {
+        // true
+        System.out.println(StringUtils.containsAny("abc", "a", "b"));
+        // true
+        System.out.println(StringUtils.containsAny("abc", "a", "1"));
+        // false
+        System.out.println(StringUtils.containsAny("abc", "1"));
+    }
+
+    /**
      * 空指针判断  isEmpty()
      */
     @Test

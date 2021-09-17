@@ -37,7 +37,7 @@ public class ServiceRequired {
      * t_user_b 插入值
      */
     public void notransaction_exception_required_required() {
-        selfExecept();
+        selfExcept();
     }
 
     /**
@@ -48,7 +48,7 @@ public class ServiceRequired {
      * t_user_b 未插入值
      */
     public void notransaction_required_required_exception() {
-        serviceExecept();
+        serviceExcept();
     }
 
     /**
@@ -60,7 +60,7 @@ public class ServiceRequired {
      */
     @Transactional(propagation = Propagation.REQUIRED)
     public void transaction_exception_required_required() {
-        selfExecept();
+        selfExcept();
     }
 
     /**
@@ -71,7 +71,7 @@ public class ServiceRequired {
      */
     @Transactional(propagation = Propagation.REQUIRED)
     public void transaction_required_required_exception() {
-        serviceExecept();
+        serviceExcept();
     }
 
     /**
@@ -92,7 +92,7 @@ public class ServiceRequired {
         }
     }
 
-    private void selfExecept() {
+    private void selfExcept() {
         UserA user1 = new UserA();
         user1.setFirstName("张三");
         userServiceRequiredA.save(user1);
@@ -104,7 +104,7 @@ public class ServiceRequired {
         throw new RuntimeException();
     }
 
-    private void serviceExecept() {
+    private void serviceExcept() {
         UserA user1 = new UserA();
         user1.setFirstName("张三");
         userServiceRequiredA.save(user1);

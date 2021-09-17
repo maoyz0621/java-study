@@ -2,13 +2,13 @@ package com.myz.design.strategy.paystrategyextend;
 
 /**
  * 卡支付方式工厂方法
+ *
  * @author maoyz on 18-1-6.
  */
 public class CardPayFactory {
 
-    public static CardPay getCardPay(int type){
-
-        switch (type){
+    public static CardPay getCardPay(int type) {
+        switch (type) {
             case 1:
                 return new JieJiCardPay();
             case 2:

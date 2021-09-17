@@ -15,11 +15,11 @@ public class JieJiCardPay extends CardPay {
 
     @Override
     protected int getType() {
-        return CardEnum.JieJiCard.getIndex();
+        return CardEnum.JieJiCard.getCode();
     }
 
     @Override
     protected void execPay(double price) {
-        System.out.println(CardEnum.JieJiCard.getName() + "支付");
+        System.out.println(CardEnum.JieJiCard.getText() + "支付");
     }
 }
