@@ -15,11 +15,11 @@ public class XingYongCardPay extends CardPay {
 
     @Override
     protected int getType() {
-        return CardEnum.XingYongCard.getIndex();
+        return CardEnum.XingYongCard.getCode();
     }
 
     @Override
     protected void execPay(double price) {
-        System.out.println(CardEnum.XingYongCard.getName() + "支付...");
+        System.out.println(CardEnum.XingYongCard.getText() + "支付...");
     }
 }

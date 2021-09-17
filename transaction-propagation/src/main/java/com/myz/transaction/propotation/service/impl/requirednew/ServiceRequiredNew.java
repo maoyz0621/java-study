@@ -37,7 +37,7 @@ public class ServiceRequiredNew {
      * t_user_b 插入值
      */
     public void notransaction_exception_requiresNew_requiresNew() {
-        selfExecept();
+        selfExcept();
     }
 
     /**
@@ -65,7 +65,7 @@ public class ServiceRequiredNew {
         user1.setFirstName("张三1111");
         userServiceRequiredNewA.save(user1);
 
-        selfExecept();
+        selfExcept();
     }
 
     /**
@@ -125,7 +125,7 @@ public class ServiceRequiredNew {
         }
     }
 
-    private void selfExecept() {
+    private void selfExcept() {
         UserA user1 = new UserA();
         user1.setFirstName("张三");
         userServiceRequiredNewA.saveNew(user1);
