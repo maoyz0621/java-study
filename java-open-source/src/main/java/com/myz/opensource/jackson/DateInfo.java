@@ -15,6 +15,7 @@ import java.util.Date;
 
 /**
  * Date 类型
+ *
  * @author maoyz0621 on 2020/9/28
  * @version v1.0
  */
@@ -25,7 +26,7 @@ public class DateInfo {
     /**
      * 日期格式 日期
      */
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @JsonProperty("date")
     private Date date;
 
@@ -33,7 +34,7 @@ public class DateInfo {
      * 时间格式 时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss", iso = DateTimeFormat.ISO.DATE_TIME)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @JsonProperty("time")
     private Date time;
 

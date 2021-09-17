@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -18,6 +19,31 @@ import java.util.List;
  * @version v1.0
  */
 public class ListCopyTest {
+
+    @Test
+    public void copy01() {
+        List<Integer> list = Lists.newArrayList(1, 2, 3, 4);
+        System.out.println("源数据 = " + list);
+        modify(list);
+        System.out.println(list);
+    }
+
+    void modify(List<Integer> list) {
+        List<Integer> listNew = new ArrayList<>();
+        Iterator<Integer> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Integer next = iterator.next();
+            // 对list操作
+            if (next == 2){
+                iterator.remove();
+                listNew.add(next);
+            }
+        }
+
+        listNew.addAll(list);
+        // 重新赋值
+        list = listNew;
+    }
 
     /**
      * 使用ArrayList的构造器

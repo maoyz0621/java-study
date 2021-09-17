@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @MyAnnotation(value = {"a", "b"}, age = 21)
-public class Main {
+public class MyAnnotationMain {
 
     public static void main(String[] args) {
 
@@ -17,7 +17,7 @@ public class Main {
         Collection<Integer> col = CollectionUtils.union(new ArrayList<>(), new ArrayList<>());
         System.out.println(col);
         System.setProperty("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
-        MyAnnotation myAnnotation = Main.class.getAnnotation(MyAnnotation.class);
+        MyAnnotation myAnnotation = MyAnnotationMain.class.getAnnotation(MyAnnotation.class);
         System.out.println(myAnnotation.age());
         System.out.println(myAnnotation.value()[0]);
         System.out.println("---------------");
