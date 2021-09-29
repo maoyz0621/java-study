@@ -43,7 +43,7 @@ public class TreeMapTest {
      */
     @Test
     public void testBeanWithComparable() {
-        Map<Person, String> map = new TreeMap<Person, String>();
+        SortedMap<Person, String> map = new TreeMap<Person, String>();
 
         map.put(new Person("zhangsan", 12), "aa");
         map.put(new Person("lisi", 14), "bb");
@@ -77,7 +77,7 @@ public class TreeMapTest {
         User u3 = new User("wanger", 14);
         User u4 = new User("zhaoqian", 10);
 
-        Map<User, String> map = new TreeMap<User, String>(new Comparator<User>() {
+        SortedMap<User, String> map = new TreeMap<User, String>(new Comparator<User>() {
 
             @Override
             public int compare(User p1, User p2) {

@@ -1,5 +1,7 @@
 package com.myz.java.study.base.collection.domain;
 
+import java.util.Objects;
+
 /**
  * 　要求数据不能修改
  *
@@ -26,6 +28,19 @@ public class User {
 
     public int getAge() {
         return age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age && Objects.equals(name, user.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
     }
 
     @Override
