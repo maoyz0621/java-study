@@ -1,5 +1,7 @@
 package com.myz.java.study.base.collection.domain;
 
+import java.util.Objects;
+
 /**
  * @author maoyz on 18-3-1.
  */
@@ -30,6 +32,19 @@ public class Person implements Comparable<Person> {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age && Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
     }
 
     /**
