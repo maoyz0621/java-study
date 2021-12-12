@@ -7,7 +7,6 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -40,14 +39,5 @@ public class ListToArrayTest {
         List<Integer> lists = Lists.newArrayList(1, 2, 3, 4);
         int[] ints = ArrayUtils.toPrimitive(lists.toArray(new Integer[0]));
         System.out.println(ints);
-    }
-
-    /**
-     * 将array转为list,Arrays.asList(arr);
-     */
-    @Test
-    public void array2List() {
-        int[] arr = {1, 2, 3, 4};
-        List<int[]> ints = Arrays.asList(arr);
     }
 }

@@ -1,6 +1,7 @@
 package com.myz.java.study.base.collection.map;
 
-import javafx.util.Pair;
+// import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -18,7 +19,7 @@ public class PairTest {
 
     @Test
     public void test() {
-        Pair<String, List<Object>> pair = new Pair<>("1", Arrays.asList("1", 2, "a"));
+        Pair<String, List<Object>> pair = Pair.of("1", Arrays.asList("1", 2, "a"));
         // 1=[1, 2, a]
         System.out.println(pair);
 

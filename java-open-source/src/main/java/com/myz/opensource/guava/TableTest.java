@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * 类似三维模型数据
  * Table
  * 双键Map
  * getRowKey() 第一列键
@@ -25,7 +26,7 @@ public class TableTest {
 
     @Test
     public void test() {
-        HashBasedTable<String, String, Integer> table = HashBasedTable.create();
+        Table<String, String, Integer> table = HashBasedTable.create();
 
         table.put("aaa", "语文", 90);
         table.put("bbb", "数学", 91);
