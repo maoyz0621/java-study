@@ -60,6 +60,8 @@
         <module>java-ast</module>
         <module>java-buddy</module>
         <module>jol</module>
+        <module>thread-stack</module>
+        <module>spring-statemachine</module>
     </modules>
 
     <properties>
@@ -73,6 +75,7 @@
         <netty.version>4.1.42.Final</netty.version>
         <net.bytebuddy.version>1.9.2</net.bytebuddy.version>
         <guava.version>27.0.1-jre</guava.version>
+        <slf4j_version>1.7.21</slf4j_version>
     </properties>
 
     <dependencies>
@@ -81,6 +84,12 @@
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
             <!--<scope>test</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j_version}</version>
         </dependency>
     </dependencies>
 
@@ -170,6 +179,10 @@
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.7.0</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
