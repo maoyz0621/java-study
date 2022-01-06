@@ -1,9 +1,17 @@
 package com.myz.design.strategy.paystrategyextend;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * 商品
+ *
  * @author maoyz on 18-1-6.
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Product {
 
     /**
@@ -21,25 +29,7 @@ public class Product {
      */
     private double price;
 
-    public Product(String name, int amount, double price) {
-        this.name = name;
-        this.amount = amount;
-        this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public double getProductPrice(){
-        return amount * price ;
+    public double getProductPrice() {
+        return amount * price;
     }
 }

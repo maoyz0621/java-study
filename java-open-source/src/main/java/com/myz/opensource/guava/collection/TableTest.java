@@ -1,4 +1,4 @@
-package com.myz.opensource.guava;
+package com.myz.opensource.guava.collection;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;

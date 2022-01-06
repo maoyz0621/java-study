@@ -28,12 +28,13 @@
 
     <dependencies>
 
-        <!-- 在使用线程池等会池化复用线程的执行组件情况下传递ThreadLocal值 -->
+        <!-- 在使用线程池等会池化复用线程的执行组件情况下传递ThreadLocal值 start -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>transmittable-thread-local</artifactId>
             <version>2.12.1</version>
         </dependency>
+        <!-- 在使用线程池等会池化复用线程的执行组件情况下传递ThreadLocal值 end -->
 
         <dependency>
             <groupId>net.dongliu</groupId>
@@ -132,6 +133,11 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
 
         <dependency>

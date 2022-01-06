@@ -13,7 +13,7 @@
     <name>java-base-study</name>
 
     <properties>
-        <slf4j_version>1.7.21</slf4j_version>
+        <slf4j_version>1.7.30</slf4j_version>
         <junit_version>4.12</junit_version>
         <mysql_version>5.1.40</mysql_version>
         <commonsdbcp_version>1.4</commonsdbcp_version>
@@ -28,7 +28,6 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>25.1-jre</version>
         </dependency>
 
         <!-- 二维码com.google.zxing/core start-->

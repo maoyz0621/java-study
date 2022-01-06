@@ -1,6 +1,12 @@
-package com.myz.opensource.guava;
+package com.myz.opensource.guava.collection;
 
-import com.google.common.collect.*;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multiset;
 import org.junit.Test;
 
 import java.util.HashMap;

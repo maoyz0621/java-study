@@ -5,7 +5,12 @@ package com.myz.java.study.optional;
 
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author maoyz on 2018/10/18
@@ -72,7 +77,6 @@ public class OptionalTest {
 
         Optional<String> empty = Optional.ofNullable(null);
         if (empty.isPresent()) {
-            // java.util.NoSuchElementException: No value present
             System.out.println(empty.get());
         } else {
             System.out.println("error");
@@ -189,4 +193,75 @@ public class OptionalTest {
         }
     }
 
+    /**
+     * 结果为null的时候，throw new NullPointerException();
+     */
+    @Test
+    public void testflatMap(){
+        BaseResponse response = null;
+        Optional<List> list = Optional.ofNullable(response)
+                .filter(BaseResponse::isSuccess)
+                .flatMap(param -> Optional.ofNullable(param.getData()));
+        // false
+        System.out.println(list.isPresent());
+    }
+
+    @Test
+    public void testfilterAndflatMap(){
+        BaseResponse response = new BaseResponse();
+        response.setSuccess(false);
+        Optional<List> list = Optional.ofNullable(response)
+                .filter(BaseResponse::isSuccess)
+                .flatMap(param -> Optional.ofNullable(param.getData()));
+        // false
+        System.out.println(list.isPresent());
+    }
+
+    /**
+     * 结果为null的时候，Optional.ofNullable(mapper.apply(value))
+     */
+    @Test
+    public void testmap(){
+        BaseResponse response = new BaseResponse();
+        response.setSuccess(true);
+        Optional<List> list = Optional.ofNullable(response)
+                .filter(BaseResponse::isSuccess)
+                .map(BaseResponse::getData);
+        // false
+        System.out.println(list.isPresent());
+    }
+
+    @Test
+    public void testflatMap1(){
+        BaseResponse response = new BaseResponse();
+        response.setSuccess(true);
+        response.setData(new ArrayList());
+        Optional<List> list = Optional.ofNullable(response)
+                .filter(BaseResponse::isSuccess)
+                .flatMap(param -> Optional.ofNullable(param.getData()));
+        // true
+        System.out.println(list.isPresent());
+
+    }
+
+    static class BaseResponse<T>{
+        private boolean success;
+        private List<T> data;
+
+        public boolean isSuccess() {
+            return success;
+        }
+
+        public void setSuccess(boolean success) {
+            this.success = success;
+        }
+
+        public List<T> getData() {
+            return data;
+        }
+
+        public void setData(List<T> data) {
+            this.data = data;
+        }
+    }
 }

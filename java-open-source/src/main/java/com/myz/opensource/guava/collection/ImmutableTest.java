@@ -1,9 +1,13 @@
-package com.myz.opensource.guava;
+package com.myz.opensource.guava.collection;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.junit.Test;
+
+import java.util.List;
 
 /**
  * 不可变集合：
@@ -31,12 +35,45 @@ public class ImmutableTest {
     }
 
     /**
+     * 通过已经存在的集合
      * ImmutableSet.copyOf(E[])
      */
     @Test
-    public void testSet() {
+    public void testImmutableSetCopyOf() {
         ImmutableSet<String> set = ImmutableSet.copyOf(new String[]{"demo", "b", "demo"});
         System.out.println(set);
+        // java.lang.UnsupportedOperationException – always
+        set.add("demo");
+    }
+
+    @Test
+    public void testImmutableSetCopyOf1() {
+        List<String> list = Lists.newArrayList("demo", "b", "demo1");
+        ImmutableSet<String> set = ImmutableSet.copyOf(list);
+        // [demo, b, demo1]
+        System.out.println(set);
+        // 原list新增元素之后
+        list.add("a");
+        // 不变[demo, b, demo1]
+        System.out.println("原list新增元素之后:" + set);
+    }
+
+    /**
+     * ImmutableSet.of
+     */
+    @Test
+    public void testImmutableSetOf() {
+        ImmutableSet<String> set = ImmutableSet.of("demo", "b", "demo");
+        System.out.println(set);
+        // java.lang.UnsupportedOperationException – always
+        set.add("demo");
+    }
+
+    @Test
+    public void testImmutableSetBuilder() {
+        ImmutableSet<Object> set = ImmutableSet.builder().add("a").addAll(Sets.newHashSet("1", "2")).add(10).build();
+        System.out.println(set);
+        // java.lang.UnsupportedOperationException – always
         set.add("demo");
     }
 
