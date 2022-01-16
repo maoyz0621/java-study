@@ -25,6 +25,12 @@
     </properties>
 
     <dependencies>
+<!--         mvn install:install-file -Dfile=thread-stack.jar -DgroupId=com.myz -DartifactId=thread-stack -Dversion=1.0 -Dpackaging=jar -->
+        <dependency>
+            <groupId>com.myz</groupId>
+            <artifactId>thread-stack</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <!--对象转换-->
         <dependency>
@@ -54,11 +60,11 @@
         <!--    <artifactId>spring-boot-starter-freemarker</artifactId>-->
         <!--</dependency>-->
 
-        <!--<dependency>-->
-        <!--    <groupId>org.springframework.boot</groupId>-->
-        <!--    <artifactId>spring-boot-devtools</artifactId>-->
-        <!--    <scope>runtime</scope>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -7,6 +7,7 @@ import java.util.SortedMap;
 
 /**
  * 排序Map
+ * 自然排序和定制排序
  *
  * @author maoyz
  * @version V1.0
