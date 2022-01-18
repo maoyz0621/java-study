@@ -12,7 +12,7 @@ import com.myz.opensource.eda.event.IEvent;
  */
 public class RetryEventBus extends AbstractEventBus{
     @Override
-    public IResult publish(IEvent<?> event) {
+    public IResult post(IEvent<?> event) {
         return null;
     }
 }

@@ -18,12 +18,12 @@ public interface IEventBus {
      * @param event
      * @return
      */
-    IResult publish(IEvent<?> event);
+    IResult post(IEvent<?> event);
 
     /**
      * 订阅
-     * @param val
+     * @param topic
      * @param subscriber
      */
-    void subscribe(String topic, IEventSubscriber<?> subscriber);
+    void register(String topic, IEventSubscriber<?> subscriber);
 }
