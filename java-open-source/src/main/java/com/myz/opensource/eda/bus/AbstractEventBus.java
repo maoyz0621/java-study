@@ -18,21 +18,22 @@ import java.util.Set;
 @Slf4j
 public abstract class AbstractEventBus implements IEventBus {
 
-    protected Map<String, Set<IEventSubscriber<?>>>  eventSubscriberMap= new HashMap<>(128);
+    protected Map<String, Set<IEventSubscriber<?>>> eventSubscriberMap = new HashMap<>(128);
 
     /**
      * 注册、订阅
+     *
      * @param topic
      * @param subscriber
      */
     @Override
     public void register(String topic, IEventSubscriber<?> subscriber) {
-        Set<IEventSubscriber<?>> eventSubscribers = eventSubscriberMap.getOrDefault(topic,new LinkedHashSet<>());
+        Set<IEventSubscriber<?>> eventSubscribers = eventSubscriberMap.getOrDefault(topic, new LinkedHashSet<>());
         eventSubscribers.add(subscriber);
         eventSubscriberMap.put(topic, eventSubscribers);
     }
 
-    protected Set<IEventSubscriber<?>> getEventSubscriber(String topic){
+    protected Set<IEventSubscriber<?>> getEventSubscriber(String topic) {
         return eventSubscriberMap.get(topic);
     }
 }

@@ -1,7 +1,7 @@
 /**
  * Copyright 2021 Inc.
  **/
-package com.myz.opensource.transmittable;
+package com.myz.opensource.ttl;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.alibaba.ttl.TtlRunnable;

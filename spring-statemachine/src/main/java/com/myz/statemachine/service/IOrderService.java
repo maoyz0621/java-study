@@ -3,7 +3,7 @@
  **/
 package com.myz.statemachine.service;
 
-import com.myz.statemachine.config.Order;
+import com.myz.statemachine.config.OrderContext;
 
 /**
  * @author maoyz0621 on 2022/2/8
@@ -11,9 +11,9 @@ import com.myz.statemachine.config.Order;
  */
 public interface IOrderService {
 
-    Order pay(Long id);
+    OrderContext pay(Long id);
 
-    Order deliver(Long id);
+    OrderContext deliver(Long id);
 
-    Order receive(Long id);
+    OrderContext receive(Long id);
 }

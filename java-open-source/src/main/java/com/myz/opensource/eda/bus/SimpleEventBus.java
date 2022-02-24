@@ -20,7 +20,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class SimpleEventBus extends AbstractEventBus {
 
     private EventLoop[] eventLoop;
+
     private final Executor executor;
+    private boolean sync = false;
 
     public SimpleEventBus(Executor executor) {
         this.executor = executor;
@@ -33,16 +35,26 @@ public class SimpleEventBus extends AbstractEventBus {
      * @return
      */
     @Override
-    public IResult post(IEvent event) {
+    public IResult post(IEvent<?> event) {
         return eventLoop[event.hashCode()].postEvent(event);
     }
 
-    private void dispatchEvent(IEvent event) {
+    private void dispatchEvent(IEvent<?> event) {
         String topic = event.topic();
         Set<IEventSubscriber<?>> eventSubscribers = getEventSubscriber(topic);
         eventSubscribers.forEach((eventSubscriber) -> {
-            IResult result = eventSubscriber.accept(event);
+            Runnable runnable = () -> {
+                IResult result = eventSubscriber.accept(event);
+            };
+
+            if (sync) {
+                executor.execute(runnable);
+            } else {
+                runnable.run();
+            }
         });
+
+
     }
 
     class EventLoop {
@@ -53,11 +65,10 @@ public class SimpleEventBus extends AbstractEventBus {
                 IEvent event = eventQueue.take();
                 dispatchEvent(event);
             } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
 
-        IResult postEvent(IEvent event) {
+        IResult postEvent(IEvent<?> event) {
             try {
                 eventQueue.put(event);
             } catch (InterruptedException e) {

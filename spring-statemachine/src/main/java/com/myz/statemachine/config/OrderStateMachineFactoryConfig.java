@@ -3,17 +3,22 @@
  **/
 package com.myz.statemachine.config;
 
+import com.myz.statemachine.enums.OrderState;
+import com.myz.statemachine.enums.OrderStateChangeEvent;
 import com.myz.statemachine.listener.MyStateMachineListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.StateMachineContext;
 import org.springframework.statemachine.StateMachinePersist;
+import org.springframework.statemachine.action.Action;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.EnumStateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineConfigBuilder;
 import org.springframework.statemachine.config.builders.StateMachineConfigurationConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
+import org.springframework.statemachine.guard.Guard;
 import org.springframework.statemachine.persist.DefaultStateMachinePersister;
 import org.springframework.statemachine.persist.StateMachinePersister;
 import org.springframework.statemachine.support.DefaultStateMachineContext;
@@ -28,7 +33,7 @@ import java.util.EnumSet;
  */
 @Configuration
 @EnableStateMachineFactory(name = "orderStateMachineFactory")
-public class OrderStateMachineFactoryConfig extends EnumStateMachineConfigurerAdapter<OrderStateEnum, OrderStateChangeEventEnum> {
+public class OrderStateMachineFactoryConfig extends EnumStateMachineConfigurerAdapter<OrderState, OrderStateChangeEvent> {
 
 
     public static final String orderStateMachineId = "orderStateMachineId";
@@ -38,7 +43,7 @@ public class OrderStateMachineFactoryConfig extends EnumStateMachineConfigurerAd
     }
 
     @Override
-    public void configure(StateMachineConfigurationConfigurer<OrderStateEnum, OrderStateChangeEventEnum> config) throws Exception {
+    public void configure(StateMachineConfigurationConfigurer<OrderState, OrderStateChangeEvent> config) throws Exception {
         config.withConfiguration()
                 .autoStartup(true)
                 .listener(myStateMachineListener());
@@ -51,7 +56,7 @@ public class OrderStateMachineFactoryConfig extends EnumStateMachineConfigurerAd
      * @throws Exception
      */
     @Override
-    public void configure(StateMachineConfigBuilder<OrderStateEnum, OrderStateChangeEventEnum> config) throws Exception {
+    public void configure(StateMachineConfigBuilder<OrderState, OrderStateChangeEvent> config) throws Exception {
         super.configure(config);
     }
 
@@ -62,12 +67,12 @@ public class OrderStateMachineFactoryConfig extends EnumStateMachineConfigurerAd
      * @throws Exception
      */
     @Override
-    public void configure(StateMachineStateConfigurer<OrderStateEnum, OrderStateChangeEventEnum> states) throws Exception {
+    public void configure(StateMachineStateConfigurer<OrderState, OrderStateChangeEvent> states) throws Exception {
         states.withStates()
                 // 定义状态机的初始状态
-                .initial(OrderStateEnum.WAIT_PAYMENT)
+                .initial(OrderState.STATE_INIT)
                 // 状态机的所有状态
-                .states(EnumSet.allOf(OrderStateEnum.class));
+                .states(EnumSet.allOf(OrderState.class));
     }
 
     /**
@@ -76,20 +81,51 @@ public class OrderStateMachineFactoryConfig extends EnumStateMachineConfigurerAd
      * source
      * target
      * event
-     *
+     * guard 看守
+     * action 活动
+     * withChoice()
      * @param transitions
      * @throws Exception
      */
     @Override
-    public void configure(StateMachineTransitionConfigurer<OrderStateEnum, OrderStateChangeEventEnum> transitions) throws Exception {
+    public void configure(StateMachineTransitionConfigurer<OrderState, OrderStateChangeEvent> transitions) throws Exception {
         transitions
-                .withExternal().source(OrderStateEnum.WAIT_PAYMENT).target(OrderStateEnum.WAIT_DELIVER).event(OrderStateChangeEventEnum.PAYED)
+                .withExternal().source(OrderState.STATE_INIT).target(OrderState.STATE_DISPATCHING).event(OrderStateChangeEvent.EVENT_ASSIGN)
                 .and()
-                .withExternal().source(OrderStateEnum.WAIT_DELIVER).target(OrderStateEnum.WAIT_RECEIVE).event(OrderStateChangeEventEnum.DELIVERED)
+                .withExternal().source(OrderState.STATE_DISPATCHING).target(OrderState.STATE_DISPATCH_FAILED).event(OrderStateChangeEvent.EVENT_SHIPPER_CANCEL).guard(guard())
                 .and()
-                .withExternal().source(OrderStateEnum.WAIT_RECEIVE).target(OrderStateEnum.FINISH).event(OrderStateChangeEventEnum.RECEIVED)
+                .withExternal().source(OrderState.STATE_DISPATCH_FAILED).target(OrderState.STATE_FINISH).event(OrderStateChangeEvent.RECEIVED).action(action())
+                .and()
+                //
+                // .withChoice().source().first().last();
         ;
 
+    }
+
+    /**
+     * 看守
+     *
+     * @return
+     */
+    @Bean
+    public Guard<OrderState, OrderStateChangeEvent> guard() {
+        return new Guard<OrderState, OrderStateChangeEvent>() {
+            @Override
+            public boolean evaluate(StateContext<OrderState, OrderStateChangeEvent> context) {
+                return true;
+            }
+        };
+    }
+
+    @Bean
+    public Action<OrderState, OrderStateChangeEvent> action() {
+        return new Action<OrderState, OrderStateChangeEvent>() {
+
+            @Override
+            public void execute(StateContext<OrderState, OrderStateChangeEvent> context) {
+                // do something
+            }
+        };
     }
 
     /**
@@ -99,8 +135,8 @@ public class OrderStateMachineFactoryConfig extends EnumStateMachineConfigurerAd
      * @return
      */
     @Bean
-    public StateMachinePersister<OrderStateEnum, OrderStateChangeEventEnum, Order> persister() {
-        return new DefaultStateMachinePersister<>(new StateMachinePersist<OrderStateEnum, OrderStateChangeEventEnum, Order>() {
+    public StateMachinePersister<OrderState, OrderStateChangeEvent, OrderContext> persister() {
+        return new DefaultStateMachinePersister<>(new StateMachinePersist<OrderState, OrderStateChangeEvent, OrderContext>() {
 
             /**
              * 写操作
@@ -109,7 +145,7 @@ public class OrderStateMachineFactoryConfig extends EnumStateMachineConfigurerAd
              * @throws Exception
              */
             @Override
-            public void write(StateMachineContext<OrderStateEnum, OrderStateChangeEventEnum> context, Order contextObj) throws Exception {
+            public void write(StateMachineContext<OrderState, OrderStateChangeEvent> context, OrderContext contextObj) throws Exception {
                 contextObj.setStatus(context.getState());
             }
 
@@ -120,8 +156,8 @@ public class OrderStateMachineFactoryConfig extends EnumStateMachineConfigurerAd
              * @throws Exception
              */
             @Override
-            public StateMachineContext<OrderStateEnum, OrderStateChangeEventEnum> read(Order contextObj) throws Exception {
-                return new DefaultStateMachineContext<OrderStateEnum, OrderStateChangeEventEnum>(contextObj.getStatus(), null, null, null, null, orderStateMachineId);
+            public StateMachineContext<OrderState, OrderStateChangeEvent> read(OrderContext contextObj) throws Exception {
+                return new DefaultStateMachineContext<OrderState, OrderStateChangeEvent>(contextObj.getStatus(), null, null, null, null, orderStateMachineId);
             }
         });
     }

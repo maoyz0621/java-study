@@ -3,6 +3,7 @@
  **/
 package com.myz.statemachine.config;
 
+import com.myz.statemachine.enums.OrderState;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -12,8 +13,8 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class Order {
+public class OrderContext {
 
     private Long id;
-    private OrderStateEnum status;
+    private OrderState status;
 }

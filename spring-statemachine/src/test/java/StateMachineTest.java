@@ -22,6 +22,12 @@ public class StateMachineTest {
     private IOrderService orderService;
 
     @Test
+    public void test0(){
+        orderService.deliver(2L);
+        orderService.receive(1L);
+    }
+
+    @Test
     public void test1(){
         orderService.pay(1L);
         orderService.deliver(1L);

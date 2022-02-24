@@ -3,6 +3,8 @@
  **/
 package com.myz.statemachine.config;
 
+import com.myz.statemachine.enums.OrderState;
+import com.myz.statemachine.enums.OrderStateChangeEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.StateMachineContext;
@@ -27,7 +29,7 @@ import java.util.EnumSet;
  */
 @Configuration
 @EnableStateMachine(name = "orderStateMachine")
-public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<OrderStateEnum, OrderStateChangeEventEnum> {
+public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<OrderState, OrderStateChangeEvent> {
 
     /**
      * 配置状态
@@ -36,7 +38,7 @@ public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<Order
      * @throws Exception
      */
     @Override
-    public void configure(StateMachineConfigBuilder<OrderStateEnum, OrderStateChangeEventEnum> config) throws Exception {
+    public void configure(StateMachineConfigBuilder<OrderState, OrderStateChangeEvent> config) throws Exception {
         super.configure(config);
     }
 
@@ -46,32 +48,34 @@ public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<Order
      * @throws Exception
      */
     @Override
-    public void configure(StateMachineStateConfigurer<OrderStateEnum, OrderStateChangeEventEnum> states) throws Exception {
+    public void configure(StateMachineStateConfigurer<OrderState, OrderStateChangeEvent> states) throws Exception {
         states.withStates()
                 // 定义状态机的初始状态
-                .initial(OrderStateEnum.WAIT_PAYMENT)
+                .initial(OrderState.STATE_INIT)
                 // 状态机的所有状态
-                .states(EnumSet.allOf(OrderStateEnum.class));
+                .states(EnumSet.allOf(OrderState.class));
     }
 
     /**
      * 配置状态机状态的迁移动作
      * <p>
-     * source
-     * target
-     * event
+     * withExternal - 表示source target两种状态不同
+     * source - 当前状态
+     * target - 目标状态
+     * event - 导致当前变化的动作或事件
+     * action - 执行当前状态变更导致的业务逻辑处理，以及出异常时的处理
      *
      * @param transitions
      * @throws Exception
      */
     @Override
-    public void configure(StateMachineTransitionConfigurer<OrderStateEnum, OrderStateChangeEventEnum> transitions) throws Exception {
+    public void configure(StateMachineTransitionConfigurer<OrderState, OrderStateChangeEvent> transitions) throws Exception {
         transitions
-                .withExternal().source(OrderStateEnum.WAIT_PAYMENT).target(OrderStateEnum.WAIT_DELIVER).event(OrderStateChangeEventEnum.PAYED)
+                .withExternal().source(OrderState.STATE_INIT).target(OrderState.STATE_DISPATCHING).event(OrderStateChangeEvent.EVENT_CANCEL)
                 .and()
-                .withExternal().source(OrderStateEnum.WAIT_DELIVER).target(OrderStateEnum.WAIT_RECEIVE).event(OrderStateChangeEventEnum.DELIVERED)
+                .withExternal().source(OrderState.STATE_DISPATCHING).target(OrderState.STATE_DISPATCH_FAILED).event(OrderStateChangeEvent.EVENT_SHIPPER_CANCEL)
                 .and()
-                .withExternal().source(OrderStateEnum.WAIT_RECEIVE).target(OrderStateEnum.FINISH).event(OrderStateChangeEventEnum.RECEIVED)
+                .withExternal().source(OrderState.STATE_DISPATCH_FAILED).target(OrderState.STATE_FINISH).event(OrderStateChangeEvent.RECEIVED)
         ;
 
     }
@@ -83,8 +87,8 @@ public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<Order
      * @return
      */
     @Bean
-    public StateMachinePersister<OrderStateEnum, OrderStateChangeEventEnum, Order> persister() {
-        return new DefaultStateMachinePersister<>(new StateMachinePersist<OrderStateEnum, OrderStateChangeEventEnum, Order>() {
+    public StateMachinePersister<OrderState, OrderStateChangeEvent, OrderContext> persister() {
+        return new DefaultStateMachinePersister<>(new StateMachinePersist<OrderState, OrderStateChangeEvent, OrderContext>() {
 
             /**
              * 写操作
@@ -93,7 +97,7 @@ public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<Order
              * @throws Exception
              */
             @Override
-            public void write(StateMachineContext<OrderStateEnum, OrderStateChangeEventEnum> context, Order contextObj) throws Exception {
+            public void write(StateMachineContext<OrderState, OrderStateChangeEvent> context, OrderContext contextObj) throws Exception {
 
             }
 
@@ -104,8 +108,8 @@ public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<Order
              * @throws Exception
              */
             @Override
-            public StateMachineContext<OrderStateEnum, OrderStateChangeEventEnum> read(Order contextObj) throws Exception {
-                return new DefaultStateMachineContext<OrderStateEnum, OrderStateChangeEventEnum>(contextObj.getStatus(), null, null, null);
+            public StateMachineContext<OrderState, OrderStateChangeEvent> read(OrderContext contextObj) throws Exception {
+                return new DefaultStateMachineContext<OrderState, OrderStateChangeEvent>(contextObj.getStatus(), null, null, null);
             }
         });
     }

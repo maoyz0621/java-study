@@ -3,10 +3,10 @@
  **/
 package com.myz.statemachine.listener;
 
-import com.myz.statemachine.config.Order;
-import com.myz.statemachine.config.OrderStateChangeEventEnum;
-import com.myz.statemachine.config.OrderStateEnum;
+import com.myz.statemachine.config.OrderContext;
 import com.myz.statemachine.config.OrderStateMachineFactoryConfig;
+import com.myz.statemachine.enums.OrderState;
+import com.myz.statemachine.enums.OrderStateChangeEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
 import org.springframework.statemachine.annotation.OnTransition;
@@ -31,10 +31,10 @@ public class OrderStateFactoryListener {
      * @return
      */
     @OnTransition(source = "WAIT_PAYMENT", target = "WAIT_DELIVER")
-    public boolean payTransition(Message<OrderStateChangeEventEnum> message) {
+    public boolean payTransition(Message<OrderStateChangeEvent> message) {
         log.info("***************** OrderStateFactoryListener payTransition = {} *****************", message.getHeaders().toString());
-        Order order = (Order) message.getHeaders().get("order");
-        order.setStatus(OrderStateEnum.WAIT_DELIVER);
+        OrderContext orderContext = (OrderContext) message.getHeaders().get("order");
+        orderContext.setStatus(OrderState.STATE_DISPATCHING);
         return true;
     }
 
@@ -43,18 +43,18 @@ public class OrderStateFactoryListener {
      * @return
      */
     @OnTransition(source = "WAIT_DELIVER", target = "WAIT_RECEIVE")
-    public boolean deliverTransition(Message<OrderStateChangeEventEnum> message) {
+    public boolean deliverTransition(Message<OrderStateChangeEvent> message) {
         log.info("***************** OrderStateFactoryListener deliverTransition = {} *****************", message.getHeaders().toString());
-        Order order = (Order) message.getHeaders().get("order");
-        order.setStatus(OrderStateEnum.WAIT_RECEIVE);
+        OrderContext orderContext = (OrderContext) message.getHeaders().get("order");
+        orderContext.setStatus(OrderState.STATE_DISPATCH_FAILED);
         return true;
     }
 
     @OnTransition(source = "WAIT_RECEIVE", target = "FINISH")
-    public boolean finishTransition(Message<OrderStateChangeEventEnum> message) {
+    public boolean finishTransition(Message<OrderStateChangeEvent> message) {
         log.info("***************** OrderStateFactoryListener finishTransition = {} *****************", message.getHeaders().toString());
-        Order order = (Order) message.getHeaders().get("order");
-        order.setStatus(OrderStateEnum.FINISH);
+        OrderContext orderContext = (OrderContext) message.getHeaders().get("order");
+        orderContext.setStatus(OrderState.STATE_FINISH);
         return true;
     }
 }

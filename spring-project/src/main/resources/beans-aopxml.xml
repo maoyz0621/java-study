@@ -18,7 +18,7 @@
 		     切面通知,执行顺序跟配置顺序有关
 		     大多用于日志，缓存
 		-->
-		<aop:aspect ref="logging" order="1">
+		<aop:aspect ref="logging" orderContext="1">
             <!--　环绕通知　-->
             <aop:around method="around" pointcut-ref="pointcut" arg-names="pjp"/>
             <!-- 前置通知　-->
