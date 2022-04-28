@@ -64,6 +64,7 @@
         <module>spring-statemachine</module>
         <module>squirrel-fsm</module>
         <module>fsm</module>
+        <module>leetcode</module>
     </modules>
 
     <properties>

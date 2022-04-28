@@ -114,10 +114,15 @@ public class StringTest {
      */
     @Test
     public void substring() {
-        String substringAfter = StringUtils.substringAfter("SELECT * FROM PERSON ", "FROM");
+        String substringAfter = StringUtils.substringAfter("SELECT * FROM PERSON FROM", "FROM");
+        //  PERSON FROM
         System.out.println(substringAfter);
-        String substringBefore = StringUtils.substringBefore("SELECT * FROM PERSON ", "FROM");
+        String substringBefore = StringUtils.substringBefore("SELECT * FROM PERSON FROM", "FROM");
+        // SELECT *
         System.out.println(substringBefore);
+        String substringBeforeLast = StringUtils.substringBeforeLast("SELECT * FROM PERSON FROM", "FROM");
+        // SELECT * FROM PERSON
+        System.out.println(substringBeforeLast);
     }
 
     @Test

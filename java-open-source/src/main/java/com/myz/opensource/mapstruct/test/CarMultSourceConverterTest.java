@@ -3,8 +3,8 @@
  **/
 package com.myz.opensource.mapstruct.test;
 
-import com.myz.opensource.mapstruct.convert.CarMultSourceConverter;
-import com.myz.opensource.mapstruct.convert.MapperConverterFactory;
+import com.myz.opensource.mapstruct.convert.factory.MapperConverterFactory;
+import com.myz.opensource.mapstruct.convert.multi.CarMultSourceConverter;
 import com.myz.opensource.mapstruct.entity.Car;
 import com.myz.opensource.mapstruct.entity.CarDto;
 import com.myz.opensource.mapstruct.entity.CarType;

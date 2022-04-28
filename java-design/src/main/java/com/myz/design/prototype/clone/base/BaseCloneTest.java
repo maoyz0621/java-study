@@ -58,9 +58,9 @@ public class BaseCloneTest {
         student1.setAge(101);
         student1.setAddr("anhui1");
         // StudentClone{number=11, age=101, addr='anhui1'}
-        System.out.println("student1发生变化: " + student1);
+        System.out.println("student1发生变化: student1=" + student1);
         // StudentClone{number=11, age=101, addr='anhui1'}
-        System.out.println("student1发生变化: " + student2);
+        System.out.println("student1发生变化: student2=" + student2);
 
         System.out.println("\r\n");
         // student2变化
@@ -69,9 +69,9 @@ public class BaseCloneTest {
         student2.setAge(102);
         student2.setAddr("anhui2");
         // StudentClone{number=12, age=102, addr='anhui2'}
-        System.out.println("student2发生变化: " + student1);
+        System.out.println("student2发生变化: student1=" + student1);
         // StudentClone{number=12, age=102, addr='anhui2'}
-        System.out.println("student2发生变化: " + student2);
+        System.out.println("student2发生变化: student2=" + student2);
     }
 
     /**
@@ -96,9 +96,9 @@ public class BaseCloneTest {
         studentClone1.setAge(101);
         studentClone1.setAddr("anhui1");
         // StudentClone{number=11, age=101, addr='anhui1'}
-        System.out.println("student1发生变化: " + studentClone1);
+        System.out.println("student1发生变化: studentClone1=" + studentClone1);
         // StudentClone{number=1, age=10, addr='anhui'}
-        System.out.println("student1发生变化: " + studentClone2);
+        System.out.println("student1发生变化: studentClone2=" + studentClone2);
 
         System.out.println("\r\n");
         // student变化
@@ -106,9 +106,9 @@ public class BaseCloneTest {
         studentClone2.setAge(102);
         studentClone2.setAddr("anhui2");
         // StudentClone{number=11, age=101, addr='anhui1'}
-        System.out.println("student2发生变化: " + studentClone1);
+        System.out.println("student2发生变化: studentClone1=" + studentClone1);
         // StudentClone{number=12, age=102, addr='anhui2'}
-        System.out.println("student2发生变化: " + studentClone2);
+        System.out.println("student2发生变化: studentClone2=" + studentClone2);
 
 
     }

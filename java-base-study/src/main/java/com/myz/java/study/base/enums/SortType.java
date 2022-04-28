@@ -12,6 +12,7 @@ public enum SortType {
 
 
     public static void main(String[] args) {
+        // No enum constant com.myz.java.study.base.enums.SortType.ASC1
         System.out.println(SortType.valueOf("ASC1"));
     }
 }

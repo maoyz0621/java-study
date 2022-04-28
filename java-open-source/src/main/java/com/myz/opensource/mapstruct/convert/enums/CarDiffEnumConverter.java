@@ -1,5 +1,6 @@
-package com.myz.opensource.mapstruct.convert;
+package com.myz.opensource.mapstruct.convert.enums;
 
+import com.myz.opensource.mapstruct.convert.factory.IPairConverter;
 import com.myz.opensource.mapstruct.entity.Car;
 import com.myz.opensource.mapstruct.entity.CarDiffEnumDto;
 import org.mapstruct.Mapper;

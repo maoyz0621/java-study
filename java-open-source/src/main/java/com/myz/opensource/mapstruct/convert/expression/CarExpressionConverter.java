@@ -1,5 +1,6 @@
-package com.myz.opensource.mapstruct.convert;
+package com.myz.opensource.mapstruct.convert.expression;
 
+import com.myz.opensource.mapstruct.convert.factory.IPairConverter;
 import com.myz.opensource.mapstruct.entity.Car;
 import com.myz.opensource.mapstruct.entity.CarDiffTypeDTO;
 import org.mapstruct.InheritInverseConfiguration;

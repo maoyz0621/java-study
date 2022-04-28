@@ -59,12 +59,9 @@ public class GenericTest {
      */
     @Test
     public void test2() {
-        ArrayList<String> list = new ArrayList<>();
-        // if (list instanceof ArrayList<String>) {
-        if (list instanceof ArrayList) {
-
-        }
-
+        List<String> list = new ArrayList<>();
+        System.out.println(list instanceof List<?>);
+        // System.out.println(list instanceof List<String>);
     }
 
 }

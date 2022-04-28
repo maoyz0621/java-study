@@ -18,16 +18,18 @@ public class StringBuilderDemo {
         // 字符数组初始16
         StringBuilder sb1 = new StringBuilder();
 
-        System.out.println(sb1.length()); // 0
-        System.out.println(sb1.capacity());  // 16
+        System.out.println("len=" + sb1.length()); // 0a
+        System.out.println("capacity=" + sb1.capacity());  // 16
         // 定义字符数组初始容量30
+        System.out.println("=====================自定义capacity=30=======================");
         StringBuilder sb2 = new StringBuilder(30);
-        System.out.println(sb2.length()); // 0
-        System.out.println(sb2.capacity()); // 30
+        System.out.println("len=" + sb2.length()); // 0
+        System.out.println("capacity=" + sb2.capacity()); // 30
         // 字符数组初始16+传入字符串的长度,3+16=19,value[]={"demo","demo","demo"}
+        System.out.println("=====================传入初始值=======================");
         StringBuilder sb3 = new StringBuilder("aaa");
-        System.out.println(sb3.length()); // 3
-        System.out.println(sb3.capacity()); //19
+        System.out.println("len=" + sb3.length()); // 3
+        System.out.println("capacity=" + sb3.capacity()); //19
     }
 
     /**

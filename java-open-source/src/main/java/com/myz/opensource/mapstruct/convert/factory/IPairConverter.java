@@ -1,4 +1,4 @@
-package com.myz.opensource.mapstruct.convert;
+package com.myz.opensource.mapstruct.convert.factory;
 
 import java.util.List;
 

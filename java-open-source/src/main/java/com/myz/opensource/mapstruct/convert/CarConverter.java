@@ -1,5 +1,6 @@
 package com.myz.opensource.mapstruct.convert;
 
+import com.myz.opensource.mapstruct.convert.factory.IPairConverter;
 import com.myz.opensource.mapstruct.entity.Car;
 import com.myz.opensource.mapstruct.entity.CarDto;
 import org.mapstruct.Mapper;

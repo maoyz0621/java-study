@@ -1,7 +1,7 @@
 /**
  * Copyright 2020 Inc.
  **/
-package com.myz.opensource.mapstruct.convert;
+package com.myz.opensource.mapstruct.convert.inverse;
 
 import com.myz.opensource.mapstruct.entity.Car;
 import com.myz.opensource.mapstruct.entity.CarDto;

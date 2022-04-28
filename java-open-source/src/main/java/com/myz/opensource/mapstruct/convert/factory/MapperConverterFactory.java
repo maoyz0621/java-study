@@ -1,7 +1,7 @@
 /**
  * Copyright 2021 Inc.
  **/
-package com.myz.opensource.mapstruct.convert;
+package com.myz.opensource.mapstruct.convert.factory;
 
 import org.mapstruct.factory.Mappers;
 

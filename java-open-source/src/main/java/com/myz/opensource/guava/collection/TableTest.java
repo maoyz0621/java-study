@@ -33,6 +33,16 @@ public class TableTest {
         table.put("ccc", "英语", 92);
         table.put("ddd", "体育", 93);
 
+        // true
+        System.out.println(table.contains("aaa","语文"));
+        // false
+        System.out.println(table.contains("bbb","语文"));
+        // true
+        System.out.println(table.containsValue(90));
+        // false
+        System.out.println(table.containsValue(94));
+        System.out.println("==============================================");
+
         // 所有行列数据
         Set<Table.Cell<String, String, Integer>> cells = table.cellSet();
         for (Table.Cell<String, String, Integer> cell : cells) {

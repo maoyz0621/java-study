@@ -1,5 +1,6 @@
-package com.myz.opensource.mapstruct.convert;
+package com.myz.opensource.mapstruct.convert.date;
 
+import com.myz.opensource.mapstruct.convert.factory.IPairConverter;
 import com.myz.opensource.mapstruct.entity.Car;
 import com.myz.opensource.mapstruct.entity.CarDiffTypeDTO;
 import org.mapstruct.Mapper;
@@ -10,6 +11,8 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 /**
+ * 不同日期类型键相互转换
+ *
  * @author maoyuezhong
  * @version v1.0
  * @date 2021/7/23 11:25

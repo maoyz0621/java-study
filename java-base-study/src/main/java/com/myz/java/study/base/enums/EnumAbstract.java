@@ -43,7 +43,7 @@ public enum EnumAbstract {
     public static void main(String[] args) {
         int calculate0 = EnumAbstract.PLUS.calculate(1, 2);
         System.out.println(calculate0);
-        int calculate1 = EnumAbstract.TIMES.calculate(3, 2);
+        int calculate1 = EnumAbstract.TIMES.calculate(3, 4);
         System.out.println(calculate1);
     }
 }

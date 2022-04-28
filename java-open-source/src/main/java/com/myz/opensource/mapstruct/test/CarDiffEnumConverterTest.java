@@ -3,8 +3,8 @@
  **/
 package com.myz.opensource.mapstruct.test;
 
-import com.myz.opensource.mapstruct.convert.CarDiffEnumConverter;
-import com.myz.opensource.mapstruct.convert.MapperConverterFactory;
+import com.myz.opensource.mapstruct.convert.enums.CarDiffEnumConverter;
+import com.myz.opensource.mapstruct.convert.factory.MapperConverterFactory;
 import com.myz.opensource.mapstruct.dto.CarEnum;
 import com.myz.opensource.mapstruct.entity.Car;
 import com.myz.opensource.mapstruct.entity.CarDiffEnumDto;

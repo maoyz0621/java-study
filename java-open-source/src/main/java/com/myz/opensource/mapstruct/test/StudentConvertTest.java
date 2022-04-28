@@ -1,6 +1,6 @@
 package com.myz.opensource.mapstruct.test;
 
-import com.myz.opensource.mapstruct.convert.MapperConverterFactory;
+import com.myz.opensource.mapstruct.convert.factory.MapperConverterFactory;
 import com.myz.opensource.mapstruct.convert.StudentConvert;
 import com.myz.opensource.mapstruct.dto.StudentDTO;
 import com.myz.opensource.mapstruct.entity.StudentEntity;

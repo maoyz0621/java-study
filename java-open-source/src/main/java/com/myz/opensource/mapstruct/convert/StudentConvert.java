@@ -1,5 +1,6 @@
 package com.myz.opensource.mapstruct.convert;
 
+import com.myz.opensource.mapstruct.convert.factory.IPairConverter;
 import com.myz.opensource.mapstruct.dto.StudentDTO;
 import com.myz.opensource.mapstruct.entity.StudentEntity;
 import org.mapstruct.Builder;
