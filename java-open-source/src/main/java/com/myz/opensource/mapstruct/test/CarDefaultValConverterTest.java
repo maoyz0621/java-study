@@ -3,12 +3,14 @@
  **/
 package com.myz.opensource.mapstruct.test;
 
+import com.myz.opensource.mapstruct.convert.CarDefaultValConverter;
 import com.myz.opensource.mapstruct.convert.factory.MapperConverterFactory;
-import com.myz.opensource.mapstruct.convert.qualifiedByName.CarQualifiedConverter;
-import com.myz.opensource.mapstruct.dto.CarQualified;
 import com.myz.opensource.mapstruct.entity.Car;
 import com.myz.opensource.mapstruct.entity.CarDiffTypeDTO;
+import com.myz.opensource.mapstruct.entity.CarType;
 import org.junit.Test;
+
+import java.util.Date;
 
 /**
  * @author maoyz0621 on 2021/8/20
@@ -19,20 +21,20 @@ public class CarDefaultValConverterTest {
     @Test
     public void testto() {
         Car car = new Car();
-        car.setWeight("{\"createTime\":\"2021-08-21 17:33:02\",\"make\":\"mao\",\"updateTime\":\"2021-08-21 17:33:02\"}");
-        CarQualified to = MapperConverterFactory.INSTANCE(CarQualifiedConverter.class).to(car);
+        car.setNumberOfSeats(1);
+        car.setType(new CarType("abc"));
+        car.setCarType(new CarType("carType"));
+        car.setUpdateTime(new Date());
+        CarDiffTypeDTO to = MapperConverterFactory.INSTANCE(CarDefaultValConverter.class).to(car);
         System.out.println(to);
     }
 
     @Test
     public void testback() {
-        CarQualified qualified = new CarQualified();
         CarDiffTypeDTO carDiffTypeDTO = new CarDiffTypeDTO();
         carDiffTypeDTO.setCreateTime("2021-08-21 17:33:02");
         carDiffTypeDTO.setUpdateTime("2021-08-21 17:33:02");
-        carDiffTypeDTO.setMake("123456");
-        qualified.setWeight(carDiffTypeDTO);
-        Car back = MapperConverterFactory.INSTANCE(CarQualifiedConverter.class).back(qualified);
-        System.out.println(back);
+        Car car = MapperConverterFactory.INSTANCE(CarDefaultValConverter.class).back(carDiffTypeDTO);
+        System.out.println(car);
     }
 }

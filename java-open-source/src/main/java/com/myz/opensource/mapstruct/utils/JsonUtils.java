@@ -9,13 +9,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Named;
 
 /**
- * @author maoyz0621 on 2022/4/29
+ * @author maoyz0621 on 2022/5/5
  * @version v1.0
  */
-public class A {
+public class JsonUtils {
 
     @Named("toJson")
-    public String toJson(CarDiffTypeDTO dto) {
+    public static String toJson(Object dto) {
         if (dto == null) {
             return null;
         }
@@ -23,7 +23,7 @@ public class A {
     }
 
     @Named("fromJson")
-    public CarDiffTypeDTO fromJson(String val) {
+    public static CarDiffTypeDTO fromJson(String val) {
         if (StringUtils.isEmpty(val)) {
             return null;
         }

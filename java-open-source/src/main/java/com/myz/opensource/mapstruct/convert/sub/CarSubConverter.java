@@ -8,8 +8,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
-import java.util.List;
-
 /**
  * @author maoyuezhong
  * @version v1.0
@@ -31,16 +29,10 @@ public interface CarSubConverter extends IPairConverter<Car, CarSubDto> {
     @Override
     CarSubDto to(Car src);
 
-    @Override
-    List<CarSubDto> to(List<Car> srcList);
-
     @Mappings({
             // @Mapping(source = "type", target = "type.type", ignore = true)
             @Mapping(source = "type", target = "type.type")
     })
     @Override
     Car back(CarSubDto dest);
-
-    @Override
-    List<Car> back(List<CarSubDto> destList);
 }

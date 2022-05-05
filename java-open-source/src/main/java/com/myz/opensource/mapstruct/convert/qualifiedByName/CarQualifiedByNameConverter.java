@@ -18,8 +18,8 @@ import org.mapstruct.factory.Mappers;
  * @date 2021/7/23 11:25
  */
 @Mapper(componentModel = "spring")
-public interface CarQualifiedConverter extends IPairConverter<Car, CarQualified> {
-    CarQualifiedConverter INSTANCE = Mappers.getMapper(CarQualifiedConverter.class);
+public interface CarQualifiedByNameConverter extends IPairConverter<Car, CarQualified> {
+    CarQualifiedByNameConverter INSTANCE = Mappers.getMapper(CarQualifiedByNameConverter.class);
 
     /**
      * 子对象
