@@ -5,6 +5,8 @@ package com.myz.opensource.ttl;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.alibaba.ttl.TtlRunnable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,7 +17,7 @@ import java.util.concurrent.Future;
  * @version v1.0
  */
 public class TransmittableThreadLocalTaskDemo {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransmittableThreadLocalTaskDemo.class);
     private ThreadLocal<String> context = new TransmittableThreadLocal<>();
     private ExecutorService executorService = Executors.newFixedThreadPool(1);
 
@@ -35,7 +37,7 @@ public class TransmittableThreadLocalTaskDemo {
         Future<?> task2 = executorService.submit(TtlRunnable.get(new TaskRunnable("task2")));
         task2.get();
 
-        System.out.println("父线程context= " + context.get());
+        LOGGER.info("父线程context= {}", context.get());
 
         executorService.shutdown();
 
@@ -55,7 +57,7 @@ public class TransmittableThreadLocalTaskDemo {
 
         @Override
         public void run() {
-            System.out.println(Thread.currentThread().getName() + ":" + context.get());
+            LOGGER.info("{} : {}", Thread.currentThread().getName(), context.get());
             context.set(val);
         }
     }

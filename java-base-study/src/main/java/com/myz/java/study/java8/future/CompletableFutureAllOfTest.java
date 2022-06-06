@@ -53,6 +53,10 @@ public class CompletableFutureAllOfTest {
             }
             System.out.println(Thread.currentThread().getName() + " - end " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             return result;
-        }, executor);
+        }, executor).exceptionally((e) -> {
+            // 异常处理
+            System.err.println(Thread.currentThread().getName() + " error");
+            return false;
+        });
     }
 }

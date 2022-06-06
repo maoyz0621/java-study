@@ -160,6 +160,7 @@ public class ReferenceTest {
     /**
      * 虚引用PhantomReference不能单独使用, 必须配合ReferenceQueue使用
      * get()总是null
+     * @deprecated
      */
     @Test
     public void testPhantomReference() {

@@ -65,6 +65,7 @@
         <module>squirrel-fsm</module>
         <module>fsm</module>
         <module>leetcode</module>
+        <module>cola-fsm</module>
     </modules>
 
     <properties>

@@ -8,7 +8,8 @@ import org.junit.Test;
 import java.util.function.Predicate;
 
 /**
- * Predicate 断言
+ * Predicate 断言 返回true/false
+ * 谓词型接口，其实只是起到一个判断作用
  *
  * @author maoyz0621 on 19-8-2
  * @version: v1.0

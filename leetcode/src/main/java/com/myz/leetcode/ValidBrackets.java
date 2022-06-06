@@ -3,6 +3,10 @@
  **/
 package com.myz.leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
 /**
  * 有效括号
  * https://leetcode-cn.com/problems/valid-parentheses/
@@ -19,11 +23,49 @@ package com.myz.leetcode;
 public class ValidBrackets {
 
     public static void main(String[] args) {
-        boolean valid = isValid("");
+        boolean valid = isValid("()[]{}");
+        System.out.println(valid);
+
+        System.out.println("=====================================");
+
+        valid = isValid("{[]}");
+        System.out.println(valid);
+
+        System.out.println("=====================================");
+
+        valid = isValid("([)]");
+        System.out.println(valid);
+
+        System.out.println("=====================================");
+
+        valid = isValid("([");
         System.out.println(valid);
     }
 
     public static boolean isValid(String s) {
-        return false;
+        // 奇数返回false
+        if (s.length() <= 1 || s.length() % 2 != 0) {
+            return false;
+        }
+        final Map<Character, Character> map = new HashMap<Character, Character>() {{
+            put('(', ')');
+            put('{', '}');
+            put('[', ']');
+            put('?', '?');
+        }};
+
+        Stack<Character> stack = new Stack<>();
+        for (Character c : s.toCharArray()) {
+            // 左括号就入栈
+            if (map.containsKey(c)) {
+                stack.push(map.get(c));
+            } else {
+                // 右括号就出栈
+                if (stack.isEmpty() || !stack.pop().equals(c)) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
     }
 }
