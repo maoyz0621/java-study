@@ -136,7 +136,6 @@ public class TimeZoneTest {
     }
 
     /**
-<<<<<<< HEAD
      * 获取当前时间戳 0时区
      *
      * @return Long
@@ -149,8 +148,6 @@ public class TimeZoneTest {
     }
 
     /**
-=======
->>>>>>> c69fd0f54278fcd92a6b25bb8fa8282e0a036c7e
      * 获取当前时间戳
      *
      * @return long

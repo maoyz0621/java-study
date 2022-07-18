@@ -14,3 +14,5 @@ FSM - 有限状态机（Finite-state machine）
  - event：触发节点从当前状态到目标状态的动作
  - guard：起校验功能，一般用于校验是否可以执行后续action
  - action：用于实现当前节点对应的业务逻辑处理
+
+https://www.cnblogs.com/Zero-Jo/p/14151146.html

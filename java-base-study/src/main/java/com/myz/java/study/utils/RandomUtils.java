@@ -5,6 +5,8 @@
  */
 package com.myz.java.study.utils;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.security.SecureRandom;
 import java.util.Random;
 
@@ -13,14 +15,28 @@ import java.util.Random;
  */
 public class RandomUtils extends org.apache.commons.lang3.RandomUtils {
 
+    /**
+     * Alphabetic
+     */
+    public static String randomAlphabetic(final int len) {
+        return RandomStringUtils.randomAlphabetic(len);
+    }
+
+    /**
+     * 含有字母和数字的; 字母与数字并用的n
+     */
+    public static String randomAlphanumeric(final int len) {
+        return RandomStringUtils.randomAlphanumeric(len);
+    }
+
     public static String getString(int len) {
         int count = 0;
-        char[] chars = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '2', '3', '4', '5', '6', '7', '8', '9'};
+        char[] chars = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         StringBuffer str = new StringBuffer();
         Random r = new Random();
 
         while (count < len) {
-            int i = Math.abs(r.nextInt(53));
+            int i = Math.abs(r.nextInt(62));
             if (i >= 0 && i < chars.length) {
                 str.append(chars[i]);
                 ++count;

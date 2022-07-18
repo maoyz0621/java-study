@@ -21,8 +21,8 @@ public class LoopTest {
         while (iterator.hasNext()) {
             String next = iterator.next();
             if (next.equals("2")) {
-                // break;  // 1
-                continue;   // 1 3
+                // break;  // 打断：1
+                continue;   // 跳过继续：1 3
             }
             System.out.println(next);
         }

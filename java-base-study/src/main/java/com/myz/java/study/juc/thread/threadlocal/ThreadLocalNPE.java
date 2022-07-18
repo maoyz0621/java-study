@@ -29,7 +29,7 @@ public class ThreadLocalNPE {
         return longThreadLocal.get();
     }
 
-    // 如果get方法返回值为基本类型，则会报空指针异常，如果是包装类型就不会出错
+    // 如果get方法返回值为基本类型，则会报空指针异常，如果是包装类型就不会出错，包装类型-拆箱
     public long get0() {
         return longThreadLocal.get();
     }
