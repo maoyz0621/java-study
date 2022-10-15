@@ -9,7 +9,7 @@ import org.junit.Test;
  * @author maoyz0621 on 2022/7/18
  * @version v1.0
  */
-public class BoxTest {
+public class UnboxingTest {
 
     /**
      * Unboxing of 'null' may produce 'NullPointerException'
@@ -32,4 +32,16 @@ public class BoxTest {
             System.out.println(val);
         }
     }
+
+    /**
+     * PNE，原因：
+     */
+    @Test
+    public void test1(){
+        int simpleInt = 66;
+        Integer nullInteger = null;
+        Integer result = true ? nullInteger : simpleInt;
+        System.out.println(result);
+    }
+
 }

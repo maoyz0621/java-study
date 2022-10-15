@@ -4,6 +4,7 @@ import com.myz.java.study.base.collection.domain.User;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -59,6 +60,7 @@ public class CollectorsTest {
                 .collect(Collectors.toList());
         System.out.println(collect);
 
+        collect = collect.stream().sorted(Comparator.comparing(User::getAge).reversed()).collect(Collectors.toList());
         collect.forEach((key) -> System.out.println(key));
     }
 
