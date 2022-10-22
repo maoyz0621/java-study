@@ -43,13 +43,44 @@ public class ProxyFactoryTest {
     public void createJdkDynamicProxy() {
         ProxyFactory proxyFactory = new ProxyFactory();
         // 指定target对象
-        CalculatorImp calculatorImp = new CalculatorImp();
+        ICalculator calculatorImp = new CalculatorImp();
         proxyFactory.setTarget(calculatorImp);
 
         proxyFactory.addInterface(ICalculator.class);
 
         ICalculator proxy = (ICalculator) proxyFactory.getProxy();
 
+        log.info("proxy class:{}", proxy.getClass().getName());
+        proxy.add(1, 2);
+        log.info("proxy:{}", proxy);
+    }
+
+    @Test
+    public void createCglibDynamicProxyTarget() {
+        ProxyFactory proxyFactory = new ProxyFactory();
+        // 指定target对象
+        ICalculator calculatorImp = new CalculatorImp();
+        proxyFactory.setTarget(calculatorImp);
+        ICalculator proxy = (ICalculator) proxyFactory.getProxy();
+
+        // CalculatorImp$$EnhancerBySpringCGLIB$$fa5e4445
+        log.info("proxy class:{}", proxy.getClass().getName());
+        proxy.add(1, 2);
+        log.info("proxy:{}", proxy);
+    }
+
+    @Test
+    public void createCglibDynamicProxyTargetProxyTargetClass() {
+        ProxyFactory proxyFactory = new ProxyFactory();
+        // 指定target对象
+        ICalculator calculatorImp = new CalculatorImp();
+        proxyFactory.setTarget(calculatorImp);
+        proxyFactory.addInterface(ICalculator.class);
+
+        // CalculatorImp$$EnhancerBySpringCGLIB$$a9139ef5
+        proxyFactory.setProxyTargetClass(true);
+
+        ICalculator proxy = (ICalculator) proxyFactory.getProxy();
         log.info("proxy class:{}", proxy.getClass().getName());
         proxy.add(1, 2);
         log.info("proxy:{}", proxy);

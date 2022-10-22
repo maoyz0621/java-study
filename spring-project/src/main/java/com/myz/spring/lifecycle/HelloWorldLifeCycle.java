@@ -5,7 +5,7 @@ import org.springframework.beans.factory.InitializingBean;
 
 /**
  * InitializingBean
- * DisposableBean
+ * DisposableBean 用完即可丢弃的
  *
  * @author maoyz
  */
@@ -13,7 +13,7 @@ public class HelloWorldLifeCycle implements InitializingBean, DisposableBean {
 
     @Override
     public void destroy() throws Exception {
-        System.out.println("destory ...");
+        System.out.println("destroy ...");
     }
 
     @Override
