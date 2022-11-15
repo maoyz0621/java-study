@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class ListReferenceTest {
 
     @Test
-    public void test() {
+    public void testFilter() {
         List<Integer> list = Lists.newArrayList(1, 2, 3, 4);
         // [1, 2, 3, 4]
         System.out.println(list);
@@ -34,16 +34,18 @@ public class ListReferenceTest {
     }
 
     private void filter(List<Integer> list) {
+        // 操作前：955331
         System.out.println("操作前：" + list.hashCode());
 
         list = list.stream().filter(param -> Objects.equals(2, param)).collect(Collectors.toList());
 
         System.out.println("操作后：" + list);
+        // 操作后：33
         System.out.println("操作后：" + list.hashCode());
     }
 
     @Test
-    public void test1() {
+    public void testRemove() {
         List<Integer> list = Lists.newArrayList(1, 2, 3, 4);
         // [1, 2, 3, 4]
         System.out.println(list);
@@ -53,15 +55,18 @@ public class ListReferenceTest {
 
         remove(list);
         System.out.println("\r\n======================\r\n");
-        // [1, 2, 3, 4]
+        // [1, 3, 4]
         System.out.println(list);
     }
 
     private void remove(List<Integer> list) {
+        // 操作前：955331
         System.out.println("操作前：" + list.hashCode());
 
         list.removeIf(param -> Objects.equals(param, 2));
 
+        // 操作后：[1, 3, 4]
+        // 操作后：30849
         System.out.println("操作后：" + list);
         System.out.println("操作后：" + list.hashCode());
     }

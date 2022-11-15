@@ -44,6 +44,7 @@ public class ListIterTest {
     public void testPut() {
         List<String> excludeIds = new ArrayList<>(Arrays.asList("0", "11", "2"));
         excludeIds.add(0, "a");
+        // [a, 0, 11, 2]
         System.out.println(excludeIds);
     }
 
