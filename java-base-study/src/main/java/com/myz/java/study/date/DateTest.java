@@ -3,13 +3,14 @@ package com.myz.java.study.date;
 import com.vip.vjtools.vjkit.concurrent.threadpool.ThreadPoolBuilder;
 import com.vip.vjtools.vjkit.concurrent.threadpool.ThreadPoolUtil;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -32,6 +33,8 @@ import java.util.concurrent.ThreadPoolExecutor;
  */
 public class DateTest {
 
+    private static final Logger logger = LoggerFactory.getLogger(DateTest.class);
+
     private static final DateFormat DATEFORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -42,7 +45,7 @@ public class DateTest {
      * 共享变量calendar, calendar.setTime(date);
      */
     @Test
-    public void testThreadSimpleDateFormat() {
+    public void testThreadSimpleDateFormat() throws InterruptedException {
         ThreadPoolExecutor build = ThreadPoolBuilder.fixedPool()
                 .setPoolSize(100).setThreadFactory(ThreadPoolUtil.buildThreadFactory("schedule-pool"))
                 .build();
@@ -51,7 +54,7 @@ public class DateTest {
             build.execute(() -> {
                 for (int j = 0; j < 10; j++) {
                     try {
-                        System.out.println(Thread.currentThread().getName() + " -> " + DATEFORMAT.parse("2018-01-02 09:45:59"));
+                        logger.info("{} -> {}",Thread.currentThread().getName(), DATEFORMAT.parse("2018-01-02 09:45:59"));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -59,11 +62,12 @@ public class DateTest {
             });
         }
 
+        Thread.sleep(5000L);
         build.shutdown();
     }
 
     @Test
-    public void testThreadDateTimeFormatter() {
+    public void testThreadDateTimeFormatter() throws InterruptedException {
         ThreadPoolExecutor build = ThreadPoolBuilder.fixedPool()
                 .setPoolSize(100).setThreadFactory(ThreadPoolUtil.buildThreadFactory("schedule-pool"))
                 .build();
@@ -71,11 +75,12 @@ public class DateTest {
         for (int i = 0; i < 20; i++) {
             build.execute(() -> {
                 for (int j = 0; j < 10; j++) {
-                    System.out.println(Thread.currentThread().getName() + " -> " + LocalDateTime.parse("2018-01-02 09:45:59", formatter));
+                    logger.info("{} -> {}",Thread.currentThread().getName() , LocalDateTime.parse("2018-01-02 09:45:59", formatter));
                 }
             });
         }
 
+        Thread.sleep(5000L);
         build.shutdown();
     }
 
@@ -119,57 +124,6 @@ public class DateTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-    }
-
-
-    @Test
-    public void testCalendar() {
-        // abstract类,GregorianCalendar
-        Calendar calendar = Calendar.getInstance();
-        System.out.println(calendar.getClass().getName());
-        // getTIme()返回Date()
-        Date date = calendar.getTime();
-        System.out.println(date);
-        // calendar.set(2016, 1, 2);
-        calendar.set(Calendar.YEAR, 2017);
-        calendar.set(Calendar.MONTH, Calendar.JUNE);
-        // 天数超过30(31)天时,自动进位
-        calendar.set(Calendar.DATE, 32);
-        System.out.println(calendar.getTime());
-        int year = calendar.get(Calendar.YEAR);
-        System.out.println("年份:" + year);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        System.out.println("月份:" + month);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        System.out.println("日期:" + day);
-        int week = calendar.get(Calendar.WEEK_OF_MONTH);
-        System.out.println("第几周:" + week);
-        int weekDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;
-        System.out.println("周几:" + weekDay);
-
-        System.out.println("-----------------");
-
-        // 输出2017年每个月的天数
-        calendar.set(Calendar.YEAR, 2018);
-        calendar.set(Calendar.MONTH, 2);
-        int days = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        System.out.println(days);
-
-        System.out.println("-----------------");
-
-        // 一年零两个月后日期
-        calendar.set(2018, Calendar.FEBRUARY, 19);
-        calendar.add(Calendar.YEAR, 1);
-        calendar.add(Calendar.MONTH, 2);
-        System.out.println(calendar.getTime());
-
-        System.out.println("-----------------");
-
-        // 130天后日期
-        calendar.add(Calendar.DAY_OF_YEAR, 130);
-        System.out.println(calendar.getTime());
-        System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
-
     }
 
 }

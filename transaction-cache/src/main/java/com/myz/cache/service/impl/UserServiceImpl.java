@@ -77,15 +77,37 @@ public class UserServiceImpl implements UserService {
     }
 
     // 手动设置回滚
-    private void rollback() {
+    @Transactional(rollbackFor = Exception.class)
+    public void rollback() {
 
         try {
             // todo ... 执行业务代码
 
 
         } catch (Exception e) {
-            // 手动回滚事务
+            // 手动回滚，这样上层就无需去处理异常
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            throw e;
+        }
+    }
+
+    /**
+     * 使用Object savePoint = TransactionAspectSupport.currentTransactionStatus().createSavepoint();
+     * 使用TransactionAspectSupport.currentTransactionStatus().rollbackToSavepoint(savePoint);回滚到savePoint。
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void rollback1() {
+
+        // 设置回滚点
+        Object savePoint = TransactionAspectSupport.currentTransactionStatus().createSavepoint();
+        try {
+
+            // todo ... 执行业务代码
+
+
+        } catch (Exception e) {
+            // 回滚到savePoint
+            TransactionAspectSupport.currentTransactionStatus().rollbackToSavepoint(savePoint);
             throw e;
         }
     }

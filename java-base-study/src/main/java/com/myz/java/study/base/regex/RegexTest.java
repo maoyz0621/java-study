@@ -77,7 +77,7 @@ public class RegexTest {
         Matcher matcher = pattern.matcher(str);
 
         //必须要有这句
-        matcher.find();
+        boolean find = matcher.find();
 
         // 2018-03-01
         System.out.printf("\nmatcher.group() value:%s", matcher.group(0));

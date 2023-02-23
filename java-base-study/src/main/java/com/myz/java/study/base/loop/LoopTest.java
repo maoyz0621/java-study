@@ -20,9 +20,10 @@ public class LoopTest {
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
             String next = iterator.next();
-            if (next.equals("2")) {
+            if ("2".equals(next)) {
                 // break;  // 打断：1
-                continue;   // 跳过继续：1 3
+                // continue;   // 跳过继续：1 3
+                return;
             }
             System.out.println(next);
         }

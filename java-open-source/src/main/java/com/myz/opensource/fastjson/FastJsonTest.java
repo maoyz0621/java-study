@@ -29,6 +29,22 @@ import java.util.Map;
  */
 public class FastJsonTest {
 
+    @Test
+    public void JSONparse() {
+        String val = "{\"a\":\"123\",\"b\":12}";
+        Object parse = JSON.parse(val);
+
+        // com.alibaba.fastjson.JSONObject
+        System.out.println(parse.getClass());
+
+        // java.lang.ClassCastException: class com.alibaba.fastjson.JSONObject cannot be cast to class com.myz.opensource.fastjson.A
+        // A map = (A) JSON.parse(val);
+        // System.out.println(map);
+
+        A a = JSON.parseObject(val, A.class);
+        System.out.println(a);
+    }
+
     /**
      * Map转JSON
      */

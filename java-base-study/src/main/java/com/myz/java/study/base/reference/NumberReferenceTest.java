@@ -1,6 +1,8 @@
 package com.myz.java.study.base.reference;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 基本数据类型的装箱和拆箱
@@ -13,6 +15,8 @@ import org.junit.Test;
  * @author maoyz
  */
 public class NumberReferenceTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(NumberReferenceTest.class);
 
     public static void main(String[] args) {
         test0();
@@ -80,5 +84,30 @@ public class NumberReferenceTest {
     private int reference1(int temp) {
         temp = 11;
         return temp;
+    }
+
+    @Test
+    public void test2() {
+        int temp = 1;
+        reference2(temp);
+        // 1
+        logger.info("temp={}", temp);
+
+        System.out.println("\r\n================================\r\n");
+
+        int temp1 = 0;
+        reference2(temp1);
+        // 0
+        logger.info("temp1={}", temp1);
+
+        System.out.println("\r\n================================\r\n");
+
+        int temp2 = 1;
+        temp2 = reference2(temp2);
+        logger.info("temp2={}", temp2);
+    }
+
+    private int reference2(int temp) {
+        return ++temp;
     }
 }
