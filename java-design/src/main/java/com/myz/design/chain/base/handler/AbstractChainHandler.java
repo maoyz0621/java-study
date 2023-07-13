@@ -50,6 +50,10 @@ public abstract class AbstractChainHandler {
         }
     }
 
+    public final void proceed(AbstractRequestInfo requestInfo) {
+        handlerChainProcess(requestInfo);
+    }
+
     /**
      * 此方法也可以通过入参的level进行convent
      */

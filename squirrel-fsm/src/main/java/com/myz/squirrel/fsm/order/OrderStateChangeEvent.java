@@ -1,9 +1,10 @@
 /**
  * Copyright 2022 Inc.
  **/
-package com.myz.fms.enums;
+package com.myz.squirrel.fsm.order;
 
-import com.myz.fms.core.FsmEvent;
+
+import com.myz.squirrel.fsm.core.FsmEvent;
 
 /**
  * @author maoyz0621 on 2022/1/28

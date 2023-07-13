@@ -4,7 +4,11 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Semaphore　信号量 ,用来控制同时访问特定资源的线程数量，通过协调各个线程以保证合理地使用公共资源
@@ -36,45 +40,42 @@ public class SemaphoreDemo {
             threadPool.execute(new MyThread(semaphore, temp));
         }
         threadPool.shutdown();
-
-       /* for (int i = 0; i < 10; i++) {
-            int temp = i;
-            new Thread(new MyThread(semaphore, temp)).start();
-        }*/
     }
 
     static class MyThread implements Runnable {
 
-        private Semaphore semaphore;
-
-        private int num;
+        private final Semaphore semaphore;
 
         public MyThread(Semaphore semaphore, int num) {
             this.semaphore = semaphore;
-            this.num = num;
         }
 
         @Override
         public void run() {
             // 当前可用的许可数 Semaphore设置的阈值 count
             int mount = semaphore.availablePermits();
-            logger.debug("当前可用的许可数 = {}", mount);
+            // logger.debug("当前可用的许可数 = {}", mount);
 
             try {
-                // semaphore.tryAcquire(){}
+                boolean tryAcquire = semaphore.tryAcquire(3000, TimeUnit.MILLISECONDS);
+                logger.info("{} tryAcquire= {}", Thread.currentThread().getName(), tryAcquire);
                 //　获得许可
-                semaphore.acquire();
-                int permits = semaphore.availablePermits();
-                logger.debug("***************** 当前可用的许可数 = {}", permits);
+                // semaphore.acquire();
 
-                logger.debug(Thread.currentThread().getName() + " 运行：" + num);
+                logger.debug("{} 运行：许可数 = {}", Thread.currentThread().getName(), semaphore.availablePermits());
+
                 Thread.sleep(2000);
-                logger.debug(Thread.currentThread().getName() + " 释放..... " + num);
+
+                int permits0 = semaphore.availablePermits();
+                logger.debug("{} 释放：许可数 = {}", Thread.currentThread().getName(), semaphore.availablePermits());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 //　释放资源
                 semaphore.release();
+
+                // 重复release时，availablePermits > 3
+                // semaphore.release();
             }
         }
     }

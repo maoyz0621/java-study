@@ -20,7 +20,7 @@ public class ServerInvocationHandler<T> implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 返回Object类
-        if (method.getDeclaringClass() == Object.class) {
+        if (Object.class.equals(method.getDeclaringClass())) {
             return method.invoke(invoker, args);
         }
 

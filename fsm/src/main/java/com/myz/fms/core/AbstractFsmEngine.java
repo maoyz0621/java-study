@@ -16,6 +16,10 @@ public abstract class AbstractFsmEngine<S extends FsmState, E extends FsmEvent, 
     private final Map<AbstractFsmEngine<S, E, C>.FsmKey, FsmEventHandler<S, E, C>> registry = new HashMap<>();
     private FsmEventHandler<S, E, C> defaultHandler;
 
+
+    public AbstractFsmEngine() {
+    }
+
     public AbstractFsmEngine(FsmEventHandler<S, E, C> handler) {
         this.defaultHandler = handler;
         handler.bind(this);

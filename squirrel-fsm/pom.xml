@@ -17,12 +17,32 @@
 
     <name>squirrel-fsm</name>
 
+    <properties>
+        <squirrel-foundation.version>0.3.10</squirrel-foundation.version>
+    </properties>
+
 
     <dependencies>
         <dependency>
             <groupId>org.squirrelframework</groupId>
             <artifactId>squirrel-foundation</artifactId>
-            <version>0.3.8</version>
+            <version>${squirrel-foundation.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 

@@ -2,8 +2,10 @@ package com.myz.design.chain.base;
 
 import com.myz.design.chain.base.handler.AbstractChainHandler;
 import com.myz.design.chain.base.request.AbstractRequestInfo;
+import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,17 +19,27 @@ public class Chain {
     /**
      * 处理器
      */
-    private List<AbstractChainHandler> chainHandlers = new LinkedList<>();
+    private List<AbstractChainHandler> chainHandlers;
     /**
      * 请求信息
      */
     private AbstractRequestInfo requestInfo;
 
-    public Chain() {
+    public Chain(List<AbstractChainHandler> chainHandlers) {
+        Assert.notNull(chainHandlers);
+        this.chainHandlers = new ArrayList<>();
+        this.chainHandlers.addAll(chainHandlers);
+        setChainHandlers(this.chainHandlers);
+    }
+
+    public Chain(AbstractChainHandler... chainHandlers) {
+        this.chainHandlers = new ArrayList<>();
+        CollectionUtils.mergeArrayIntoCollection(chainHandlers, this.chainHandlers);
+        setChainHandlers(this.chainHandlers);
     }
 
     public Chain(List<AbstractChainHandler> chainHandlers, AbstractRequestInfo requestInfo) {
-        this.chainHandlers = chainHandlers;
+        this(chainHandlers);
         this.requestInfo = requestInfo;
     }
 
@@ -35,7 +47,23 @@ public class Chain {
      * 执行目标对象方法,同时移动游标
      */
     public void proceed() {
+        if (CollectionUtils.isEmpty(chainHandlers)) {
+            return;
+        }
         chainHandlers.get(0).execute(requestInfo);
+    }
+
+    public void handle() {
+        if (CollectionUtils.isEmpty(chainHandlers)) {
+            return;
+        }
+        chainHandlers.get(0).handle(requestInfo);
+    }
+
+    public void proceedChain() {
+        for (AbstractChainHandler chainHandler : chainHandlers) {
+            chainHandler.proceed(requestInfo);
+        }
     }
 
     /**

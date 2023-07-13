@@ -4,6 +4,7 @@
 package com.myz.fms.core;
 
 /**
+ * FsmState、FsmEvent、version 注册 FsmEventHandler
  * @author maoyz0621 on 2022/2/23
  * @version v1.0
  */

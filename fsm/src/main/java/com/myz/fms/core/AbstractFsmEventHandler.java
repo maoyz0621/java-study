@@ -4,6 +4,8 @@
 package com.myz.fms.core;
 
 /**
+ * 注册关系：AbstractFsmEventHandler关系- FsmState + FsmEvent
+ *
  * @author maoyz0621 on 2022/2/23
  * @version v1.0
  */

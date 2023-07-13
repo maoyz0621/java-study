@@ -28,6 +28,10 @@ public class ShallowCloneTest {
         StudentShallowClone studentShallowClone2 = (StudentShallowClone) studentShallowClone1.clone();
         // false
         System.out.println(studentShallowClone1 == studentShallowClone2);
+        // true
+        System.out.println("city = " + (studentShallowClone1.getCity() == studentShallowClone2.getCity()));
+        // true
+        System.out.println("province = " + (studentShallowClone1.getProvince() == studentShallowClone2.getProvince()));
         System.out.println(studentShallowClone1);
         System.out.println(studentShallowClone2);
 

@@ -28,6 +28,10 @@ public class DeepCloneTest {
         StudentDeepClone deepClone2 = (StudentDeepClone) deepClone.clone();
         // false
         System.out.println(deepClone == deepClone2);
+        // false
+        System.out.println("city = " + (deepClone.getCity() == deepClone2.getCity()));
+        // true
+        System.out.println("province = " + (deepClone.getProvince() == deepClone2.getProvince()));
         System.out.println(deepClone);
         System.out.println(deepClone2);
 
