@@ -6,8 +6,8 @@ package com.myz.design.strategy.pay.strategy;
 public class Main {
 
     public static void main(String[] args) {
-        StrategyContext strategyContext = new StrategyContext();
-        String context = strategyContext.generatePayParams(PayType.ALIPAY_APP, null);
+        PayStrategyContext payStrategyContext = new PayStrategyContext();
+        String context = payStrategyContext.generatePayParams(PayTypeEnum.ALIPAY_APP, null);
         System.out.println(context);
     }
 }

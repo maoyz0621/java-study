@@ -3,7 +3,7 @@ package com.myz.design.strategy.pay.strategy;
 /**
  * @author maoyz
  */
-public enum PayType {
+public enum PayTypeEnum {
 
     ALIPAY_WEB(1, "支付宝网页支付"),
     ALIPAY_WAP(2, "支付宝手机网页支付"),
@@ -15,7 +15,7 @@ public enum PayType {
     PSBC_WAP(8, "邮局手机网页支付"),
     CEB_WEB(9, "光大银行网页支付"),
     CEB_WAP(10, "光大银行手机网页支付"),
-    WECHAT_APP(11, "微信app支付"),//微信只支持app
+    WECHAT_APP(11, "微信app支付"),
     CEB_GATEWAY_WEB(12, "光大银行网关支付"),
     CEB_GATEWAY_WAP(13, "光大银行手机支付");
 
@@ -23,15 +23,14 @@ public enum PayType {
     private final String desc;
     private String name;
 
-    PayType(Integer value, String desc) {
+    PayTypeEnum(Integer value, String desc) {
         this.value = value;
         this.desc = desc;
-
     }
 
-    public static PayType valueOf(int value) {
+    public static PayTypeEnum valueOf(int value) {
 
-        for (PayType type : PayType.values()) {
+        for (PayTypeEnum type : PayTypeEnum.values()) {
             if (type.value() == value) {
                 return type;
             }

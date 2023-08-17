@@ -7,7 +7,7 @@ package com.myz.design.strategy.paystrategyextend;
  */
 public interface PayMethod {
 
-    default String payType() {
+    default String payTypeEnum() {
         return "";
     }
 

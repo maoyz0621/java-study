@@ -8,7 +8,7 @@ import java.util.Map;
 public class AlipayAppStrategy implements PayStrategy {
 
     @Override
-    public String generatePayParams(PayType payType, Map<String, Object> params) {
+    public String generatePayParams(PayTypeEnum payTypeEnum, Map<String, Object> params) {
         return "AlipayApp";
     }
 
